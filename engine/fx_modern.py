@@ -93,9 +93,51 @@ def _warship(size=70):
     im = im.resize((size, int(size * .32)), Image.LANCZOS)
     return im
 
+def _jet(size=60, col=(215, 220, 228)):
+    n = size * S3; im = Image.new("RGBA", (n, n), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    dk = (80, 85, 95, 255); c = col + (255,)
+    d.polygon([(n * .5, n * .04), (n * .56, n * .2), (n * .56, n * .84), (n * .44, n * .84), (n * .44, n * .2)], fill=c, outline=dk)   # fuselage, nose up
+    d.polygon([(n * .44, n * .36), (n * .04, n * .62), (n * .06, n * .68), (n * .44, n * .54)], fill=c, outline=dk)                 # swept wings
+    d.polygon([(n * .56, n * .36), (n * .96, n * .62), (n * .94, n * .68), (n * .56, n * .54)], fill=c, outline=dk)
+    d.polygon([(n * .44, n * .74), (n * .28, n * .88), (n * .44, n * .86)], fill=c, outline=dk)
+    d.polygon([(n * .56, n * .74), (n * .72, n * .88), (n * .56, n * .86)], fill=c, outline=dk)
+    im = im.resize((size, size), Image.LANCZOS)
+    sh = Image.new("RGBA", im.size, (0, 0, 0, 0)); sh.putalpha(im.getchannel("A").point(lambda v: int(v * .45)))
+    out = Image.new("RGBA", (size + 14, size + 14), (0, 0, 0, 0)); out.alpha_composite(sh, (12, 12)); out.alpha_composite(im, (0, 0))
+    return out
+
+def _train(size=70):
+    n = size * S3; h = int(n * .5); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    blk = (30, 30, 34, 255); red = (170, 40, 40, 255)
+    d.rounded_rectangle([n * .30, h * .35, n * .92, h * .78], radius=h * .12, fill=blk)                          # boiler
+    d.rectangle([n * .06, h * .18, n * .34, h * .78], fill=red, outline=blk, width=S3 * 2)                        # cab
+    d.rectangle([n * .70, h * .08, n * .80, h * .38], fill=blk)                                                  # chimney
+    d.polygon([(n * .92, h * .62), (n * 1.0, h * .86), (n * .88, h * .86)], fill=(120, 120, 125, 255))           # cowcatcher
+    for x in (.18, .46, .66, .84): d.ellipse([n * x - h * .12, h * .70, n * x + h * .12, h * .94], fill=(60, 60, 64, 255), outline=(200, 170, 70, 255), width=S3)
+    im = im.resize((size, int(size * .5)), Image.LANCZOS)
+    out = Image.new("RGBA", (im.width + 10, im.height + 10), (0, 0, 0, 0))
+    a = Image.new("L", out.size, 0); a.paste(im.getchannel("A"), (5, 5))
+    ol = Image.new("RGBA", out.size, (255, 255, 255, 255)); ol.putalpha(a.filter(ImageFilter.MaxFilter(3)).point(lambda v: int(v * .85)))
+    out.alpha_composite(ol); out.alpha_composite(im, (5, 5)); return out
+
+def _rocket(size=90):
+    n = size * S3; w = int(n * .36); im = Image.new("RGBA", (w, n), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    wh = (240, 240, 236, 255); dk = (60, 60, 66, 255)
+    d.polygon([(w * .5, 0), (w * .70, n * .16), (w * .30, n * .16)], fill=wh, outline=dk)
+    d.rectangle([w * .30, n * .16, w * .70, n * .80], fill=wh, outline=dk)
+    for y in (.34, .56): d.rectangle([w * .30, n * y, w * .70, n * (y + .04)], fill=dk)
+    d.polygon([(w * .30, n * .64), (w * .02, n * .86), (w * .30, n * .80)], fill=dk)
+    d.polygon([(w * .70, n * .64), (w * .98, n * .86), (w * .70, n * .80)], fill=dk)
+    d.polygon([(w * .34, n * .80), (w * .66, n * .80), (w * .5, n * 1.0)], fill=(255, 170, 40, 255))
+    return im.resize((int(w / S3), size), Image.LANCZOS)
+
 def sprite(kind, size):
     k = (kind, size)
-    if k not in _cache: _cache[k] = {"plane": _plane, "airship": _airship, "warship": _warship}[kind](size)
+    if k not in _cache:
+        if kind == "steamer":
+            import fx_eras as FE; _cache[k] = FE.ship("steamer", (190, 60, 50), size)
+        else:
+            _cache[k] = {"plane": _plane, "airship": _airship, "warship": _warship, "jet": _jet, "train": _train, "rocket": _rocket}[kind](size)
     return _cache[k]
 
 # ---------------- path helpers ----------------
@@ -152,16 +194,43 @@ def draw_vehicle(fr, S, vw, t, ev, zscale):
     t0, t1 = ev["t0"], ev["t1"]; until = ev.get("until", t1 + 0.8)
     if t < t0 or t > until: return
     fade = 1 - pr(t, until - 0.5, until)
+    if ev["kind"] == "rocket": return _draw_rocket(fr, S, vw, t, ev, zscale, fade)
     pts = [S(*p) for p in ev["path"]]
     k = pr(t, t0, t1) if ev.get("linear", True) else eio(pr(t, t0, t1))
     if ev.get("route", True):
         lay = Image.new("RGBA", fr.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
-        dotted(d, pts, k if ev["kind"] != "warship" else 1.0, col=(235, 235, 235, int(190 * fade)), width=max(2, int(4 * zscale(vw))))
+        kind = ev["kind"]; zw = zscale(vw)
+        if kind == "train":      # railway: dark line with white sleepers, laid as the train goes
+            seg = _upto(pts, 1.0 if ev.get("rail_first") else k)
+            if len(seg) > 1:
+                d.line(seg, fill=(30, 30, 30, int(230 * fade)), width=max(3, int(7 * zw)), joint="curve")
+                dotted(d, seg, 1.0, col=(240, 240, 235, int(220 * fade)), dash=3, gap=9, width=max(5, int(13 * zw)))
+                d.line(seg, fill=(30, 30, 30, int(230 * fade)), width=max(2, int(3 * zw)), joint="curve")
+        elif kind == "jet":      # contrail: solid white line fading towards the tail
+            seg = _upto(pts, k)
+            if len(seg) > 1:
+                d.line(seg, fill=(255, 255, 255, int(150 * fade)), width=max(2, int(5 * zw)), joint="curve")
+                lay = lay.filter(ImageFilter.GaussianBlur(1.5)); d = ImageDraw.Draw(lay)
+        elif kind == "rocket":
+            pass
+        else:
+            dotted(d, pts, k if kind not in ("warship", "steamer") else 1.0, col=(235, 235, 235, int(190 * fade)), width=max(2, int(4 * zw)))
         fr.paste(lay, (0, 0), lay)
     (x, y), ang = point_at(pts, k)
-    size = int({"plane": 54, "airship": 120, "warship": 78}[ev["kind"]] * zscale(vw) * ev.get("scale", 1.0))
+    size = int({"plane": 54, "airship": 120, "warship": 78, "jet": 58, "train": 64, "steamer": 66}[ev["kind"]] * zscale(vw) * ev.get("scale", 1.0))
     im = sprite(ev["kind"], size)
-    if ev["kind"] == "plane": im = rotate(im, -math.degrees(ang) - 90)
+    if ev["kind"] == "train":
+        rnd = random.Random(int(t * 30))
+        lay = Image.new("RGBA", fr.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)   # steam puffs drifting behind
+        for j in range(5):
+            (px, py), _ = point_at(pts, max(0, k - 0.015 * (j + 1)))
+            r = (7 + j * 4) * zscale(vw); py -= (18 + j * 6) * zscale(vw)
+            d.ellipse([px - r, py - r, px + r, py + r], fill=(245, 245, 245, int(150 * fade * (1 - j / 5))))
+        fr.paste(lay.filter(ImageFilter.GaussianBlur(2)), (0, 0), lay.filter(ImageFilter.GaussianBlur(2)))
+        if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
+    elif ev["kind"] in ("plane", "jet"): im = rotate(im, -math.degrees(ang) - 90)
+    elif ev["kind"] == "steamer":
+        if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     elif ev["kind"] == "warship":
         im = rotate(im, -math.degrees(ang))
         lay = Image.new("RGBA", fr.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)   # wake
@@ -175,6 +244,28 @@ def draw_vehicle(fr, S, vw, t, ev, zscale):
         im = im.copy(); im.putalpha(im.getchannel("A").point(lambda v: int(v * fade)))
     fr.paste(im, (int(x - im.width / 2), int(y - im.height / 2)), im)
 
+def _upto(pts, k):
+    L = _lens(pts); tot = sum(L); tgt = tot * cl(k); out = [pts[0]]; acc = 0
+    for (a, b), l in zip(zip(pts, pts[1:]), L):
+        if acc + l < tgt: out.append(b); acc += l
+        else:
+            u = (tgt - acc) / l if l else 0; out.append((a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u)); break
+    return out
+
+def _draw_rocket(fr, S, vw, t, ev, zscale, fade):
+    """Rocket launch from ev["path"][0]: rises straight up on screen with a flame and smoke column."""
+    x, y = S(*ev["path"][0]); p = eio(pr(t, ev["t0"], ev["t1"])); z = zscale(vw) * ev.get("scale", 1.0)
+    rise = p * ev.get("height", 700) * z
+    lay = Image.new("RGBA", fr.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay); rnd = random.Random(int(t * 25))
+    for j in range(14):
+        f = j / 14; yy = y - rise * f; r = (10 + 22 * (1 - f)) * z * rnd.uniform(.8, 1.2)
+        d.ellipse([x - r + rnd.uniform(-4, 4), yy - r, x + r, yy + r], fill=(235, 235, 235, int(150 * fade * (0.4 + 0.6 * (1 - f)))))
+    fr.paste(lay.filter(ImageFilter.GaussianBlur(4)), (0, 0), lay.filter(ImageFilter.GaussianBlur(4)))
+    im = sprite("rocket", int(90 * z))
+    if fade < 0.999:
+        im = im.copy(); im.putalpha(im.getchannel("A").point(lambda v: int(v * fade)))
+    fr.paste(im, (int(x - im.width / 2), int(y - rise - im.height * .8)), im)
+
 def draw_glow(fr, S, vw, t, ev):
     """A soft searchlight sweep over a conquered area."""
     t0, t1 = ev["t0"], ev["t1"]
@@ -185,3 +276,23 @@ def draw_glow(fr, S, vw, t, ev):
     ang = ev.get("a0", -40) + (ev.get("a1", 40) - ev.get("a0", -40)) * p
     d.pieslice([x - R, y - R, x + R, y + R], ang - 14, ang + 14, fill=(255, 235, 225, int(110 * a)))
     lay = lay.filter(ImageFilter.GaussianBlur(28)); fr.paste(lay, (0, 0), lay)
+
+def draw_cities(fr, S, vw, t, ev, zscale):
+    """Glowing city lights (industrial/modern eras). ev: cities=[(lon,lat,weight 0.3-1.5)], t0, t1 (fade/grow in), until."""
+    t0 = ev["t0"]; until = ev.get("until", 1e9)
+    if t < t0 or t > until: return
+    g = eio(pr(t, t0, ev.get("t1", t0 + 1.5))) * (1 - pr(t, until - 0.5, until))
+    lay = Image.new("RGBA", fr.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay); z = zscale(vw)
+    col = ev.get("color", (255, 214, 140))
+    for i, (lon, lat, w) in enumerate(ev["cities"]):
+        x, y = S(lon, lat)
+        if x < -50 or y < -50 or x > fr.width + 50 or y > fr.height + 50: continue
+        tw = 0.85 + 0.15 * math.sin(t * 3 + i * 1.7)
+        r = 46 * w * z * g * tw
+        d.ellipse([x - r, y - r, x + r, y + r], fill=col + (int(170 * g),))
+    lay = lay.filter(ImageFilter.GaussianBlur(10 * z))
+    d = ImageDraw.Draw(lay)
+    for lon, lat, w in ev["cities"]:
+        x, y = S(lon, lat); r = 6 * w * z * g
+        d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 250, 235, int(255 * g)))
+    fr.paste(lay, (0, 0), lay)

@@ -198,6 +198,9 @@ def _horse(d, n, x0, y0, sc, coat=(110, 72, 44, 255)):
     d.line([P(0.86, 0.06), P(0.74, 0.26)], fill=(40, 26, 16, 255), width=max(2, lw // 2))
 
 def soldier(col, size=40, kind="legion"):
+    import fx_eras as FE
+    if kind in FE.FOOT2:
+        im = FE.soldier(col, size, kind); return _sol_finish(im.crop(im.getbbox()))
     n = size * S3; W_, H_ = int(n * 1.5), int(n * 1.5)
     im = Image.new("RGBA", (W_, H_), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     body = (40, 34, 30, 255); c = col + (255,); dk = tuple(int(v * 0.5) for v in col) + (255,)
@@ -327,7 +330,9 @@ def soldier(col, size=40, kind="legion"):
             d.ellipse([rx - n * 0.14, ry + n * 0.30, rx + n * 0.12, ry + n * 0.56], fill=dk, outline=c, width=n // 26)
             d.arc([rx + n * 0.16, ry + n * 0.10, rx + n * 0.44, ry + n * 0.58], 270, 90, fill=(120, 80, 30, 255), width=n // 24)
     im = im.resize((int(W_ / S3), int(H_ / S3)), Image.LANCZOS)
-    im = im.crop(im.getbbox())
+    return _sol_finish(im.crop(im.getbbox()))
+
+def _sol_finish(im):
     pad = 6; out = Image.new("RGBA", (im.width + 2 * pad, im.height + 2 * pad), (0, 0, 0, 0))
     a = Image.new("L", out.size, 0); a.paste(im.getchannel("A"), (pad, pad))
     ol = Image.new("RGBA", out.size, (255, 255, 255, 255)); ol.putalpha(a.filter(ImageFilter.MaxFilter(3)).point(lambda v: int(v * 0.85)))
@@ -339,11 +344,22 @@ def get_icon(name, size):
     k = (name, size)
     if k not in _cache: _cache[k] = ICONS[name](size)
     return _cache[k]
-def get_ship(col, size, flip):
-    k = ("ship", col, size, flip)
+SHIP_STYLE = None   # None/"classic" = old sail boat; "junk", "carrack", "galleon", "steamer", "modern" (see fx_eras)
+def set_year(y):
+    """Call from an episode config: picks the era-correct ship automatically."""
+    global SHIP_STYLE
+    import fx_eras as FE; SHIP_STYLE = FE.ship_for_year(y)
+def get_ship(col, size, flip, style=None):
+    style = style or SHIP_STYLE or "classic"
+    k = ("ship", col, size, flip, style)
     if k not in _cache:
-        import fx_people as FP
-        im = FP.ship(col, size); _cache[k] = im.transpose(Image.FLIP_LEFT_RIGHT) if flip else im
+        if style == "classic":
+            import fx_people as FP; im = FP.ship(col, size)
+        elif style == "modern":
+            import fx_modern as FM; im = FM.sprite("warship", int(size * 1.3))
+        else:
+            import fx_eras as FE; im = FE.ship(style, col, size)
+        _cache[k] = im.transpose(Image.FLIP_LEFT_RIGHT) if flip else im
     return _cache[k]
 def get_soldier(col, size, flip, kind="legion"):
     k = ("sol", col, size, flip, kind)
@@ -456,7 +472,8 @@ def draw_march(fr, S, vw, t, ev):
     fr.paste(lay, (0, 0), lay)
     # soldiers trailing behind the head
     kind = ev.get("kind", "legion")
-    foot = kind in ("legion", "han", "rebel", "goth", "viking", "frank", "byzantine", "aztec")
+    import fx_eras as FE
+    foot = kind in ("legion", "han", "rebel", "goth", "viking", "frank", "byzantine", "aztec") + FE.FOOT2
     n = ev.get("soldiers", 9 if foot else 6); sz = int((44 if foot else 50) * zscale(vw))
     flip = math.cos(ang) < 0
     rnd = random.Random(int(t0 * 100))
@@ -471,7 +488,7 @@ def draw_march(fr, S, vw, t, ev):
         if ev.get("ships", True) and is_water(*geo_at(pts, ev["path"], dist - back)):
             if i % per: continue
             bob = math.sin((t - t0) * 3 + i) * 3
-            paste(fr, get_ship(col, int(sz * 1.25), flip), sx, sy + bob - sz * 0.5, alpha=fade); continue
+            paste(fr, get_ship(col, int(sz * 1.25), flip, ev.get("ship")), sx, sy + bob - sz * 0.5, alpha=fade); continue
         walk = abs(math.sin((t - t0) * (9 if foot else 12) + i)) * (4 if foot else 6) if k < 1 else 0
         paste(fr, get_soldier(col, sz, flip, kind), px, py - walk - sz * 0.4, alpha=fade)
 
@@ -510,6 +527,8 @@ def draw_boom(fr, S, vw, t, ev):
 
 def draw_all(fr, S, vw, t, events):
     import fx_modern as FM
+    for ev in events:
+        if ev["type"] == "cities": FM.draw_cities(fr, S, vw, t, ev, zscale)
     for ev in events:
         if ev["type"] == "glow": FM.draw_glow(fr, S, vw, t, ev)
     for ev in events:

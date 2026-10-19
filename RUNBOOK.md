@@ -25,6 +25,28 @@ schedules it in Metricool. Follow every step. Speak Norwegian in anything writte
 - Avoid ongoing wars and current political conflicts. For modern episodes stay factual and neutral.
 - Every fact must be correct. Check dates and claims with WebSearch before writing the script.
 
+## The animation evolves through the series (owner's wish: more detail the closer we get to today)
+Each era adds new layers on top of the old ones. Always use the level for the episode's year – never older, never newer.
+Put `import fx as FX; FX.set_year(<YEAR>)` at the top of the episode config so ships match the era automatically
+(override per march with `ship="junk"` etc.). Reference: `engine/demo_eras.py`.
+
+| Years | Soldiers (march `kind=`) | Ships at sea | Extra layers |
+|---|---|---|---|
+| 1–1400 | legion, han, goth, viking, frank, byzantine, hun, arab, mongol, knight, aztec … | classic sail boat | portraits, icons |
+| 1400–1550 | janissary (Ottomans), conquistador (Spain), inca, knight, aztec | carrack; **junk** for Chinese fleets (Zheng He) | dotted sea routes for explorers (`routes`), portraits |
+| 1550–1700 | musketeer, janissary, conquistador | galleon | + trade routes, gold/silk icons |
+| 1700–1800 | line (tricorne; coat in the nation's colour) | galleon | + `cities` lights for big capitals |
+| 1795–1870 | napoleonic (shako) | galleon → steamer from 1830 | + railways from 1830: `vehicle kind="train"` (lays the track as it goes) |
+| 1850–1913 | rifleman | steamer | + trains, `cities` lights grow, steamer routes |
+| 1914–1945 | flag fronts (see «Modern wars»); `ww1` soldiers only if a march is needed | modern warship | + planes, airships, blasts (silent), glow sweep |
+| 1945–2026 | flag fronts / plain colour chips | modern warship | + `jet` (contrail), `rocket` launch (space race), dense `cities` lights |
+
+Effect syntax:
+- `dict(type="vehicle", kind="train"|"steamer"|"jet"|"rocket"|"plane"|"airship"|"warship", path=[(lon,lat),...], t0, t1, until=…)`
+  (rocket uses `path=[(lon,lat)]` as launch site and `height=` in pixels).
+- `dict(type="cities", cities=[(lon, lat, weight 0.5–1.5), ...], t0, t1, until=…)` – glowing city lights.
+Detail should grow gradually: early episodes stay clean; from ~1700 more labels/cities; from 1914 the full modern overlay.
+
 ## Modern wars (from about Year 1914 and later) – overlay style approved by the owner
 Same satellite map as always – only the war overlay changes (`fx_modern.py`, reference: `engine/demo_ww1.py`):
 - **Front lines of flags** instead of marching soldiers: `dict(type="front", path0=[...], path1=[...], t_in, t_out, move0, move1,
