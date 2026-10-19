@@ -1,0 +1,4 @@
+from ep6_geo import *
+EXCLUSIVE = True
+EMPIRES = EUROPE_1000 + REST_1000
+CULTURES = CULT_1000

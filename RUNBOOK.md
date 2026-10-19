@@ -1,0 +1,96 @@
+# RUNBOOK – daily episode of «History of the World»
+
+This repo is the production line for the YouTube Shorts series **History of the World** (channel owner: Sebastian, Norway).
+A scheduled task runs every night after 03:00 Oslo time. Each run makes **exactly one new episode**, uploads it and
+schedules it in Metricool. Follow every step. Speak Norwegian in anything written to the owner; the videos are in English.
+
+## 0. Ground rules (the owner's wishes – never break these)
+- Series: world history from Year 1 to 2026, one key year per episode, with the exciting events *between* the years.
+  Usable in schools, but exciting. Up to **90 seconds** (aim 85–90 s).
+- Write years as "Year 1405" / "In 1405". Use BCE/CE only for ranges before Year 1.
+- Visual style = "geography edit" (like VeraMellua's «The Fall of the Macedonian Empire"): detailed satellite map,
+  empire colours spread when they conquer and retreat or shatter when they lose. **No text boxes / fact cards.**
+  Big glowing headings at the top, empire names on the map.
+- Attacks: marching soldiers + arrow. **Different soldier kinds per people** (see `fx.py`: legion, han, rebel, goth,
+  viking, frank, byzantine, aztec, parthian, kushan, xianbei, hun, sasanian, arab, mongol, knight). Add a new kind when a
+  new people fights. **No crossed swords. No explosions.**
+- Sea crossings automatically become ships (`ships=True` default); land travel = marching.
+- Icons only for gold, silk/trade, fire and other truly important things (plague = rat). **No icons just because Rome
+  is mentioned.**
+- Important people appear as animated portrait medallions with name + short title (`fx_people.py`). Make them as
+  recognisable as possible from well-known depictions (crowns, hats, beards, clothing). **Never depict the Prophet
+  Muhammad.** Avoid depicting other religious founders.
+- English narration via the **Speko** connector, English viral captions, original synthesized music (no copyrighted
+  audio, no downloaded clips/memes/images).
+- Avoid ongoing wars and current political conflicts. For modern episodes stay factual and neutral.
+- Every fact must be correct. Check dates and claims with WebSearch before writing the script.
+
+## 1. Set up the session
+```bash
+# the repo is cloned at /home/claude/history-of-the-world-year-1--2100 (use add_repo with access "push" if needed)
+bash /home/claude/history-of-the-world-year-1--2100/setup.sh      # copies engine to /home/claude/shortgen, builds terrain
+```
+npm/pip only work with the proxy variables cleared (setup.sh does this). Read `state.json`:
+`next_episode`, `previous_year`, `previous_year_module`, `next_publish_date`, and the `plan` entry for the episode.
+Build the previous year's base map: `cd /home/claude/shortgen && python3 geo.py <previous_year_module> /home/claude/shortgen/hd_<previous_year>.png`
+
+## 2. Research and script (13 narration lines)
+Research the period between `previous_year` and the new year. Pick the ~9 most exciting events. Structure:
+0 hook ("The year X. …"), 1 "Let's rewind to the year <previous_year>, and …", 2–11 events in chronological order
+(the ticker must never run backwards), 12 outro "Next time: the year <next plan year>, when … Follow the series!".
+Name the key people. Keep each line short (≈ 5–8 s spoken).
+
+## 3. Voice (Speko)
+Call `mcp__Speko__audio_synthesize` once per line with
+`{"text": LINE, "intent": {"language": "en-US", "optimizeFor": "balanced"}, "instructions": "Deep, calm, cinematic documentary narrator. Confident and slightly dramatic.", "spokenForm": true}`.
+Each result is saved to a tool-results file whose name ends in `mcp-Speko-audio_synthesize-<ID>.txt`. Collect the IDs
+in line order and run `TEMPO=1.13 python3 mkvo.py voN <id1>,<id2>,…` (creates `voN/f*.wav` + `voN/spans.txt`).
+If the last span ends after ~88.5 s, raise TEMPO (max 1.20) or shorten lines.
+
+## 4. Map data
+Write `epN_geo.py` (new polygons) and year modules `world_data_<year>.py` (and intermediate years when borders change a
+lot). Copy the pattern from `ep7_geo.py`, `world_data_1279.py`, `world_data_1347.py`. Set `EXCLUSIVE = True` (later
+entries win overlaps). Render each map: `python3 geo.py world_data_<year> /home/claude/shortgen/hd_<year>.png`.
+Build reveal regions like `regions_ep08.py` (gain = new territory spreading from an origin; retreat + `mode="shatter"`
+for collapses). Never run two heavy jobs at once (7 GB RAM).
+
+## 5. Episode config
+Write `epNN.py` modelled on `ep08.py` / `ep07.py`: camera shots per line (view width 900–2000 for close-ups, 2950 wide),
+base_switches (switch maps during camera moves), reveals, labels (avoid clutter; event labels in gold), ticker,
+headings (2 lines; avoid the letter Q in headings – the font renders it oddly), fx (marches, icons, persons with
+`screen=(780,1180)` or `(300,1180)`), outro with next episode. Render preview stills:
+`python3 epNN.py stills 4,15,25,… /tmp/sN.png` and **look at them** (Read the png). Fix overlaps, empty frames, wrong maps.
+
+## 6. Captions and audio
+- Captions: copy `mkcaps8.py` to `mkcapsN.py`, put the 13 lines with colour markers (`word|y`, `|r`, `|c`, `|p`, `|g`;
+  `_` joins words) → `python3 mkcapsN.py captions_epNN.txt /tmp/narr.txt`.
+- Music + voice: `python3 audio_gen.py voN audio_epNN_vo.wav <DUR> <seed> "<rumble list>" "<fire times>"`
+  then `python3 fx_audio.py epNN audio_epNN_vo.wav audio_epNN_fx.wav`.
+
+## 7. Render
+```bash
+python3 epNN.py video epNN_clean.mp4 audio_epNN_fx.wav            # ~40–60 min, run in background
+python3 caption_burn.py epNN_clean.mp4 captions_epNN.txt /home/claude/history_epNN_year<YEAR>.mp4 0.80
+```
+Check duration (≤ ~91 s) and look at 8–10 frames spread over the video.
+
+## 8. Upload and schedule
+```bash
+cd /home/claude/history-of-the-world-year-1--2100
+ffmpeg -i /home/claude/history_epNN_year<YEAR>.mp4 -c:v libx264 -preset slow -crf 20 -maxrate 4500k -bufsize 9000k -c:a copy -movflags +faststart videos/epNN_year<YEAR>.mp4
+git add videos engine && git commit -m "Episode NN – Year <YEAR>" && git push
+```
+Public URL: `https://raw.githubusercontent.com/Olsen247/History-of-the-world-year-1--2100/main/videos/epNN_year<YEAR>.mp4`
+Schedule with `mcp__Metricool_Social_Media_Management__createScheduledPost` (blogId `7508489`) on `next_publish_date`
+at 10:00 Europe/Oslo: providers `[{"network":"youtube"}]`, youtubeData
+`{"title": "History of the World Ep NN", "type": "short", "privacy": "public", "category": "EDUCATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": [...]}`,
+text = "Year <YEAR> – <topic>. <one or two sentence summary>\nEpisode NN of History of the World, from Year 1 to 2026.\n#history #geography #shorts …".
+Before scheduling, call getScheduledPosts for that date so you never double-book a slot.
+
+## 9. Save state
+Copy every new engine file into `engine/`, update `state.json` (next_episode+1, previous_year, previous_year_module,
+previous_base_map, next_publish_date+1 day, append to `done`), append the title/description to `docs/upload_tekster.md`,
+commit and push. Finish with a short Norwegian summary: episode, publish date, anything that went wrong.
+
+If something fails that you cannot fix (Speko, Metricool, push), do NOT publish a broken video. Commit what you have,
+leave state.json unchanged and report the problem in Norwegian.

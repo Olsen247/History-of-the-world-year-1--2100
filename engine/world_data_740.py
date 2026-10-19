@@ -1,0 +1,5 @@
+from ep5_geo import *
+EXCLUSIVE = True
+EMPIRES = europe_750() + [("UMAYYAD CALIPHATE", UMA, [UMA_SPAIN, UMA_AFRICA, UMA_EAST], (44, 30))] + asia_750("TURKIC KHAGANATE") + INDIA_750 + \
+          [("AKSUM", (120, 150, 200), [AKSUM], (39, 13.5))]
+CULTURES = CULT_750

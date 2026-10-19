@@ -1,0 +1,11 @@
+from ep7_geo import *
+EXCLUSIVE = True
+_eu = [e for e in EUROPE_1000 if e[0] not in ("KINGDOM OF ENGLAND", "NORMANDY", "BULGARIA", "BYZANTINE EMPIRE", "CALIPHATE OF CORDOBA", "LEON")]
+EMPIRES = _eu + [("ANGLO-NORMAN REALM", (220, 180, 70), [ENGLAND, NORMANDY], (-1.6, 52.4)), ("NORMAN ITALY", (220, 180, 70), NORMAN_IT, (15.6, 40.0)),
+                 ("CASTILE AND LEON", (200, 120, 60), [CASTILE_1100], (-5, 41.5)), ("ALMORAVIDS", (150, 130, 80), [ALMOHAD_SP, MOROCCO], (-5, 37.6)),
+                 ("BYZANTINE EMPIRE", BYZ, [BYZ_BALK, BYZ_EBULG, BULG1000, BYZ_ANAT1000, CRETE, CYPRUS], (28.5, 40.0)),
+                 ("SULTANATE OF RUM", (150, 120, 90), [RUM], (34, 39)),
+                 ("FATIMID CALIPHATE", (40, 150, 120), [FATIMID], (28, 27)), ("SELJUK EMPIRE", (120, 110, 160), [SELJUK], (52, 33)),
+                 ("CRUSADER STATES", (235, 235, 240), CRUSADER, (37.5, 33.6))] + \
+          [e for e in REST_1000 if e[0] not in ("FATIMID CALIPHATE", "BUYIDS")]
+CULTURES = CULT_1000

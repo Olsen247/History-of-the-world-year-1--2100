@@ -1,0 +1,6 @@
+from ep4_geo import *
+EXCLUSIVE = True
+EMPIRES = [("SASANIAN EMPIRE", SAS, [SASANIAN], (53.5, 33.0)), ("ROMAN EMPIRE", ROME, ROME220, (14, 44.5)),
+           ("GALLIC EMPIRE", GALLIC, [GALLIC_P, BRITAIN], (1.5, 46.5)), ("PALMYRENE EMPIRE", PALM, [PALM_P], (36, 33.5))] + \
+          [e for e in W220.EMPIRES if e[0] not in ("PARTHIAN EMPIRE", "ROMAN EMPIRE")]
+CULTURES = W220.CULTURES

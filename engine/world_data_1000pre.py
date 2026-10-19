@@ -1,0 +1,4 @@
+from ep6_geo import *
+EXCLUSIVE = True
+EMPIRES = [e for e in EUROPE_1000 if e[0] not in ("KIEVAN RUS", "NORMANDY", "ICELAND", "NORSE GREENLAND")] + REST_1000
+CULTURES = CULT_1000
