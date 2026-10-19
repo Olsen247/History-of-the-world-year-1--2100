@@ -39,7 +39,8 @@ def main(epmod, src, dst):
         i = int(at * SR); j = min(len(sfx), i + len(sig))
         if i < len(sfx): sfx[i:j] += sig[: j - i] * vol
     for ev in cfg.get("fx", []):
-        if ev["type"] == "boom": add(boom(), ev["t0"], 0.55)
+        if ev["type"] == "boom":
+            if ev.get("sound", ev.get("swords", True)): add(boom(), ev["t0"], 0.55)   # modern blasts (swords=False) are silent
         elif ev["type"] == "march": add(march(ev["t1"] - ev["t0"] + 0.3), ev["t0"], 0.22)
         elif ev["type"] == "icon": add(pop(), ev["t0"], 0.18)
     mix = a + sfx[:, None]

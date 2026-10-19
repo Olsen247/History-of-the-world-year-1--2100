@@ -13,7 +13,7 @@ schedules it in Metricool. Follow every step. Speak Norwegian in anything writte
   Big glowing headings at the top, empire names on the map.
 - Attacks: marching soldiers + arrow. **Different soldier kinds per people** (see `fx.py`: legion, han, rebel, goth,
   viking, frank, byzantine, aztec, parthian, kushan, xianbei, hun, sasanian, arab, mongol, knight). Add a new kind when a
-  new people fights. **No crossed swords. No explosions.**
+  new people fights. **No crossed swords. No explosions before 1914** (see «Modern wars» below).
 - Sea crossings automatically become ships (`ships=True` default); land travel = marching.
 - Icons only for gold, silk/trade, fire and other truly important things (plague = rat). **No icons just because Rome
   is mentioned.**
@@ -24,6 +24,18 @@ schedules it in Metricool. Follow every step. Speak Norwegian in anything writte
   audio, no downloaded clips/memes/images).
 - Avoid ongoing wars and current political conflicts. For modern episodes stay factual and neutral.
 - Every fact must be correct. Check dates and claims with WebSearch before writing the script.
+
+## Modern wars (from about Year 1914 and later) – overlay style approved by the owner
+Same satellite map as always – only the war overlay changes (`fx_modern.py`, reference: `engine/demo_ww1.py`):
+- **Front lines of flags** instead of marching soldiers: `dict(type="front", path0=[...], path1=[...], t_in, t_out, move0, move1,
+  side_a=["de1914"], side_b=["be","uk","fr",...], by_segment=True, rows=2)`. path0 and path1 must have the same number of points;
+  the front slides from path0 to path1 between move0 and move1. Flag codes: de1914, fr, be, it, ru, ah, nl, ot, us, uk.
+  **Never draw the Nazi flag or any hate symbol** – for Germany 1933–45 use a plain colour chip `"rgb:r,g,b"`.
+- Conquered land turns red with a normal `gain` reveal synced with the front; a `glow` sweep (`type="glow"`) over the conquered area.
+- Planes, airships and warships on dotted routes: `dict(type="vehicle", kind="plane"|"airship"|"warship", path=[...], t0, t1)`.
+- Explosions: `dict(type="boom", pos, t0, swords=False, scale≈0.3–0.45)` – **no explosion sound** (fx_audio skips booms with swords=False).
+- Close camera (view width ≈ 380–520) so the flags are readable. Keep event labels away from the front line.
+- For modern wars stay neutral and factual; never cover ongoing wars.
 
 ## 1. Set up the session
 ```bash

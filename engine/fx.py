@@ -509,6 +509,13 @@ def draw_boom(fr, S, vw, t, ev):
         paste(fr, get_icon("swords", 120), x + shake, y - 6, scale=(min(k, 1.2) if k < 1.2 else 1.0) * zscale(vw) * 1.35, alpha=min(1, k * 2) * (1 - out))
 
 def draw_all(fr, S, vw, t, events):
+    import fx_modern as FM
+    for ev in events:
+        if ev["type"] == "glow": FM.draw_glow(fr, S, vw, t, ev)
+    for ev in events:
+        if ev["type"] == "front": FM.draw_front(fr, S, vw, t, ev, zscale)
+    for ev in events:
+        if ev["type"] == "vehicle": FM.draw_vehicle(fr, S, vw, t, ev, zscale)
     for ev in events:
         if ev["type"] == "march": draw_march(fr, S, vw, t, ev)
     for ev in events:
