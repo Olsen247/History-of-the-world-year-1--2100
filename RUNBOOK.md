@@ -92,8 +92,8 @@ for collapses). Never run two heavy jobs at once (7 GB RAM).
 Write `epNN.py` modelled on `ep08.py` / `ep07.py`: camera shots per line (view width 900–2000 for close-ups, 2950 wide),
 base_switches (switch maps during camera moves), reveals, labels (avoid clutter; event labels in gold), ticker,
 headings (2 lines; avoid the letter Q in headings – the font renders it oddly), fx (marches, icons, persons with
-`screen=(780,1180)` or `(300,1180)`), outro with next episode. Render preview stills:
-`python3 epNN.py stills 4,15,25,… /tmp/sN.png` and **look at them** (Read the png). Fix overlaps, empty frames, wrong maps.
+`screen=(780,1180)` or `(300,1180)` – never lower than y=1250, the captions sit below), outro with next episode. Render preview stills:
+`python3 epNN.py stills 4,15,25,… /tmp/sN.png` and **look at them** (Read the png). Fix overlaps (also small labels like SERBIA vs OTTOMAN EMPIRE – drop or move the smaller one), empty frames, wrong maps.
 
 ## 6. Captions and audio
 - Captions: copy `mkcaps8.py` to `mkcapsN.py`, put the 13 lines with colour markers (`word|y`, `|r`, `|c`, `|p`, `|g`;
