@@ -116,9 +116,10 @@ git add videos engine && git commit -m "Episode NN – Year <YEAR>" && git push
 ```
 Public URL: `https://raw.githubusercontent.com/Olsen247/History-of-the-world-year-1--2100/main/videos/epNN_year<YEAR>.mp4`
 Schedule with `mcp__Metricool_Social_Media_Management__createScheduledPost` (blogId `7508489`) on `next_publish_date`
-at `next_publish_time` Europe/Oslo (publishing plan: **Mon–Sat one episode at 10:00, Sunday two episodes at 10:00 and 11:00**): providers `[{"network":"youtube"}]`, youtubeData
+at `next_publish_time` Europe/Oslo (publishing plan: **Mon–Sat one episode at 10:00, Sunday two episodes at 10:00 and 11:00**): providers `[{"network":"youtube"}, {"network":"instagram"}]` (Instagram account @atlasofagesx, posted as a Reel at the same time),
+`"instagramData": {"type": "REEL", "showReelOnFeed": true, "isAiGenerated": false}`, youtubeData
 `{"title": "History of the World Ep NN", "type": "short", "privacy": "public", "category": "EDUCATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": [...]}`,
-text = "Year <YEAR> – <topic>. <one or two sentence summary>\nEpisode NN of History of the World, from Year 1 to 2026.\n#history #geography #shorts …".
+text = "History of the World Ep NN <emoji>\nYear <YEAR> – <topic>. <one or two sentence summary>\nEpisode NN of History of the World, from Year 1 to 2026.\n#history #geography #shorts …".
 Before scheduling, call getScheduledPosts for that date so you never double-book a slot.
 
 ## 9. Save state
