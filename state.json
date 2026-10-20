@@ -114,10 +114,10 @@
       "ep": 9,
       "year": 1405,
       "video": "videos/ep09_year1405.mp4",
-      "publish": "2026-10-25 18:00",
+      "publish": "2026-10-25 11:00",
       "metricool_post_id": 400643058
     }
   ],
   "next_publish_time": "10:00",
-  "schedule_rule": "Mon-Sat: one episode at 10:00. Sunday: two episodes, 10:00 and 18:00 (Europe/Oslo). See RUNBOOK step 8-9."
+  "schedule_rule": "Mon-Sat: one episode at 10:00. Sunday: two episodes, 10:00 and 11:00 (Europe/Oslo). See RUNBOOK step 8-9."
 }
