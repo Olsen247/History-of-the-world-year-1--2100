@@ -1,33 +1,121 @@
 {
-  "next_episode": 9,
-  "previous_year": 1347,
-  "previous_year_module": "world_data_1347",
-  "previous_base_map": "hd_1347.png",
-  "next_publish_date": "2026-10-26",
+  "next_episode": 10,
+  "previous_year": 1405,
+  "previous_year_module": "world_data_1405",
+  "previous_base_map": "hd_1405.png",
+  "next_publish_date": "2026-10-27",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
   "plan": [
-    {"ep": 9,  "year": 1405, "topic": "Zheng He's treasure fleet (Ming China), Timur, the end of the Yuan"},
-    {"ep": 10, "year": 1453, "topic": "The fall of Constantinople to the Ottomans"},
-    {"ep": 11, "year": 1492, "topic": "Columbus reaches the Americas; Granada falls"},
-    {"ep": 12, "year": 1498, "topic": "Vasco da Gama reaches India by sea"},
-    {"ep": 13, "year": 1522, "topic": "Magellan's expedition sails around the world"},
-    {"ep": 14, "year": 1533, "topic": "The Aztec and Inca empires fall"},
-    {"ep": 15, "year": 1642, "topic": "Europeans reach Australia and New Zealand (1606-1642)"},
-    {"ep": 16, "year": 1770, "topic": "James Cook in the Pacific"},
-    {"ep": 17, "year": 1776, "topic": "The United States declares independence"},
-    {"ep": 18, "year": 1812, "topic": "Napoleon's empire and the march on Moscow"},
-    {"ep": 19, "year": 1825, "topic": "Latin American independence"},
-    {"ep": 20, "year": 1900, "topic": "The age of empires and colonialism"},
-    {"ep": 21, "year": 1911, "topic": "Amundsen reaches the South Pole; China's last dynasty falls"},
-    {"ep": 22, "year": 1914, "topic": "The road to the First World War"},
-    {"ep": 23, "year": 1922, "topic": "The world after the First World War"},
-    {"ep": 24, "year": 1942, "topic": "The Second World War at its height"},
-    {"ep": 25, "year": 1960, "topic": "Decolonisation of Africa and Asia"},
-    {"ep": 26, "year": 1969, "topic": "The Moon landing and the Cold War"},
-    {"ep": 27, "year": 1991, "topic": "The Soviet Union falls"},
-    {"ep": 28, "year": 2026, "topic": "The world today"}
+    {
+      "ep": 9,
+      "year": 1405,
+      "topic": "Zheng He's treasure fleet (Ming China), Timur, the end of the Yuan"
+    },
+    {
+      "ep": 10,
+      "year": 1453,
+      "topic": "The fall of Constantinople to the Ottomans"
+    },
+    {
+      "ep": 11,
+      "year": 1492,
+      "topic": "Columbus reaches the Americas; Granada falls"
+    },
+    {
+      "ep": 12,
+      "year": 1498,
+      "topic": "Vasco da Gama reaches India by sea"
+    },
+    {
+      "ep": 13,
+      "year": 1522,
+      "topic": "Magellan's expedition sails around the world"
+    },
+    {
+      "ep": 14,
+      "year": 1533,
+      "topic": "The Aztec and Inca empires fall"
+    },
+    {
+      "ep": 15,
+      "year": 1642,
+      "topic": "Europeans reach Australia and New Zealand (1606-1642)"
+    },
+    {
+      "ep": 16,
+      "year": 1770,
+      "topic": "James Cook in the Pacific"
+    },
+    {
+      "ep": 17,
+      "year": 1776,
+      "topic": "The United States declares independence"
+    },
+    {
+      "ep": 18,
+      "year": 1812,
+      "topic": "Napoleon's empire and the march on Moscow"
+    },
+    {
+      "ep": 19,
+      "year": 1825,
+      "topic": "Latin American independence"
+    },
+    {
+      "ep": 20,
+      "year": 1900,
+      "topic": "The age of empires and colonialism"
+    },
+    {
+      "ep": 21,
+      "year": 1911,
+      "topic": "Amundsen reaches the South Pole; China's last dynasty falls"
+    },
+    {
+      "ep": 22,
+      "year": 1914,
+      "topic": "The road to the First World War"
+    },
+    {
+      "ep": 23,
+      "year": 1922,
+      "topic": "The world after the First World War"
+    },
+    {
+      "ep": 24,
+      "year": 1942,
+      "topic": "The Second World War at its height"
+    },
+    {
+      "ep": 25,
+      "year": 1960,
+      "topic": "Decolonisation of Africa and Asia"
+    },
+    {
+      "ep": 26,
+      "year": 1969,
+      "topic": "The Moon landing and the Cold War"
+    },
+    {
+      "ep": 27,
+      "year": 1991,
+      "topic": "The Soviet Union falls"
+    },
+    {
+      "ep": 28,
+      "year": 2026,
+      "topic": "The world today"
+    }
   ],
-  "done": []
+  "done": [
+    {
+      "ep": 9,
+      "year": 1405,
+      "video": "videos/ep09_year1405.mp4",
+      "publish": "2026-10-26 10:00 Europe/Oslo",
+      "metricool_post_id": 400643058
+    }
+  ]
 }

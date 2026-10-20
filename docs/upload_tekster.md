@@ -53,3 +53,10 @@ Episode 7 of History of the World, from Year 1 to 2026.
 **Beskrivelse:** Acre falls, the first Ottomans, Mansa Musa's gold, Tenochtitlan, the Hundred Years' War, and a plague that travels the Silk Road into Europe.
 Episode 8 of History of the World, from Year 1 to 2026.
 #history #blackdeath #medieval #geography #shorts
+
+## #9 – Year 1405
+**Tittel:** History of the World Ep 9
+**Beskrivelse:** Year 1405 – Zheng He's Treasure Fleet. The Red Turbans, the rise of the Ming dynasty, Timur's conquests, Kulikovo, Kosovo, the Kalmar Union and the Battle of Ankara, until China sends a giant fleet across the ocean.
+Episode 9 of History of the World, from Year 1 to 2026.
+#history #zhenghe #mingdynasty #timur #geography #shorts
+*(Planlagt i Metricool 26.10.2026 kl. 10:00)*
