@@ -204,7 +204,7 @@ def soldier(col, size=40, kind="legion"):
     n = size * S3; W_, H_ = int(n * 1.5), int(n * 1.5)
     im = Image.new("RGBA", (W_, H_), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     body = (40, 34, 30, 255); c = col + (255,); dk = tuple(int(v * 0.5) for v in col) + (255,)
-    if kind in ("han", "rebel"):
+    if kind in ("han", "rebel", "redturban"):
         ox = n * 0.25
         skin = (214, 170, 130, 255)
         d.ellipse([ox + n * 0.38, n * 0.14, ox + n * 0.62, n * 0.38], fill=skin)
@@ -215,9 +215,10 @@ def soldier(col, size=40, kind="legion"):
             d.line([(ox + n * 0.82, n * 0.0), (ox + n * 0.82, n * 1.36)], fill=(120, 90, 50, 255), width=n // 20)
             d.polygon([(ox + n * 0.78, n * 0.04), (ox + n * 0.86, n * 0.04), (ox + n * 0.82, -n * 0.1)], fill=(220, 220, 228, 255))
             d.polygon([(ox + n * 0.82, n * 0.12), (ox + n * 0.98, n * 0.08), (ox + n * 0.98, n * 0.18), (ox + n * 0.82, n * 0.2)], fill=(220, 220, 228, 255))
-        else:               # Yellow Turban rebel: yellow headband, plain tunic, pitchfork
-            d.rectangle([ox + n * 0.36, n * 0.16, ox + n * 0.64, n * 0.24], fill=(250, 210, 30, 255))
-            d.polygon([(ox + n * 0.62, n * 0.18), (ox + n * 0.78, n * 0.12), (ox + n * 0.74, n * 0.26)], fill=(250, 210, 30, 255))
+        else:               # Yellow Turban (rebel) / Red Turban (redturban) rebel: coloured headband, plain tunic, pitchfork
+            band = (220, 40, 40, 255) if kind == "redturban" else (250, 210, 30, 255)
+            d.rectangle([ox + n * 0.36, n * 0.16, ox + n * 0.64, n * 0.24], fill=band)
+            d.polygon([(ox + n * 0.62, n * 0.18), (ox + n * 0.78, n * 0.12), (ox + n * 0.74, n * 0.26)], fill=band)
             d.rounded_rectangle([ox + n * 0.35, n * 0.38, ox + n * 0.65, n * 0.98], radius=n * 0.08, fill=(150, 120, 80, 255))
             d.line([(ox + n * 0.84, n * 0.06), (ox + n * 0.84, n * 1.36)], fill=(120, 90, 50, 255), width=n // 20)
             for dx in (-0.06, 0, 0.06): d.line([(ox + n * (0.84 + dx), n * -0.04), (ox + n * (0.84 + dx), n * 0.08)], fill=(160, 160, 165, 255), width=n // 40)
@@ -269,6 +270,17 @@ def soldier(col, size=40, kind="legion"):
         for yy in (0.28, 0.42, 0.56): d.polygon([(ox + n * 0.84, n * yy), (ox + n * 0.92, n * (yy + 0.04)), (ox + n * 0.84, n * (yy + 0.08))], fill=(40, 40, 50, 255))
         d.ellipse([ox + n * 0.02, n * 0.46, ox + n * 0.50, n * 0.94], fill=(240, 230, 200, 255), outline=dk, width=n // 22)
         d.ellipse([ox + n * 0.14, n * 0.58, ox + n * 0.38, n * 0.82], outline=c, width=n // 22)
+    elif kind == "rus":     # Muscovite foot soldier: tall pointed shishak helmet, red kite shield, spear
+        ox = n * 0.25; skin = (226, 186, 150, 255); hair = (120, 85, 50, 255)
+        d.rounded_rectangle([ox + n * 0.36, n * 0.40, ox + n * 0.64, n * 0.98], radius=n * 0.08, fill=c, outline=dk, width=n // 30)
+        d.line([(ox + n * 0.42, n * 0.96), (ox + n * 0.36, n * 1.46)], fill=body, width=n // 9)
+        d.line([(ox + n * 0.58, n * 0.96), (ox + n * 0.64, n * 1.46)], fill=body, width=n // 9)
+        d.ellipse([ox + n * 0.37, n * 0.13, ox + n * 0.63, n * 0.40], fill=skin)
+        d.chord([ox + n * 0.37, n * 0.28, ox + n * 0.63, n * 0.50], 0, 180, fill=hair)
+        d.polygon([(ox + n * 0.34, n * 0.24), (ox + n * 0.66, n * 0.24), (ox + n * 0.56, n * 0.06), (ox + n * 0.5, -n * 0.12), (ox + n * 0.44, n * 0.06)], fill=(150, 150, 160, 255), outline=(90, 90, 100, 255))
+        d.line([(ox + n * 0.80, n * 0.0), (ox + n * 0.80, n * 1.32)], fill=(140, 110, 70, 255), width=n // 18)
+        d.polygon([(ox + n * 0.76, n * 0.02), (ox + n * 0.84, n * 0.02), (ox + n * 0.80, -n * 0.12)], fill=(220, 220, 228, 255))
+        d.polygon([(ox + n * 0.04, n * 0.44), (ox + n * 0.48, n * 0.44), (ox + n * 0.46, n * 0.70), (ox + n * 0.26, n * 1.16), (ox + n * 0.06, n * 0.70)], fill=(190, 40, 40, 255), outline=(240, 210, 90, 255))
     elif kind == "legion":  # Roman legionary: crested helmet, big rectangular shield, pilum
         ox = n * 0.25
         d.ellipse([ox + n * 0.36, n * 0.12, ox + n * 0.64, n * 0.40], fill=(150, 150, 160, 255))
@@ -281,7 +293,7 @@ def soldier(col, size=40, kind="legion"):
         d.rounded_rectangle([ox + n * 0.06, n * 0.42, ox + n * 0.52, n * 1.10], radius=n * 0.06, fill=c, outline=dk, width=n // 28)
         d.ellipse([ox + n * 0.23, n * 0.70, ox + n * 0.35, n * 0.82], fill=(240, 210, 90, 255))
     else:
-        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255)}.get(kind, (96, 64, 40, 255))
+        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255)}.get(kind, (96, 64, 40, 255))
         _horse(d, n, n * 0.02, n * 0.62, 1.4, coat=coat)
         if kind == "sasanian":   # armoured horse: mail barding rows
             pass
@@ -325,6 +337,18 @@ def soldier(col, size=40, kind="legion"):
             d.ellipse([rx - n * 0.01, ry - n * 0.04, rx + n * 0.27, ry + n * 0.14], fill=(245, 242, 232, 255))
             d.line([(rx + n * 0.40, ry - n * 0.40), (rx + n * 0.40, ry + n * 0.70)], fill=(130, 100, 60, 255), width=n // 22)
             d.polygon([(rx + n * 0.40, ry - n * 0.40), (rx + n * 0.70, ry - n * 0.32), (rx + n * 0.40, ry - n * 0.20)], fill=c)
+        elif kind == "timurid":  # Timurid lancer: spiked helmet with mail neck guard, lance with horse-tail standard
+            d.chord([rx + n * 0.0, ry - n * 0.02, rx + n * 0.26, ry + n * 0.22], 180, 360, fill=(170, 170, 180, 255))
+            d.line([(rx + n * 0.13, ry - n * 0.02), (rx + n * 0.13, ry - n * 0.16)], fill=(170, 170, 180, 255), width=n // 30)
+            d.rectangle([rx - n * 0.01, ry + n * 0.10, rx + n * 0.04, ry + n * 0.26], fill=(130, 130, 140, 255))
+            d.line([(rx + n * 0.40, ry - n * 0.44), (rx + n * 0.40, ry + n * 0.70)], fill=(130, 100, 60, 255), width=n // 22)
+            d.polygon([(rx + n * 0.36, ry - n * 0.44), (rx + n * 0.44, ry - n * 0.44), (rx + n * 0.40, ry - n * 0.56)], fill=(225, 225, 232, 255))
+            for k in range(5): d.line([(rx + n * 0.40, ry - n * 0.36), (rx + n * (0.30 - k * 0.03), ry - n * (0.10 - k * 0.02))], fill=(60, 45, 35, 255), width=n // 40)
+        elif kind == "serb":     # Serbian heavy horseman: rounded helmet with plume, surcoat in banner colour, lance + pennant
+            d.chord([rx + n * 0.0, ry - n * 0.02, rx + n * 0.26, ry + n * 0.24], 180, 360, fill=(175, 175, 185, 255))
+            d.ellipse([rx + n * 0.08, ry - n * 0.14, rx + n * 0.20, ry - n * 0.0], fill=(240, 240, 240, 255))
+            d.line([(rx - n * 0.30, ry + n * 0.56), (rx + n * 0.90, ry + n * 0.16)], fill=(130, 100, 60, 255), width=n // 20)
+            d.polygon([(rx + n * 0.66, ry + n * 0.24), (rx + n * 0.80, ry + n * 0.10), (rx + n * 0.74, ry + n * 0.30)], fill=(240, 240, 240, 255))
         elif kind == "xianbei":  # steppe rider: fur hat + round shield + bow on back
             d.ellipse([rx - n * 0.02, ry - n * 0.02, rx + n * 0.28, ry + n * 0.14], fill=(90, 70, 50, 255))
             d.ellipse([rx - n * 0.14, ry + n * 0.30, rx + n * 0.12, ry + n * 0.56], fill=dk, outline=c, width=n // 26)
@@ -473,7 +497,7 @@ def draw_march(fr, S, vw, t, ev):
     # soldiers trailing behind the head
     kind = ev.get("kind", "legion")
     import fx_eras as FE
-    foot = kind in ("legion", "han", "rebel", "goth", "viking", "frank", "byzantine", "aztec") + FE.FOOT2
+    foot = kind in ("legion", "han", "rebel", "goth", "viking", "frank", "byzantine", "aztec", "rus", "redturban") + FE.FOOT2
     n = ev.get("soldiers", 9 if foot else 6); sz = int((44 if foot else 50) * zscale(vw))
     flip = math.cos(ang) < 0
     rnd = random.Random(int(t0 * 100))

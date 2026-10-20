@@ -8,7 +8,7 @@ cp -r "$REPO"/engine/* /home/claude/shortgen/
 cd /home/claude/geo
 [ -f node_modules/world-atlas/land-50m.json ] || (NO_PROXY= no_proxy= npm_config_noproxy= npm init -y >/dev/null && NO_PROXY= no_proxy= npm_config_noproxy= npm install world-atlas@2.0.2 >/dev/null)
 python3 -c "import mpl_toolkits.basemap_data" 2>/dev/null || NO_PROXY= no_proxy= pip install --break-system-packages basemap-data==2.0.0 >/dev/null
-BMD=$(python3 -c "import os,mpl_toolkits.basemap_data as b; print(os.path.dirname(b.__file__))")
+BMD=$(python3 -c "import mpl_toolkits.basemap_data as b; print(list(b.__path__)[0])")
 sed -i "s|^BMD = .*|BMD = \"$BMD/\"|" /home/claude/shortgen/geo.py
 ls /usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf /usr/share/fonts/truetype/crosextra/Caladea-Bold.ttf >/dev/null || \
   (apt-get install -y fonts-inter fonts-crosextra-caladea >/dev/null 2>&1 || echo "FONTS MISSING")

@@ -139,6 +139,14 @@ def face(spec, size=300):
     elif hat == "cap":
         hc = spec.get("hat_col", (60, 60, 120)) + (255,)
         d.chord([cx - n*.21, top - n*.04, cx + n*.21, top + n*.26], 180, 360, fill=hc)
+    elif hat == "wingcap":   # Ming court hat (wushamao): black rounded cap with two flat side wings
+        hc = spec.get("hat_col", (25, 25, 30)) + (255,)
+        d.rounded_rectangle([cx - n*.40, top + n*.06, cx - n*.17, top + n*.11], radius=n*.02, fill=hc)
+        d.rounded_rectangle([cx + n*.17, top + n*.06, cx + n*.40, top + n*.11], radius=n*.02, fill=hc)
+        d.chord([cx - n*.20, top - n*.12, cx + n*.20, top + n*.20], 180, 360, fill=hc)
+        d.rectangle([cx - n*.215, top + n*.02, cx + n*.215, top + n*.15], fill=hc)
+        if spec.get("dragon"):
+            for k in range(3): d.arc([n*(.30 + k*.12), n*.80, n*(.40 + k*.12), n*.90], 0, 300, fill=(240, 200, 60, 255), width=int(n*.012))
     if spec.get("halo"):
         pass
     return im
@@ -239,6 +247,15 @@ P = {
  "edward3": dict(hat="crown", beard="long", hair="long", hair_col=(170, 120, 60), beard_col=(170, 120, 60), robe=(200, 70, 80), cloak=(60, 60, 140), bg=(200, 70, 80)),
  "janibeg": dict(hat="fur", hat_col=(150, 120, 70), beard="thin", hair="short", hair_col=(30, 25, 20), robe=(150, 120, 70), skin=(215, 175, 135), bg=(150, 120, 70)),
  "aryabhata": dict(hat="none", beard="full", hair="bun", hair_col=(25, 20, 18), robe=(230, 150, 50), skin=(160, 115, 80), bg=(150, 90, 40), age=True),
+ "hongwu": dict(hat="wingcap", dragon=True, beard="long", beard_col=(40, 35, 30), hair="short", hair_col=(30, 25, 20), robe=(225, 185, 60), skin=(205, 160, 120), bg=(180, 50, 45), nose=1.3, age=True),
+ "timur": dict(hat="fur", hat_col=(150, 40, 40), beard="thin", hair="short", hair_col=(80, 50, 30), beard_col=(150, 90, 50), robe=(60, 120, 140), cloak=(170, 140, 60), skin=(210, 170, 130), bg=(70, 130, 150), age=True),
+ "dmitry": dict(hat="fur", hat_col=(180, 150, 60), beard="full", hair="long", hair_col=(110, 75, 45), beard_col=(110, 75, 45), robe=(160, 40, 40), cloak=(200, 170, 70), bg=(120, 140, 80)),
+ "murad": dict(hat="turban", hat_col=(245, 242, 232), beard="full", hair="short", hair_col=(50, 35, 25), robe=(30, 110, 70), skin=(205, 160, 120), bg=(170, 50, 50)),
+ "lazar": dict(hat="crown", beard="long", hair="long", hair_col=(90, 60, 35), beard_col=(90, 60, 35), robe=(150, 40, 60), cloak=(200, 160, 60), bg=(150, 50, 70)),
+ "margaret": dict(female=True, hat="crown", hair="female_long", hair_col=(150, 100, 50), robe=(150, 30, 40), cloak=(40, 60, 140), skin=(235, 200, 170), bg=(170, 50, 60)),
+ "bayezid": dict(hat="turban", hat_col=(250, 248, 240), jewel=True, beard="full", hair="short", hair_col=(60, 40, 25), beard_col=(90, 55, 30), robe=(170, 40, 40), cloak=(220, 180, 70), skin=(210, 165, 125), bg=(170, 50, 50)),
+ "yongle": dict(hat="wingcap", dragon=True, beard="long", beard_col=(30, 25, 22), hair="short", hair_col=(25, 20, 18), robe=(225, 185, 60), skin=(212, 168, 128), bg=(180, 50, 45)),
+ "zhenghe": dict(hat="wingcap", beard="none", hair="short", hair_col=(25, 20, 18), robe=(170, 40, 45), skin=(205, 160, 120), bg=(40, 90, 140)),
 }
 
 def get(who, size=210):
