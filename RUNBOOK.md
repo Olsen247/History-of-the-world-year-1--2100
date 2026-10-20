@@ -116,14 +116,17 @@ git add videos engine && git commit -m "Episode NN – Year <YEAR>" && git push
 ```
 Public URL: `https://raw.githubusercontent.com/Olsen247/History-of-the-world-year-1--2100/main/videos/epNN_year<YEAR>.mp4`
 Schedule with `mcp__Metricool_Social_Media_Management__createScheduledPost` (blogId `7508489`) on `next_publish_date`
-at 10:00 Europe/Oslo: providers `[{"network":"youtube"}]`, youtubeData
+at `next_publish_time` Europe/Oslo (publishing plan: **Mon–Sat one episode at 10:00, Sunday two episodes at 10:00 and 18:00**): providers `[{"network":"youtube"}]`, youtubeData
 `{"title": "History of the World Ep NN", "type": "short", "privacy": "public", "category": "EDUCATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": [...]}`,
 text = "Year <YEAR> – <topic>. <one or two sentence summary>\nEpisode NN of History of the World, from Year 1 to 2026.\n#history #geography #shorts …".
 Before scheduling, call getScheduledPosts for that date so you never double-book a slot.
 
 ## 9. Save state
 Copy every new engine file into `engine/`, update `state.json` (next_episode+1, previous_year, previous_year_module,
-previous_base_map, next_publish_date+1 day, append to `done`), append the title/description to `docs/upload_tekster.md`,
+previous_base_map, next publish slot, append to `done`). Next slot: if the slot just used was a **Sunday 10:00**, the next slot is the
+same Sunday at **18:00**; otherwise it is the next day at **10:00**.
+**Two episodes on one night:** if the next slot is a Sunday 18:00 slot, go back to step 2 and make one more episode in the same run
+(so the Sunday gets both its episodes, and production keeps up with 8 episodes a week), append the title/description to `docs/upload_tekster.md`,
 commit and push. Finish with a short Norwegian summary: episode, publish date, anything that went wrong.
 
 If something fails that you cannot fix (Speko, Metricool, push), do NOT publish a broken video. Commit what you have,

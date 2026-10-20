@@ -3,7 +3,7 @@
   "previous_year": 1405,
   "previous_year_module": "world_data_1405",
   "previous_base_map": "hd_1405.png",
-  "next_publish_date": "2026-10-27",
+  "next_publish_date": "2026-10-26",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -114,8 +114,10 @@
       "ep": 9,
       "year": 1405,
       "video": "videos/ep09_year1405.mp4",
-      "publish": "2026-10-26 10:00 Europe/Oslo",
+      "publish": "2026-10-25 18:00",
       "metricool_post_id": 400643058
     }
-  ]
+  ],
+  "next_publish_time": "10:00",
+  "schedule_rule": "Mon-Sat: one episode at 10:00. Sunday: two episodes, 10:00 and 18:00 (Europe/Oslo). See RUNBOOK step 8-9."
 }
