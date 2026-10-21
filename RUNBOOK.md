@@ -73,6 +73,9 @@ Research the period between `previous_year` and the new year. Pick the ~9 most e
 0 hook ("The year X. …"), 1 "Let's rewind to the year <previous_year>, and …", 2–11 events in chronological order
 (the ticker must never run backwards), 12 outro "Next time: the year <next plan year>, when … Follow the series!".
 Name the key people. Keep each line short (≈ 5–8 s spoken).
+**"Meanwhile" lines (side stories in other parts of the world) must not mislead:** say the year in the narration
+("Back in 212, Emperor Caracalla …") and place them in chronological order so the ticker shows that year. Never let a
+person appear to rule in a year when they were already dead (a viewer caught this in Ep 3: Caracalla died in 217, not 220).
 
 ## 3. Voice (Speko)
 Call `mcp__Speko__audio_synthesize` once per line with
