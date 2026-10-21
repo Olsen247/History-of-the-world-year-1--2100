@@ -77,6 +77,15 @@ Name the key people. Keep each line short (≈ 5–8 s spoken).
 ("Back in 212, Emperor Caracalla …") and place them in chronological order so the ticker shows that year. Never let a
 person appear to rule in a year when they were already dead (a viewer caught this in Ep 3: Caracalla died in 217, not 220).
 
+## 2b. Fact check before recording (viewers check our facts – take this seriously)
+Before any voice is recorded, check the finished 13-line script line by line:
+1. Every year, name, number and "first/biggest/last" claim is confirmed with WebSearch (two sources for anything surprising).
+2. Every person is alive and in that role in the year the ticker shows during their line.
+3. Words like "now", "meanwhile", "reunited", "just", "founds", "becomes" are true *for that year* – not years earlier or later.
+4. Then give the script, ticker years and headings to a fresh agent (Agent tool, subagent_type "general-purpose") that has not
+   seen your work, and ask it to find factual or chronology errors. Fix everything it finds before recording.
+Write the result of the check in the commit message ("Fact check: 0 issues" or what was fixed).
+
 ## 3. Voice (Speko)
 Call `mcp__Speko__audio_synthesize` once per line with
 `{"text": LINE, "intent": {"language": "en-US", "optimizeFor": "balanced"}, "instructions": "Deep, calm, cinematic documentary narrator. Confident and slightly dramatic.", "spokenForm": true}`.
