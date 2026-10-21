@@ -59,4 +59,11 @@ Episode 8 of History of the World, from Year 1 to 2026.
 **Beskrivelse:** Year 1405 – Zheng He's Treasure Fleet. The Red Turbans, the rise of the Ming dynasty, Timur's conquests, Kulikovo, Kosovo, the Kalmar Union and the Battle of Ankara, until China sends a giant fleet across the ocean.
 Episode 9 of History of the World, from Year 1 to 2026.
 #history #zhenghe #mingdynasty #timur #geography #shorts
-*(Planlagt i Metricool 26.10.2026 kl. 10:00)*
+*(Planlagt i Metricool 25.10.2026 kl. 11:00)*
+
+## #10 – Year 1453
+**Tittel:** History of the World Ep 10
+**Beskrivelse:** Year 1453 – The Fall of Constantinople. Grunwald, Agincourt, Portugal sets sail, the Forbidden City, Joan of Arc, the last treasure fleet, the Inca empire, Varna and Gutenberg's press, until a 21-year-old sultan breaks the walls of Constantinople.
+Episode 10 of History of the World, from Year 1 to 2026.
+#history #constantinople #ottomanempire #byzantine #geography #shorts
+*(Planlagt i Metricool 26.10.2026 kl. 10:00, YouTube + Instagram Reels)*
