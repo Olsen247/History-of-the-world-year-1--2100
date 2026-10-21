@@ -11,7 +11,7 @@ SEG = [
  (51.82, 57.84, 'In 711,|y the general Tariq|g crosses the sea into Spain,|y and the Visigoth kingdom|r collapses.|r'),
  (58.24, 64.09, 'But in 732,|y near Tours in France,|c the Frankish leader Charles_Martel|c stops their advance.|r'),
  (64.49, 72.38, 'Then, in 750,|y the Abbasids|c overthrow the ruling Umayyad|g family. One Umayyad_prince|g escapes, all the way to Spain.|y'),
- (72.78, 79.98, 'Meanwhile, China is reunited under the Tang_dynasty:|y a golden_age|y of poetry, art, and trade on the Silk_Road.|y'),
+ (72.78, 79.98, 'Meanwhile, under the Tang_dynasty,|y China enjoys a golden_age|y of poetry, art, and trade on the Silk_Road.|y'),
  (80.38, 86.50, 'Next time:|y the year 1000,|y when Vikings|c sail all the way to America.|r Follow the series!|y'),
 ]
 out = []
