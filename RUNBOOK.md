@@ -118,12 +118,17 @@ headings (2 lines; avoid the letter Q in headings – the font renders it oddly)
 python3 epNN.py video epNN_clean.mp4 audio_epNN_fx.wav            # ~40–60 min, run in background
 python3 caption_burn.py epNN_clean.mp4 captions_epNN.txt /home/claude/history_epNN_year<YEAR>.mp4 0.80
 ```
-Check duration (≤ ~91 s) and look at 8–10 frames spread over the video.
+Then add the "comment below" ending (owner's wish – viewers are asked for their opinion after "Follow the series!"):
+```bash
+python3 make_tail.py /home/claude/history_epNN_year<YEAR>.mp4 /home/claude/history_epNN_year<YEAR>_final.mp4 /home/claude/shortgen/outro_comment_vo.wav
+```
+It adds ~4 s: narrator says "And tell me in the comments: what's missing, and what could be better?" with on-screen text.
+Use the `_final.mp4` file in step 8. Check duration (main part ≤ ~89 s, final ≤ ~94 s) and look at 8–10 frames spread over the video.
 
 ## 8. Upload and schedule
 ```bash
 cd /home/claude/history-of-the-world-year-1--2100
-ffmpeg -i /home/claude/history_epNN_year<YEAR>.mp4 -c:v libx264 -preset slow -crf 20 -maxrate 4500k -bufsize 9000k -c:a copy -movflags +faststart videos/epNN_year<YEAR>.mp4
+ffmpeg -i /home/claude/history_epNN_year<YEAR>_final.mp4 -c:v libx264 -preset slow -crf 20 -maxrate 4500k -bufsize 9000k -c:a copy -movflags +faststart videos/epNN_year<YEAR>.mp4
 git add videos engine && git commit -m "Episode NN – Year <YEAR>" && git push
 ```
 Public URL: `https://raw.githubusercontent.com/Olsen247/History-of-the-world-year-1--2100/main/videos/epNN_year<YEAR>.mp4`
