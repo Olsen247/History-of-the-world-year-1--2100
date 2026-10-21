@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
+FOOT2 = ("longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -119,6 +119,14 @@ def soldier(col, size=40, kind="line"):
         d.chord([ox + n * .40, n * .28, ox + n * .60, n * .44], 0, 180, fill=(40, 30, 25, 255))   # moustache
         d.rectangle([ox + n * .34, n * .66, ox + n * .66, n * .72], fill=(240, 200, 80, 255))
         musket(y0=.02)
+    elif kind == "longbow":      # English longbowman: kettle hat, coat with red St George cross, tall longbow + arrow
+        d.chord([ox + n * .32, n * .06, ox + n * .68, n * .26], 180, 360, fill=metal)
+        d.polygon([(ox + n * .26, n * .18), (ox + n * .74, n * .18), (ox + n * .68, n * .13), (ox + n * .32, n * .13)], fill=metal)
+        d.rectangle([ox + n * .36, n * .44, ox + n * .64, n * .94], fill=(240, 238, 230, 255))
+        d.line([(ox + n * .50, n * .46), (ox + n * .50, n * .90)], fill=(200, 30, 40, 255), width=n // 16)
+        d.line([(ox + n * .38, n * .62), (ox + n * .62, n * .62)], fill=(200, 30, 40, 255), width=n // 16)
+        d.arc([ox + n * .62, -n * .10, ox + n * 1.02, n * 1.30], 285, 75, fill=wood, width=n // 18)
+        d.line([(ox + n * .90, -n * .06), (ox + n * .90, n * 1.26)], fill=(235, 235, 235, 255), width=max(1, n // 70))
     elif kind == "conquistador":  # morion helmet with crest, steel cuirass, sword up
         d.chord([ox + n * .30, n * .06, ox + n * .70, n * .30], 180, 360, fill=metal)
         d.polygon([(ox + n * .26, n * .20), (ox + n * .74, n * .20), (ox + n * .78, n * .14), (ox + n * .22, n * .14)], fill=metal)

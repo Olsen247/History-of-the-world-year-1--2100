@@ -12,7 +12,7 @@ schedules it in Metricool. Follow every step. Speak Norwegian in anything writte
   empire colours spread when they conquer and retreat or shatter when they lose. **No text boxes / fact cards.**
   Big glowing headings at the top, empire names on the map.
 - Attacks: marching soldiers + arrow. **Different soldier kinds per people** (see `fx.py`: legion, han, rebel, goth,
-  viking, frank, byzantine, aztec, parthian, kushan, xianbei, hun, sasanian, arab, mongol, knight, rus, timurid, serb, redturban). Add a new kind when a
+  viking, frank, byzantine, aztec, parthian, kushan, xianbei, hun, sasanian, arab, mongol, knight, rus, timurid, serb, redturban, teutonic, polish, french; foot in fx_eras: longbow, janissary …). Add a new kind when a
   new people fights. **No crossed swords. No explosions before 1914** (see «Modern wars» below).
 - Sea crossings automatically become ships (`ships=True` default); land travel = marching.
 - Icons only for gold, silk/trade, fire and other truly important things (plague = rat). **No icons just because Rome
