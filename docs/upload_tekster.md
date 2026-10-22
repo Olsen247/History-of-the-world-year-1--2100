@@ -67,3 +67,10 @@ Episode 9 of History of the World, from Year 1 to 2026.
 Episode 10 of History of the World, from Year 1 to 2026.
 #history #constantinople #ottomanempire #byzantine #geography #shorts
 *(Planlagt i Metricool 26.10.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #11 – Year 1492
+**Tittel:** History of the World Ep 11
+**Beskrivelse:** Year 1492 – Columbus reaches the Americas. The Wars of the Roses, Vlad the Impaler's night attack, the Onin War, Sonni Ali takes Timbuktu, Isabella and Ferdinand, the Ugra River, Bartolomeu Dias rounds Africa and Granada falls, until three small ships cross the Atlantic.
+Episode 11 of History of the World, from Year 1 to 2026.
+#history #columbus #1492 #reconquista #geography #shorts
+*(Planlagt i Metricool 27.10.2026 kl. 10:00, YouTube + Instagram Reels)*

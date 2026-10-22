@@ -1,9 +1,9 @@
 {
-  "next_episode": 11,
-  "previous_year": 1453,
-  "previous_year_module": "world_data_1453",
-  "previous_base_map": "hd_1453.png",
-  "next_publish_date": "2026-10-27",
+  "next_episode": 12,
+  "previous_year": 1492,
+  "previous_year_module": "world_data_1492",
+  "previous_base_map": "hd_1492.png",
+  "next_publish_date": "2026-10-28",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -123,6 +123,13 @@
       "video": "videos/ep10_year1453_v2.mp4",
       "publish": "2026-10-26 10:00",
       "metricool_post_id": 402610211
+    },
+    {
+      "ep": 11,
+      "year": 1492,
+      "video": "videos/ep11_year1492.mp4",
+      "publish": "2026-10-27 10:00",
+      "metricool_post_id": 402718238
     }
   ],
   "next_publish_time": "10:00",
