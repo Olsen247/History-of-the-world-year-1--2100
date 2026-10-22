@@ -293,7 +293,7 @@ def soldier(col, size=40, kind="legion"):
         d.rounded_rectangle([ox + n * 0.06, n * 0.42, ox + n * 0.52, n * 1.10], radius=n * 0.06, fill=c, outline=dk, width=n // 28)
         d.ellipse([ox + n * 0.23, n * 0.70, ox + n * 0.35, n * 0.82], fill=(240, 210, 90, 255))
     else:
-        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255), "teutonic": (235, 232, 225, 255), "french": (60, 80, 150, 255), "polish": (150, 40, 45, 255)}.get(kind, (96, 64, 40, 255))
+        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255), "teutonic": (235, 232, 225, 255), "french": (60, 80, 150, 255), "polish": (150, 40, 45, 255), "wallachian": (70, 50, 40, 255), "songhai": (235, 225, 205, 255)}.get(kind, (96, 64, 40, 255))
         _horse(d, n, n * 0.02, n * 0.62, 1.4, coat=coat)
         if kind == "sasanian":   # armoured horse: mail barding rows
             pass
@@ -373,6 +373,23 @@ def soldier(col, size=40, kind="legion"):
             d.line([(rx - n * 0.30, ry + n * 0.56), (rx + n * 0.90, ry + n * 0.16)], fill=(130, 100, 60, 255), width=n // 20)
             d.polygon([(rx + n * 0.66, ry + n * 0.24), (rx + n * 0.80, ry + n * 0.10), (rx + n * 0.73, ry + n * 0.20)], fill=(245, 245, 245, 255))
             d.polygon([(rx + n * 0.66, ry + n * 0.24), (rx + n * 0.73, ry + n * 0.20), (rx + n * 0.74, ry + n * 0.30)], fill=(210, 30, 40, 255))
+        elif kind == "wallachian":  # Wallachian light horseman: tall fur kalpak cap, red cloak, lance with blue-yellow pennant
+            d.rounded_rectangle([rx + n * 0.02, ry - n * 0.10, rx + n * 0.24, ry + n * 0.12], radius=n * 0.04, fill=(60, 45, 35, 255))
+            d.ellipse([rx + n * 0.04, ry + n * 0.06, rx + n * 0.22, ry + n * 0.24], fill=(226, 186, 150, 255))
+            d.line([(rx + n * 0.06, ry + n * 0.20), (rx + n * 0.20, ry + n * 0.20)], fill=(40, 30, 25, 255), width=n // 30)
+            d.polygon([(rx - n * 0.02, ry + n * 0.26), (rx - n * 0.20, ry + n * 0.66), (rx + n * 0.06, ry + n * 0.60)], fill=(180, 30, 40, 255))
+            d.rounded_rectangle([rx - n * 0.01, ry + n * 0.26, rx + n * 0.27, ry + n * 0.62], radius=n * 0.06, fill=c, outline=dk, width=n // 40)
+            d.line([(rx - n * 0.30, ry + n * 0.56), (rx + n * 0.90, ry + n * 0.16)], fill=(130, 100, 60, 255), width=n // 20)
+            d.polygon([(rx + n * 0.66, ry + n * 0.24), (rx + n * 0.80, ry + n * 0.10), (rx + n * 0.73, ry + n * 0.20)], fill=(40, 70, 170, 255))
+            d.polygon([(rx + n * 0.66, ry + n * 0.24), (rx + n * 0.73, ry + n * 0.20), (rx + n * 0.74, ry + n * 0.30)], fill=(240, 200, 50, 255))
+        elif kind == "songhai":     # Songhai cavalryman: white turban with face veil, indigo robe, long spear, round hide shield
+            d.ellipse([rx - n * 0.02, ry - n * 0.04, rx + n * 0.28, ry + n * 0.16], fill=(245, 242, 232, 255))
+            d.ellipse([rx + n * 0.04, ry + n * 0.06, rx + n * 0.22, ry + n * 0.24], fill=(110, 72, 48, 255))
+            d.rectangle([rx + n * 0.04, ry + n * 0.16, rx + n * 0.22, ry + n * 0.26], fill=(40, 50, 110, 255))
+            d.rounded_rectangle([rx - n * 0.01, ry + n * 0.26, rx + n * 0.27, ry + n * 0.62], radius=n * 0.06, fill=(40, 50, 120, 255), outline=dk, width=n // 40)
+            d.ellipse([rx - n * 0.16, ry + n * 0.30, rx + n * 0.10, ry + n * 0.56], fill=(170, 130, 80, 255), outline=c, width=n // 26)
+            d.line([(rx - n * 0.30, ry + n * 0.56), (rx + n * 0.90, ry + n * 0.16)], fill=(130, 100, 60, 255), width=n // 20)
+            d.polygon([(rx + n * 0.86, ry + n * 0.18), (rx + n * 0.98, ry + n * 0.10), (rx + n * 0.90, ry + n * 0.22)], fill=(200, 200, 208, 255))
         elif kind == "xianbei":  # steppe rider: fur hat + round shield + bow on back
             d.ellipse([rx - n * 0.02, ry - n * 0.02, rx + n * 0.28, ry + n * 0.14], fill=(90, 70, 50, 255))
             d.ellipse([rx - n * 0.14, ry + n * 0.30, rx + n * 0.12, ry + n * 0.56], fill=dk, outline=c, width=n // 26)

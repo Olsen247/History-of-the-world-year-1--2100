@@ -163,6 +163,14 @@ def face(spec, size=300):
         tc = (248, 246, 238, 255); sh = (200, 196, 186, 255)
         d.ellipse([cx - n*.30, top - n*.16, cx + n*.30, top + n*.20], fill=tc, outline=sh, width=int(n*.01))
         for k in range(4): d.arc([cx - n*.29, top - n*.13 + k*n*.06, cx + n*.29, top + n*.21 + k*n*.06], 200, 340, fill=sh, width=int(n*.01))
+    elif hat == "vladcap":      # Vlad III's red velvet cap: gold band with pearl rows, jewelled star and feather
+        hc = (175, 25, 40, 255)
+        d.rounded_rectangle([cx - n*.23, top - n*.16, cx + n*.20, top + n*.14], radius=n*.08, fill=hc)
+        d.rectangle([cx - n*.23, top + n*.06, cx + n*.22, top + n*.14], fill=gold, outline=gdk)
+        for row in (0, 1):
+            for k in range(7): x = cx - n*.19 + k*n*.06; y = top - n*.08 + row*n*.07; d.ellipse([x - n*.014, y - n*.014, x + n*.014, y + n*.014], fill=(250, 248, 240, 255))
+        d.ellipse([cx - n*.05, top - n*.02, cx + n*.05, top + n*.08], fill=(230, 190, 70, 255), outline=gdk)
+        d.polygon([(cx + n*.02, top - n*.12), (cx + n*.14, top - n*.42), (cx + n*.10, top - n*.10)], fill=(245, 240, 230, 255))
     if spec.get("halo"):
         pass
     return im
@@ -282,6 +290,13 @@ P = {
  "gutenberg": dict(hat="fur", hat_col=(120, 40, 35), beard="long", hair="short", hair_col=(110, 80, 50), beard_col=(120, 85, 55), robe=(90, 60, 40), skin=(226, 186, 150), age=True, bg=(70, 60, 50)),
  "mehmed2": dict(hat="bigturban", beard="full", hair="short", hair_col=(60, 40, 25), beard_col=(90, 55, 30), robe=(170, 40, 40), cloak=(220, 180, 70), skin=(210, 165, 125), nose=1.5, bg=(170, 40, 45)),
  "constantine11": dict(hat="crown", beard="long", hair="long", hair_col=(80, 55, 35), beard_col=(90, 65, 45), robe=(120, 30, 110), cloak=(230, 190, 70), skin=(225, 185, 150), age=True, bg=(110, 40, 110)),
+ "columbus": dict(hat="none", beard="none", hair="long", hair_col=(170, 160, 150), robe=(35, 35, 42), cloak=(110, 30, 40), skin=(230, 190, 160), age=True, bg=(40, 90, 140)),
+ "isabella": dict(female=True, hat="crown", hair="female_long", hair_col=(170, 100, 50), robe=(150, 30, 40), cloak=(230, 190, 70), skin=(238, 205, 178), bg=(160, 110, 40)),
+ "ferdinand": dict(hat="crown", beard="none", hair="fringe", hair_col=(70, 45, 28), robe=(190, 150, 50), cloak=(160, 30, 40), skin=(226, 186, 150), bg=(170, 50, 50)),
+ "vlad3": dict(hat="vladcap", beard="mustache", hair="curly_long", hair_col=(25, 20, 18), robe=(120, 25, 35), cloak=(200, 160, 60), skin=(225, 185, 150), eye=(70, 90, 70), nose=1.5, bg=(90, 30, 35)),
+ "sonniali": dict(hat="turban", hat_col=(245, 242, 232), beard="short", hair="short", hair_col=(25, 20, 18), robe=(40, 50, 120), cloak=(230, 180, 60), skin=(105, 70, 48), bg=(180, 110, 50)),
+ "ivan3": dict(hat="fur", hat_col=(220, 175, 60), beard="long", hair="long", hair_col=(110, 85, 60), beard_col=(120, 95, 70), robe=(170, 40, 40), cloak=(220, 180, 70), age=True, bg=(120, 140, 80)),
+ "dias": dict(hat="cap", hat_col=(30, 30, 35), beard="full", hair="short", hair_col=(45, 32, 24), robe=(35, 35, 40), cloak=(80, 110, 70), skin=(222, 180, 145), bg=(50, 120, 80)),
  "zhenghe": dict(hat="wingcap", beard="none", hair="short", hair_col=(25, 20, 18), robe=(170, 40, 45), skin=(205, 160, 120), bg=(40, 90, 140)),
 }
 

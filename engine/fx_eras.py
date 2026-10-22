@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
+FOOT2 = ("samurai", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -176,4 +176,14 @@ def soldier(col, size=40, kind="line"):
         d.line([(ox + n * .26, n * .20), (ox + n * .74, n * .20)], fill=(80, 85, 70, 255), width=n // 22)
         d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(70, 60, 45, 255))
         musket(bayonet=True, y0=.06)
+    elif kind == "samurai":      # Japanese ashigaru/samurai: kabuto with gold crest horns, lamellar armour in clan colour, sashimono flag, yari spear
+        d.chord([ox + n * .30, n * .04, ox + n * .70, n * .32], 180, 360, fill=(40, 38, 44, 255))
+        d.polygon([(ox + n * .24, n * .20), (ox + n * .76, n * .20), (ox + n * .70, n * .30), (ox + n * .30, n * .30)], fill=(40, 38, 44, 255))
+        d.line([(ox + n * .46, n * .08), (ox + n * .36, -n * .10)], fill=(236, 190, 70, 255), width=n // 24)
+        d.line([(ox + n * .54, n * .08), (ox + n * .64, -n * .10)], fill=(236, 190, 70, 255), width=n // 24)
+        for k in range(4): d.line([(ox + n * .36, n * (.50 + k * .11)), (ox + n * .64, n * (.50 + k * .11))], fill=dk, width=n // 40)
+        d.line([(ox + n * .30, n * .40), (ox + n * .30, -n * .30)], fill=wood, width=n // 30)
+        d.rectangle([ox + n * .12, -n * .30, ox + n * .30, -n * .02], fill=c, outline=dk, width=n // 40)
+        d.line([(ox + n * .80, -n * .20), (ox + n * .80, n * 1.24)], fill=wood, width=n // 22)
+        d.polygon([(ox + n * .77, -n * .20), (ox + n * .83, -n * .20), (ox + n * .80, -n * .38)], fill=metal)
     return im.resize((int(im.width / S), int(im.height / S)), Image.LANCZOS)

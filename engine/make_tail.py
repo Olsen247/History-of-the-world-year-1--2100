@@ -6,7 +6,7 @@ from PIL import Image
 from hist_engine3 import glow_text, put, eback, pr, GOLD, WHITE
 inp, out, vo = sys.argv[1:4]
 D = "/home/claude/outro/tmp"; subprocess.run(["mkdir", "-p", D])
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-sseof", "-0.05", "-i", inp, "-frames:v", "1", f"{D}/last.png"], check=True)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-sseof", "-0.5", "-i", inp, "-update", "1", f"{D}/last.png"], check=True)
 base = Image.open(f"{D}/last.png").convert("RGB")
 w = wave.open(vo); vdur = w.getnframes() / w.getframerate(); w.close()
 TD = round(vdur + 0.9, 2); FPS = 30
