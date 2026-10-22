@@ -6,10 +6,12 @@ from PIL import Image
 from hist_engine3 import glow_text, put, eback, pr, GOLD, WHITE
 inp, out, vo = sys.argv[1:4]
 D = "/home/claude/outro/tmp"; subprocess.run(["mkdir", "-p", D])
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-sseof", "-0.5", "-i", inp, "-update", "1", f"{D}/last.png"], check=True)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-sseof", "-0.05", "-i", inp, "-frames:v", "1", f"{D}/last.png"], check=True)
 base = Image.open(f"{D}/last.png").convert("RGB")
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "0.1", "-i", inp, "-frames:v", "1", f"{D}/first.png"], check=True)
+first = Image.open(f"{D}/first.png").convert("RGB").resize(base.size)   # loop: the tail fades into the first frame
 w = wave.open(vo); vdur = w.getnframes() / w.getframerate(); w.close()
-TD = round(vdur + 0.9, 2); FPS = 30
+TD = round(vdur + 1.3, 2); FPS = 30; LOOP = 0.6
 t1 = glow_text("TELL ME IN THE COMMENTS", 50, WHITE)
 t2 = glow_text("WHAT'S MISSING?  WHAT COULD BE BETTER?", 34, GOLD)
 p = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", "1080x1920", "-r", str(FPS), "-i", "-",
@@ -18,6 +20,7 @@ for i in range(int(TD * FPS)):
     t = i / FPS; fr = base.copy()
     k = eback(pr(t, 0.05, 0.4), 2.2); put(fr, t1, 540, 1370, scale=max(0.01, k), alpha=min(1, k * 2))
     k2 = eback(pr(t, 0.6, 0.95), 2.2); put(fr, t2, 540, 1440, scale=max(0.01, k2), alpha=min(1, k2 * 2))
+    if t > TD - LOOP: fr = Image.blend(fr, first, pr(t, TD - LOOP, TD - 1 / FPS))
     p.stdin.write(fr.tobytes())
 p.stdin.close(); p.wait()
 # audio: VO + soft pad + ping

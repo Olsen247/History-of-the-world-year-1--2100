@@ -70,8 +70,14 @@ Build the previous year's base map: `cd /home/claude/shortgen && python3 geo.py 
 
 ## 2. Research and script (13 narration lines)
 Research the period between `previous_year` and the new year. Pick the ~9 most exciting events. Structure:
-0 hook ("The year X. …"), 1 "Let's rewind to the year <previous_year>, and …", 2–11 events in chronological order
-(the ticker must never run backwards), 12 outro "Next time: the year <next plan year>, when … Follow the series!".
+0 **hook** – a surprising claim or stakes that make people stay, NOT "The year X." (the big heading already shows the year
+from the first frame). Examples: "In just 100 years, one empire grew from the desert all the way to India." /
+"One man walked to Mecca with so much gold that he crashed a whole economy." Max ~6 s.
+1 **silent rewind** – no narration any more (it cost 4–5 s where viewers swipe away). Use `SILENT1.2` for this line in
+mkvo; the rewind effect, ticker spin and "LET'S GO BACK TO / YEAR <previous_year>" heading still play for 1.2 s. In the
+captions file give line 1 the text "".
+2–11 events in chronological order (the ticker must never run backwards), 12 outro "Next time: the year <next plan year>,
+when … Follow the series!".
 Name the key people. Keep each line short (≈ 5–8 s spoken).
 **"Meanwhile" lines (side stories in other parts of the world) must not mislead:** say the year in the narration
 ("Back in 212, Emperor Caracalla …") and place them in chronological order so the ticker shows that year. Never let a
@@ -90,7 +96,7 @@ Write the result of the check in the commit message ("Fact check: 0 issues" or w
 Call `mcp__Speko__audio_synthesize` once per line with
 `{"text": LINE, "intent": {"language": "en-US", "optimizeFor": "balanced"}, "instructions": "Deep, calm, cinematic documentary narrator. Confident and slightly dramatic.", "spokenForm": true}`.
 Each result is saved to a tool-results file whose name ends in `mcp-Speko-audio_synthesize-<ID>.txt`. Collect the IDs
-in line order and run `TEMPO=1.13 python3 mkvo.py voN <id1>,<id2>,…` (creates `voN/f*.wav` + `voN/spans.txt`).
+in line order and run `TEMPO=1.13 python3 mkvo.py voN <id_hook>,SILENT1.2,<id_line2>,…,<id_line12>` (creates `voN/f*.wav` + `voN/spans.txt`).
 If the last span ends after ~88.5 s, raise TEMPO (max 1.20) or shorten lines.
 
 ## 4. Map data
@@ -103,7 +109,8 @@ for collapses). Never run two heavy jobs at once (7 GB RAM).
 ## 5. Episode config
 Write `epNN.py` modelled on `ep08.py` / `ep07.py`: camera shots per line (view width 900–2000 for close-ups, 2950 wide),
 base_switches (switch maps during camera moves), reveals, labels (avoid clutter; event labels in gold), ticker,
-headings (2 lines; avoid the letter Q in headings – the font renders it oddly), fx (marches, icons, persons with
+headings (2 lines; avoid the letter Q in headings – the font renders it oddly; the first heading starts at `t0=0.15` so the
+year and a punchy title are on screen from the very first frame, and the first flash is at 0.15), fx (marches, icons, persons with
 `screen=(780,1180)` or `(300,1180)` – never lower than y=1250, the captions sit below), outro with next episode. Render preview stills:
 `python3 epNN.py stills 4,15,25,… /tmp/sN.png` and **look at them** (Read the png). Fix overlaps (also small labels like SERBIA vs OTTOMAN EMPIRE – drop or move the smaller one), empty frames, wrong maps.
 
@@ -134,10 +141,26 @@ git add videos engine && git commit -m "Episode NN – Year <YEAR>" && git push
 Public URL: `https://raw.githubusercontent.com/Olsen247/History-of-the-world-year-1--2100/main/videos/epNN_year<YEAR>.mp4`
 Schedule with `mcp__Metricool_Social_Media_Management__createScheduledPost` (blogId `7508489`) on `next_publish_date`
 at `next_publish_time` Europe/Oslo (publishing plan: **Mon–Sat one episode at 10:00, Sunday two episodes at 10:00 and 11:00**): providers `[{"network":"youtube"}, {"network":"instagram"}]` (Instagram account @atlasofagesx, posted as a Reel at the same time),
-`"instagramData": {"type": "REEL", "showReelOnFeed": true, "isAiGenerated": false}`, youtubeData
+`"instagramData": {"type": "REEL", "showReelOnFeed": true, "isAiGenerated": false}`,
+`"firstCommentText"`: one short question that invites answers about this episode (e.g. "Who was the bigger conqueror: Timur or Genghis Khan? 👇" / "What should we cover in more detail?"), youtubeData
 `{"title": "History of the World Ep NN", "type": "short", "privacy": "public", "category": "EDUCATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": [...]}`,
 text = "History of the World Ep NN <emoji>\nYear <YEAR> – <topic>. <one or two sentence summary>\nEpisode NN of History of the World, from Year 1 to 2026.\n#history #geography #shorts …".
 Before scheduling, call getScheduledPosts for that date so you never double-book a slot.
+
+## 8b. Daily quick-fact clip (extra reach, but the series stays tidy)
+Every run also makes ONE short clip (15–30 s) from an episode that is **already published** (episode `next_episode − 4`,
+skip if it does not exist or is already in `clips_done` in state.json).
+1. Pick the most surprising/shareable 1–2 narration lines of that episode (gold, a famous battle, a "first", a shocking
+   number). Get their times from `engine/mkcapsNN.py` (SEG start/end) – they match the episode's final video.
+2. `python3 make_clip.py videos/epNN_year<YEAR>[_vX].mp4 <start−0.2> <end+0.4> NN /home/claude/clip_epNN.mp4`
+   (adds a 2.6 s end card "FULL STORY – HISTORY OF THE WORLD – EPISODE NN").
+3. Commit to `videos/clips/`, schedule at **17:00** on `next_publish_date` (Sunday too, one clip only),
+   providers youtube + instagram. Keep it tidy so the main series is easy to follow:
+   - YouTube title: "<short fact headline> 🗺️ | History of the World" – never "Ep N" (that title belongs to full episodes only).
+   - Text: "<one-sentence fact>\nFull story: Episode NN of History of the World – watch the whole series from Year 1 on the channel.\n#history #shorts …"
+   - Instagram: `"instagramData": {"type": "REEL", "showReelOnFeed": false, …}` so clips live in the Reels tab only and the
+     profile grid shows just the numbered episodes.
+4. Append `{"from_ep": NN, "start": …, "end": …, "date": …}` to `clips_done` in state.json.
 
 ## 9. Save state
 Copy every new engine file into `engine/`, update `state.json` (next_episode+1, previous_year, previous_year_module,
