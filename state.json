@@ -133,5 +133,36 @@
     }
   ],
   "next_publish_time": "10:00",
-  "schedule_rule": "Mon-Sat: one episode at 10:00. Sunday: two episodes, 10:00 and 11:00 (Europe/Oslo). See RUNBOOK step 8-9."
+  "schedule_rule": "Mon-Sat: one episode at 10:00. Sunday: two episodes, 10:00 and 11:00 (Europe/Oslo). See RUNBOOK step 8-9.",
+  "clips_done": [
+    {
+      "from_ep": 4,
+      "start": 18.9,
+      "end": 31.9,
+      "date": "2026-10-23 17:00",
+      "file": "videos/clips/clip_ep04_valerian.mp4"
+    },
+    {
+      "from_ep": 5,
+      "start": 51.6,
+      "end": 64.5,
+      "date": "2026-10-24 17:00",
+      "file": "videos/clips/clip_ep05_tours.mp4"
+    },
+    {
+      "from_ep": 3,
+      "start": 34.85,
+      "end": 47.7,
+      "date": "2026-10-25 17:00",
+      "file": "videos/clips/clip_ep03_redcliffs.mp4"
+    },
+    {
+      "from_ep": 6,
+      "planned": "2026-10-26 17:00 (made manually)"
+    },
+    {
+      "from_ep": 7,
+      "planned": "2026-10-27 17:00 (made manually)"
+    }
+  ]
 }
