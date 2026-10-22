@@ -151,7 +151,8 @@ Before scheduling, call getScheduledPosts for that date so you never double-book
 Every run also makes ONE short clip (15–30 s) from an episode that is **already published** (episode `next_episode − 4`,
 skip if it does not exist or is already in `clips_done` in state.json).
 1. Pick the most surprising/shareable 1–2 narration lines of that episode (gold, a famous battle, a "first", a shocking
-   number). Get their times from `engine/mkcapsNN.py` (SEG start/end) – they match the episode's final video.
+   number). Get their times from the captions script that matches the video you cut: `videos/epNN_year<YEAR>_v3.mp4` ↔ `engine/mkcapsN_v3.py`;
+   otherwise the newest `epNN_year<YEAR>[_v2].mp4` ↔ `engine/mkcapsN.py` (v2 only added an ending, timings unchanged).
 2. `python3 make_clip.py videos/epNN_year<YEAR>[_vX].mp4 <start−0.2> <end+0.4> NN /home/claude/clip_epNN.mp4`
    (adds a 2.6 s end card "FULL STORY – HISTORY OF THE WORLD – EPISODE NN").
 3. Commit to `videos/clips/`, schedule at **17:00** on `next_publish_date` (Sunday too, one clip only),
