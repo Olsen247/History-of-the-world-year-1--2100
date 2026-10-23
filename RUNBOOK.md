@@ -114,7 +114,12 @@ for collapses). Never run two heavy jobs at once (7 GB RAM).
 ## 5. Episode config
 Write `epNN.py` modelled on `ep08.py` / `ep07.py`: camera shots per line (view width 900–2000 for close-ups, 2950 wide),
 base_switches (switch maps during camera moves), reveals, labels (avoid clutter; event labels in gold), ticker,
-headings (2 lines; avoid the letter Q in headings – the font renders it oddly; the first heading starts at `t0=0.15` so the
+**peoples of the whole world** – the map must never look as if only the big empires existed (viewer feedback Ep 6).
+Always add `import world_peoples as WP` and `labels += WP.labels(B, <YEAR>, s[1] + 0.8, s[12])` just before `CFG = dict(`
+(B = the year module on the map). It adds small culture labels (Celtic Britons, Picts, Bantu peoples, Maya city-states,
+Aboriginal Australians, Inuit, Polynesians …) wherever no empire polygon covers that spot. When the episode's period is
+missing a people that should be there, ADD it to `engine/world_peoples.py` (name, lon, lat, start, end – check the dates)
+and commit it, so the list grows with the series. Then headings (2 lines; avoid the letter Q in headings – the font renders it oddly; the first heading starts at `t0=0.15` so the
 year and a punchy title are on screen from the very first frame, and the first flash is at 0.15), fx (marches, icons, persons with
 `screen=(780,1180)` or `(300,1180)` – never lower than y=1250, the captions sit below), outro with next episode. Render preview stills:
 `python3 epNN.py stills 4,15,25,… /tmp/sN.png` and **look at them** (Read the png). Fix overlaps (also small labels like SERBIA vs OTTOMAN EMPIRE – drop or move the smaller one), empty frames, wrong maps.

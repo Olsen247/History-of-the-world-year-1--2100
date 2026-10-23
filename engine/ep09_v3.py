@@ -127,6 +127,8 @@ def outro(fr, t):
     put(fr, glow_text("CONSTANTINOPLE", 52, WHITE), 540, 930, alpha=pr(lt, 0.8, 1.1))
     put(fr, glow_text("FOLLOW THE SERIES", 44, GOLD), 540, 1260, alpha=pr(lt, 1.3, 1.6))
 
+import world_peoples as WP
+labels += WP.labels(B, 1405, s[1] + 0.8, s[12])
 CFG = dict(episode=9, dur=DUR, base_a="/home/claude/shortgen/hd_1347.png", base_b="/home/claude/shortgen/hd_1405.png",
            extra_bases=dict(N="/home/claude/shortgen/hd_1368.png"),
            regions="/home/claude/shortgen/regions_ep09_hd.pkl", keys=keys, routes=routes,

@@ -134,6 +134,8 @@ def outro(fr, t):
     put(fr, glow_text("COLUMBUS SAILS WEST", 52, WHITE), 540, 930, alpha=pr(lt, 0.8, 1.1))
     put(fr, glow_text("FOLLOW THE SERIES", 44, GOLD), 540, 1260, alpha=pr(lt, 1.3, 1.6))
 
+import world_peoples as WP
+labels += WP.labels(B, 1453, s[1] + 0.8, s[12])
 CFG = dict(episode=10, dur=DUR, base_a="/home/claude/shortgen/hd_1405.png", base_b="/home/claude/shortgen/hd_1453.png",
            extra_bases=dict(N="/home/claude/shortgen/hd_1420.png"),
            regions="/home/claude/shortgen/regions_ep10_hd.pkl", keys=keys, routes=routes,

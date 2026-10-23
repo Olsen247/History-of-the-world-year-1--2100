@@ -121,6 +121,8 @@ def outro(fr, t):
     put(fr, glow_text("BY SEA TO INDIA", 52, WHITE), 540, 930, alpha=pr(lt, 0.8, 1.1))
     put(fr, glow_text("FOLLOW THE SERIES", 44, GOLD), 540, 1260, alpha=pr(lt, 1.3, 1.6))
 
+import world_peoples as WP
+labels += WP.labels(B, 1492, s[1] + 0.8, s[12])
 CFG = dict(episode=11, dur=DUR, base_a="/home/claude/shortgen/hd_1453b.png", base_b="/home/claude/shortgen/hd_1492.png",
            regions="/home/claude/shortgen/regions_ep11_hd.pkl", keys=keys, routes=routes,
            base_switches=[(s[1], s[1] + 1.0, "B", "A"), (SWB[0], SWB[1], "A", "B")],
