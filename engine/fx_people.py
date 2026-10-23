@@ -171,6 +171,18 @@ def face(spec, size=300):
             for k in range(7): x = cx - n*.19 + k*n*.06; y = top - n*.08 + row*n*.07; d.ellipse([x - n*.014, y - n*.014, x + n*.014, y + n*.014], fill=(250, 248, 240, 255))
         d.ellipse([cx - n*.05, top - n*.02, cx + n*.05, top + n*.08], fill=(230, 190, 70, 255), outline=gdk)
         d.polygon([(cx + n*.02, top - n*.12), (cx + n*.14, top - n*.42), (cx + n*.10, top - n*.10)], fill=(245, 240, 230, 255))
+    elif hat == "hood":         # Dominican friar's black cowl drawn over the head (Savonarola)
+        hc = spec.get("hat_col", (28, 26, 30)) + (255,)
+        d.chord([cx - n*.27, top - n*.10, cx + n*.27, top + n*.50], 180, 360, fill=hc)
+        d.rectangle([cx - n*.27, top + n*.19, cx - n*.19, n*.80], fill=hc); d.rectangle([cx + n*.19, top + n*.19, cx + n*.27, n*.80], fill=hc)
+        d.chord([n*.10, n*.66, n*.90, n*1.35], 180, 360, fill=hc)
+        d.polygon([(cx - n*.10, n*.70), (cx, n*.80), (cx + n*.10, n*.70)], fill=(235, 232, 225, 255))
+    elif hat == "flatbonnet":   # wide flat late-15th-century bonnet with up-turned brim (+ gold badge)
+        hc = spec.get("hat_col", (25, 25, 30)) + (255,)
+        d.ellipse([cx - n*.30, top - n*.08, cx + n*.30, top + n*.10], fill=hc)
+        d.rounded_rectangle([cx - n*.25, top + n*.00, cx + n*.25, top + n*.13], radius=n*.03, fill=hc)
+        d.line([(cx - n*.25, top + n*.13), (cx + n*.25, top + n*.13)], fill=tuple(min(255, v + 40) for v in hc[:3]) + (255,), width=int(n*.012))
+        if spec.get("badge"): d.ellipse([cx + n*.08, top + n*.01, cx + n*.15, top + n*.08], fill=gold, outline=gdk)
     if spec.get("halo"):
         pass
     return im
@@ -297,6 +309,12 @@ P = {
  "sonniali": dict(hat="turban", hat_col=(245, 242, 232), beard="short", hair="short", hair_col=(25, 20, 18), robe=(40, 50, 120), cloak=(230, 180, 60), skin=(105, 70, 48), bg=(180, 110, 50)),
  "ivan3": dict(hat="fur", hat_col=(220, 175, 60), beard="long", hair="long", hair_col=(110, 85, 60), beard_col=(120, 95, 70), robe=(170, 40, 40), cloak=(220, 180, 70), age=True, bg=(120, 140, 80)),
  "dias": dict(hat="cap", hat_col=(30, 30, 35), beard="full", hair="short", hair_col=(45, 32, 24), robe=(35, 35, 40), cloak=(80, 110, 70), skin=(222, 180, 145), bg=(50, 120, 80)),
+ # Ep 12
+ "askia": dict(hat="turban", hat_col=(248, 246, 238), beard="short", hair="short", hair_col=(25, 20, 18), robe=(30, 60, 130), cloak=(240, 238, 230), skin=(100, 66, 45), bg=(190, 120, 50)),
+ "charles8": dict(hat="flatbonnet", badge=True, beard="none", hair="long", hair_col=(140, 95, 50), robe=(30, 50, 140), cloak=(230, 190, 70), skin=(232, 196, 165), nose=1.9, eye=(70, 90, 120), bg=(50, 80, 160)),
+ "savonarola": dict(hat="hood", beard="none", hair="none", robe=(28, 26, 30), skin=(205, 165, 130), nose=2.0, eye=(40, 30, 25), age=True, bg=(110, 40, 30)),
+ "cabot": dict(hat="cap", hat_col=(150, 30, 40), beard="full", hair="short", hair_col=(60, 45, 30), beard_col=(70, 50, 35), robe=(40, 40, 50), cloak=(140, 30, 40), skin=(225, 185, 150), bg=(170, 50, 60)),
+ "dagama": dict(hat="flatbonnet", beard="long", hair="short", hair_col=(35, 28, 22), beard_col=(40, 32, 25), robe=(25, 25, 30), cloak=(170, 40, 40), skin=(222, 180, 145), nose=1.3, bg=(40, 110, 80)),
  "zhenghe": dict(hat="wingcap", beard="none", hair="short", hair_col=(25, 20, 18), robe=(170, 40, 45), skin=(205, 160, 120), bg=(40, 90, 140)),
 }
 

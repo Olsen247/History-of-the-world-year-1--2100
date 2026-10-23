@@ -182,9 +182,27 @@ def icon_pyramid(size=140):
     d.rectangle([n * 0.46, n * 0.17, n * 0.54, n * 0.82], fill=(150, 116, 80, 255))
     return _finish(im, size)
 
+def icon_spice(size=140):
+    """Open burlap sack heaped with black peppercorns, cinnamon sticks in front (the spice trade)."""
+    im, n = _canvas(size); d = ImageDraw.Draw(im)
+    sack = (196, 160, 104, 255); sdk = (120, 90, 50, 255)
+    d.polygon([(n*.22, n*.40), (n*.78, n*.40), (n*.86, n*.80), (n*.74, n*.92), (n*.26, n*.92), (n*.14, n*.80)], fill=sack, outline=sdk, width=n // 70)
+    d.ellipse([n*.18, n*.30, n*.82, n*.50], fill=(150, 115, 70, 255), outline=sdk, width=n // 70)
+    rr = random.Random(5)
+    for k in range(70):
+        a = rr.random() * 2 * math.pi; r = math.sqrt(rr.random())
+        x = n*.50 + math.cos(a) * r * n*.28; y = n*.36 + math.sin(a) * r * n*.08 - (1 - r) * n*.10
+        c = rr.choice([(40, 32, 28), (60, 45, 35), (25, 22, 20)])
+        d.ellipse([x - n*.032, y - n*.032, x + n*.032, y + n*.032], fill=c + (255,))
+        d.ellipse([x - n*.012, y - n*.022, x + n*.004, y - n*.008], fill=(140, 120, 100, 255))
+    for k, (x0, y0) in enumerate(((0.30, 0.72), (0.38, 0.80))):
+        d.rounded_rectangle([n*x0, n*y0, n*(x0 + .42), n*(y0 + .06)], radius=n*.03, fill=(150, 80, 40, 255), outline=(90, 45, 20, 255), width=n // 120)
+    for k in range(3): d.line([(n*.26, n*(.55 + k*.08)), (n*.74, n*(.55 + k*.08))], fill=(170, 135, 85, 255), width=n // 160)
+    return _finish(im, size)
+
 ICONS = dict(gold=icon_gold, scroll=icon_scroll, temple=icon_temple, wheel=icon_wheel, ship=icon_ship, camel=icon_camel,
              people=icon_people, nopeople=lambda size=130: icon_people(size, True), laurel=icon_laurel, swords=icon_swords,
-             bird=icon_bird, pyramid=icon_pyramid, fire=icon_fire, rat=icon_rat)
+             bird=icon_bird, pyramid=icon_pyramid, fire=icon_fire, rat=icon_rat, spice=icon_spice)
 
 def _horse(d, n, x0, y0, sc, coat=(110, 72, 44, 255)):
     """Side-view horse facing right; (x0, y0) = top-left of a 1.0 x 0.8 box scaled by sc*n."""
@@ -550,7 +568,7 @@ def draw_march(fr, S, vw, t, ev):
         if dist - back < 0: continue
         (sx, sy), a2, _ = path_point(pts, (dist - back) / max(1, sum(math.hypot(b[0] - a[0], b[1] - a[1]) for a, b in zip(pts, pts[1:]))))
         px, py = sx - math.sin(a2) * side, sy + math.cos(a2) * side
-        if ev.get("ships", True) and is_water(*geo_at(pts, ev["path"], dist - back)):
+        if ev.get("sea_only") or (ev.get("ships", True) and is_water(*geo_at(pts, ev["path"], dist - back))):   # sea_only: voyages hugging coasts/islands stay ships
             if i % per: continue
             bob = math.sin((t - t0) * 3 + i) * 3
             paste(fr, get_ship(col, int(sz * 1.25), flip, ev.get("ship")), sx, sy + bob - sz * 0.5, alpha=fade); continue
