@@ -125,6 +125,8 @@ def outro(fr, t):
     put(fr, glow_text("THE BLACK DEATH", 54, WHITE), 540, 930, alpha=pr(lt, 0.8, 1.1))
     put(fr, glow_text("FOLLOW THE SERIES", 44, GOLD), 540, 1260, alpha=pr(lt, 1.3, 1.6))
 
+import world_peoples as WP
+labels += WP.labels(B, 1279, s[1] + 0.8, s[12])
 CFG = dict(episode=7, dur=DUR, base_a="/home/claude/shortgen/hd_1000.png", base_b="/home/claude/shortgen/hd_1279.png",
            extra_bases=dict(C1="/home/claude/shortgen/hd_1100.png", C2="/home/claude/shortgen/hd_1190.png",
                             M1="/home/claude/shortgen/hd_1227.png", M2="/home/claude/shortgen/hd_1259.png"),
