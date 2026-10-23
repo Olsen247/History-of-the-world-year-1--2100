@@ -1,9 +1,9 @@
 {
-  "next_episode": 12,
-  "previous_year": 1492,
-  "previous_year_module": "world_data_1492",
-  "previous_base_map": "hd_1492.png",
-  "next_publish_date": "2026-10-28",
+  "next_episode": 13,
+  "previous_year": 1498,
+  "previous_year_module": "world_data_1498",
+  "previous_base_map": "hd_1498.png",
+  "next_publish_date": "2026-10-29",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -130,6 +130,13 @@
       "video": "videos/ep11_year1492_v3.mp4",
       "publish": "2026-10-27 10:00",
       "metricool_post_id": 403682045
+    },
+    {
+      "ep": 12,
+      "year": 1498,
+      "video": "videos/ep12_year1498.mp4",
+      "publish": "2026-10-28 10:00",
+      "metricool_post_id": 403755206
     }
   ],
   "next_publish_time": "10:00",
@@ -163,6 +170,14 @@
     {
       "from_ep": 7,
       "planned": "2026-10-27 17:00 (made manually)"
+    },
+    {
+      "from_ep": 8,
+      "start": 24.45,
+      "end": 40.03,
+      "date": "2026-10-28 17:00",
+      "file": "videos/clips/clip_ep08_mansamusa.mp4",
+      "metricool_post_id": 403755219
     }
   ]
 }

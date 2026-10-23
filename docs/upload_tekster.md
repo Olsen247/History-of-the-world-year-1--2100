@@ -74,3 +74,12 @@ Episode 10 of History of the World, from Year 1 to 2026.
 Episode 11 of History of the World, from Year 1 to 2026.
 #history #columbus #1492 #reconquista #geography #shorts
 *(Planlagt i Metricool 27.10.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #12 – Year 1498
+**Tittel:** History of the World Ep 12
+**Beskrivelse:** Year 1498 – Vasco da Gama reaches India by sea. Askia Muhammad takes Songhai, Columbus returns with 17 ships, the Treaty of Tordesillas splits the world, Charles VIII invades Italy, Savonarola's Bonfire of the Vanities and John Cabot reaches North America, until four Portuguese ships sail around Africa to India.
+Episode 12 of History of the World, from Year 1 to 2026.
+#history #vascodagama #ageofexploration #india #geography #shorts
+*(Planlagt i Metricool 28.10.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 28.10 kl. 17:00:** «The King Whose Gold Crashed Cairo 🗺️ | History of the World» – Mansa Musa + Tenochtitlan fra Ep 8 (`videos/clips/clip_ep08_mansamusa.mp4`)
