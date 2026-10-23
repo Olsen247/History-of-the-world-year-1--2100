@@ -83,6 +83,11 @@ Name the key people. Keep each line short (≈ 5–8 s spoken).
 ("Back in 212, Emperor Caracalla …") and place them in chronological order so the ticker shows that year. Never let a
 person appear to rule in a year when they were already dead (a viewer caught this in Ep 3: Caracalla died in 217, not 220).
 
+**Viewer feedback log (keep the map honest):**
+- Ep 6 (Oct 2026): a viewer said "Britain was Celtic in the 700s". England was Anglo-Saxon by then, but Wales, Cornwall
+  and Strathclyde were Celtic Britons, Scotland was Pictish and Gaelic (Dál Riata), and Ireland was Gaelic. For the British
+  Isles c. 400–900 always label these Celtic peoples too ("Britons", "Picts", "Gaels"), not only "Anglo-Saxon kingdoms".
+
 ## 2b. Fact check before recording (viewers check our facts – take this seriously)
 Before any voice is recorded, check the finished 13-line script line by line:
 1. Every year, name, number and "first/biggest/last" claim is confirmed with WebSearch (two sources for anything surprising).
