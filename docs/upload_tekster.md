@@ -83,3 +83,12 @@ Episode 12 of History of the World, from Year 1 to 2026.
 *(Planlagt i Metricool 28.10.2026 kl. 10:00, YouTube + Instagram Reels)*
 
 **Klipp 28.10 kl. 17:00:** «The King Whose Gold Crashed Cairo 🗺️ | History of the World» – Mansa Musa + Tenochtitlan fra Ep 8 (`videos/clips/clip_ep08_mansamusa.mp4`)
+
+## #13 – Year 1522
+**Tittel:** History of the World Ep 13
+**Beskrivelse:** Year 1522 – Magellan's expedition sails around the world. Cabral reaches Brazil, Shah Ismail founds the Safavid Empire, Albuquerque takes Malacca, Balboa sees the Pacific, Selim takes Cairo, Luther sparks the Reformation, Magellan dies on Mactan and Tenochtitlan falls, until the Victoria limps home with just 18 men.
+Episode 13 of History of the World, from Year 1 to 2026.
+#history #magellan #ageofexploration #circumnavigation #geography #shorts
+*(Planlagt i Metricool 29.10.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 29.10 kl. 17:00:** «The Warlord Who Captured a Sultan 🗺️ | History of the World» – Timur: Delhi, Ankara og marsjen mot Kina fra Ep 9 (`videos/clips/clip_ep09_timur.mp4`)

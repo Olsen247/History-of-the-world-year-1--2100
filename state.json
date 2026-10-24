@@ -1,9 +1,9 @@
 {
-  "next_episode": 13,
-  "previous_year": 1498,
-  "previous_year_module": "world_data_1498",
-  "previous_base_map": "hd_1498.png",
-  "next_publish_date": "2026-10-29",
+  "next_episode": 14,
+  "previous_year": 1522,
+  "previous_year_module": "world_data_1522",
+  "previous_base_map": "hd_1522.png",
+  "next_publish_date": "2026-10-30",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -36,7 +36,7 @@
     {
       "ep": 14,
       "year": 1533,
-      "topic": "The Aztec and Inca empires fall"
+      "topic": "Pizarro and the fall of the Inca Empire (the Aztec Empire already fell in Ep 13, 1521)"
     },
     {
       "ep": 15,
@@ -137,6 +137,13 @@
       "video": "videos/ep12_year1498.mp4",
       "publish": "2026-10-28 10:00",
       "metricool_post_id": 403755206
+    },
+    {
+      "ep": 13,
+      "year": 1522,
+      "video": "videos/ep13_year1522.mp4",
+      "publish": "2026-10-29 10:00",
+      "metricool_post_id": 404713521
     }
   ],
   "next_publish_time": "10:00",
@@ -178,6 +185,14 @@
       "date": "2026-10-28 17:00",
       "file": "videos/clips/clip_ep08_mansamusa.mp4",
       "metricool_post_id": 403755219
+    },
+    {
+      "from_ep": 9,
+      "start": 49.9,
+      "end": 68.53,
+      "date": "2026-10-29 17:00",
+      "file": "videos/clips/clip_ep09_timur.mp4",
+      "metricool_post_id": 404713535
     }
   ]
 }
