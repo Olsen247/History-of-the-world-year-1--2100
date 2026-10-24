@@ -39,7 +39,9 @@ PEOPLES = [
     # ---- Oceania ----
     ("Aboriginal Australians", 134, -25, -500, 1900), ("Papuan peoples", 143, -6, -500, 1900), ("Lapita / Polynesians", -175, -17, -500, 900),
     ("Tongans & Samoans", -173.5, -15.5, 900, 1900), ("Hawaiians", -157, 20.5, 900, 1898), ("Rapa Nui", -109.4, -27.1, 1100, 1888),
-    ("Māori", 174.5, -39, 1280, 1900),
+    ("Māori", 174.5, -39, 1280, 1900), ("Chamorro", 144.8, 13.4, 1, 1668),
+    # ---- added Ep 13 (Magellan's route) ----
+    ("Visayan chiefdoms", 125.6, 12.3, 900, 1565), ("Moluccan sultanates", 127.6, 0.6, 1250, 1680), ("Kingdom of Kongo", 14.5, -6.0, 1390, 1857),
 ]
 
 def _inside(pt, poly):

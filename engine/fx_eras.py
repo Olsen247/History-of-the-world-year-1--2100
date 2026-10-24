@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("samurai", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
+FOOT2 = ("qizilbash", "visayan", "samurai", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -94,7 +94,7 @@ class _Shift:
 def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
-    skin = {"inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255)}.get(kind, (226, 186, 150, 255))
+    skin = {"inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255)}.get(kind, (226, 186, 150, 255))
     trousers = {"line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "ww1": (95, 100, 80, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
@@ -105,6 +105,7 @@ def soldier(col, size=40, kind="line"):
     if kind == "conquistador": coat = (150, 40, 40, 255)
     if kind == "inca": coat = (200, 150, 60, 255) if col == (0, 0, 0) else c
     if kind == "ww1": coat = c
+    if kind == "visayan": coat = (160, 110, 72, 255)
     long_coat = kind in ("janissary", "line", "napoleonic")
     d.rounded_rectangle([ox + n * .34, n * .40, ox + n * .66, n * (1.10 if long_coat else .98)], radius=n * .08, fill=coat, outline=dk, width=n // 30)
     d.ellipse([ox + n * .38, n * .14, ox + n * .62, n * .40], fill=skin)
@@ -176,6 +177,21 @@ def soldier(col, size=40, kind="line"):
         d.line([(ox + n * .26, n * .20), (ox + n * .74, n * .20)], fill=(80, 85, 70, 255), width=n // 22)
         d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(70, 60, 45, 255))
         musket(bayonet=True, y0=.06)
+    elif kind == "qizilbash":    # Safavid Qizilbash ("red head"): white turban round a tall red baton, kaftan in banner colour, spear
+        d.polygon([(ox + n * .45, n * .14), (ox + n * .55, n * .14), (ox + n * .53, -n * .18), (ox + n * .47, -n * .18)], fill=(200, 35, 40, 255))
+        d.ellipse([ox + n * .33, n * .06, ox + n * .67, n * .24], fill=(245, 242, 232, 255), outline=(170, 165, 155, 255))
+        d.chord([ox + n * .40, n * .28, ox + n * .60, n * .44], 0, 180, fill=(60, 40, 25, 255))
+        d.rectangle([ox + n * .34, n * .66, ox + n * .66, n * .72], fill=(200, 35, 40, 255))
+        d.line([(ox + n * .80, -n * .20), (ox + n * .80, n * 1.24)], fill=wood, width=n // 22)
+        d.polygon([(ox + n * .77, -n * .20), (ox + n * .83, -n * .20), (ox + n * .80, -n * .38)], fill=metal)
+    elif kind == "visayan":      # Visayan warrior of Mactan: red head cloth, tattooed bare chest, loincloth, kampilan sword + round wooden shield
+        d.rectangle([ox + n * .37, n * .13, ox + n * .63, n * .20], fill=(200, 35, 40, 255))
+        d.polygon([(ox + n * .62, n * .15), (ox + n * .76, n * .10), (ox + n * .72, n * .22)], fill=(200, 35, 40, 255))
+        for k in range(3): d.arc([ox + n * .38, n * (.46 + k * .10), ox + n * .62, n * (.60 + k * .10)], 200, 340, fill=(60, 40, 30, 255), width=n // 40)
+        d.rectangle([ox + n * .35, n * .82, ox + n * .65, n * .98], fill=c, outline=dk, width=n // 40)
+        d.line([(ox + n * .80, n * .62), (ox + n * .92, -n * .12)], fill=metal, width=n // 16)
+        d.line([(ox + n * .74, n * .60), (ox + n * .86, n * .66)], fill=wood, width=n // 22)
+        d.ellipse([ox + n * .02, n * .44, ox + n * .36, n * .86], fill=(130, 85, 45, 255), outline=(70, 45, 25, 255), width=n // 30)
     elif kind == "samurai":      # Japanese ashigaru/samurai: kabuto with gold crest horns, lamellar armour in clan colour, sashimono flag, yari spear
         d.chord([ox + n * .30, n * .04, ox + n * .70, n * .32], 180, 360, fill=(40, 38, 44, 255))
         d.polygon([(ox + n * .24, n * .20), (ox + n * .76, n * .20), (ox + n * .70, n * .30), (ox + n * .30, n * .30)], fill=(40, 38, 44, 255))

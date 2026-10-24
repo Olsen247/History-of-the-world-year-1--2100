@@ -183,6 +183,18 @@ def face(spec, size=300):
         d.rounded_rectangle([cx - n*.25, top + n*.00, cx + n*.25, top + n*.13], radius=n*.03, fill=hc)
         d.line([(cx - n*.25, top + n*.13), (cx + n*.25, top + n*.13)], fill=tuple(min(255, v + 40) for v in hc[:3]) + (255,), width=int(n*.012))
         if spec.get("badge"): d.ellipse([cx + n*.08, top + n*.01, cx + n*.15, top + n*.08], fill=gold, outline=gdk)
+    elif hat == "taj":          # Safavid Qizilbash taj: white turban wound round a tall red twelve-gored baton
+        d.polygon([(cx - n*.07, top - n*.02), (cx + n*.07, top - n*.02), (cx + n*.035, top - n*.40), (cx - n*.035, top - n*.40)], fill=(200, 35, 40, 255), outline=(120, 20, 25, 255))
+        for k in range(3): d.line([(cx - n*.06 + k*n*.04, top - n*.04), (cx - n*.03 + k*n*.03, top - n*.38)], fill=(150, 25, 30, 255), width=int(n*.006))
+        tc = (248, 246, 238, 255); sh = (200, 196, 186, 255)
+        d.ellipse([cx - n*.27, top - n*.12, cx + n*.27, top + n*.18], fill=tc, outline=sh, width=int(n*.01))
+        for k in range(3): d.arc([cx - n*.26, top - n*.09 + k*n*.06, cx + n*.26, top + n*.19 + k*n*.06], 200, 340, fill=sh, width=int(n*.01))
+        if spec.get("jewel"): d.ellipse([cx - n*.03, top - n*.02, cx + n*.03, top + n*.04], fill=(220, 40, 60, 255))
+    elif hat == "morion":       # Spanish conquistador morion: steel dome with high comb and up-curved brim
+        mc = (190, 192, 200, 255); md = (100, 102, 112, 255)
+        d.chord([cx - n*.19, top - n*.10, cx + n*.19, top + n*.24], 180, 360, fill=mc, outline=md, width=int(n*.008))
+        d.chord([cx - n*.06, top - n*.22, cx + n*.06, top + n*.04], 180, 360, fill=mc, outline=md, width=int(n*.008))
+        d.polygon([(cx - n*.34, top + n*.02), (cx - n*.20, top + n*.10), (cx + n*.20, top + n*.10), (cx + n*.34, top + n*.02), (cx + n*.30, top + n*.12), (cx - n*.30, top + n*.12)], fill=mc, outline=md)
     if spec.get("halo"):
         pass
     return im
@@ -315,6 +327,15 @@ P = {
  "savonarola": dict(hat="hood", beard="none", hair="none", robe=(28, 26, 30), skin=(205, 165, 130), nose=2.0, eye=(40, 30, 25), age=True, bg=(110, 40, 30)),
  "cabot": dict(hat="cap", hat_col=(150, 30, 40), beard="full", hair="short", hair_col=(60, 45, 30), beard_col=(70, 50, 35), robe=(40, 40, 50), cloak=(140, 30, 40), skin=(225, 185, 150), bg=(170, 50, 60)),
  "dagama": dict(hat="flatbonnet", beard="long", hair="short", hair_col=(35, 28, 22), beard_col=(40, 32, 25), robe=(25, 25, 30), cloak=(170, 40, 40), skin=(222, 180, 145), nose=1.3, bg=(40, 110, 80)),
+ # Ep 13
+ "cabral": dict(hat="cap", hat_col=(25, 25, 30), beard="full", hair="short", hair_col=(40, 30, 22), beard_col=(45, 32, 24), armor=(170, 172, 180), cloak=(40, 110, 80), skin=(222, 180, 145), nose=1.3, bg=(40, 110, 80)),
+ "ismail": dict(hat="taj", jewel=True, beard="mustache", hair="short", hair_col=(120, 70, 35), beard_col=(120, 70, 35), robe=(40, 120, 90), cloak=(220, 180, 70), skin=(226, 186, 150), bg=(40, 130, 100)),
+ "albuquerque": dict(hat="cap", hat_col=(25, 25, 30), beard="long", hair="short", hair_col=(215, 215, 210), beard_col=(235, 235, 230), robe=(30, 30, 35), cloak=(150, 30, 40), skin=(222, 180, 145), age=True, nose=1.4, bg=(40, 110, 80)),
+ "balboa": dict(hat="morion", beard="full", hair="short", hair_col=(110, 75, 40), beard_col=(120, 80, 45), armor=(175, 178, 186), cloak=(170, 40, 40), skin=(226, 186, 150), bg=(170, 110, 50)),
+ "selim": dict(hat="bigturban", beard="mustache", hair="none", beard_col=(40, 28, 20), robe=(150, 30, 40), cloak=(220, 180, 70), skin=(210, 165, 125), nose=1.5, eye=(40, 30, 25), bg=(170, 40, 45)),
+ "magellan": dict(hat="none", beard="full", hair="short", hair_col=(35, 28, 22), beard_col=(40, 32, 25), armor=(165, 168, 178), cloak=(30, 30, 35), skin=(222, 180, 145), nose=1.3, bg=(170, 110, 50)),
+ "cortes": dict(hat="cap", hat_col=(25, 25, 30), beard="short", hair="short", hair_col=(55, 40, 28), beard_col=(60, 45, 30), armor=(175, 178, 186), cloak=(150, 30, 40), skin=(226, 186, 150), bg=(170, 110, 50)),
+ "elcano": dict(hat="cap", hat_col=(40, 30, 25), beard="short", hair="short", hair_col=(60, 45, 30), beard_col=(70, 50, 35), robe=(40, 40, 50), cloak=(160, 120, 50), skin=(222, 180, 145), bg=(50, 90, 140)),
  "zhenghe": dict(hat="wingcap", beard="none", hair="short", hair_col=(25, 20, 18), robe=(170, 40, 45), skin=(205, 160, 120), bg=(40, 90, 140)),
 }
 
