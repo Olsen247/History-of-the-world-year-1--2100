@@ -92,3 +92,15 @@ Episode 13 of History of the World, from Year 1 to 2026.
 *(Planlagt i Metricool 29.10.2026 kl. 10:00, YouTube + Instagram Reels)*
 
 **Klipp 29.10 kl. 17:00:** «The Warlord Who Captured a Sultan 🗺️ | History of the World» – Timur: Delhi, Ankara og marsjen mot Kina fra Ep 9 (`videos/clips/clip_ep09_timur.mp4`)
+
+## #14 – Year 1533
+**Tittel:** History of the World Ep 14
+**Beskrivelse:** Year 1533 – Pizarro and the fall of the Inca. Gustav Vasa breaks Sweden free, Charles V captures the French king at Pavia, Babur founds the Mughal Empire, Suleiman crushes Hungary at Mohács, Rome is sacked, Vienna holds, and the Inca civil war ends, until 168 Spaniards capture Atahualpa and march into Cusco.
+Episode 14 of History of the World, from Year 1 to 2026.
+#history #inca #pizarro #conquistadors #geography #shorts
+*(Planlagt i Metricool 30.10.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 30.10 kl. 17:00 (IKKE planlagt – må legges inn manuelt):** «The Day a 1,000-Year Empire Fell 🗺️ | History of the World» – Gutenberg + Konstantinopels fall fra Ep 10 (`videos/clips/clip_ep10_constantinople.mp4`, Instagram: showReelOnFeed false)
+Tekst: Around 1450 Gutenberg built his printing press, and in 1453, after a 53-day siege, Mehmed II broke the walls of Constantinople and ended the Byzantine Empire.
+Full story: Episode 10 of History of the World – watch the whole series from Year 1 on the channel.
+#history #constantinople #ottomanempire #byzantine #shorts

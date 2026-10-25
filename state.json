@@ -1,9 +1,9 @@
 {
-  "next_episode": 14,
-  "previous_year": 1522,
-  "previous_year_module": "world_data_1522",
-  "previous_base_map": "hd_1522.png",
-  "next_publish_date": "2026-10-30",
+  "next_episode": 15,
+  "previous_year": 1533,
+  "previous_year_module": "world_data_1533",
+  "previous_base_map": "hd_1533.png",
+  "next_publish_date": "2026-10-31",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -144,6 +144,13 @@
       "video": "videos/ep13_year1522.mp4",
       "publish": "2026-10-29 10:00",
       "metricool_post_id": 404713521
+    },
+    {
+      "ep": 14,
+      "year": 1533,
+      "video": "videos/ep14_year1533.mp4",
+      "publish": "2026-10-30 10:00",
+      "metricool_post_id": 405413928
     }
   ],
   "next_publish_time": "10:00",
@@ -193,6 +200,13 @@
       "date": "2026-10-29 17:00",
       "file": "videos/clips/clip_ep09_timur.mp4",
       "metricool_post_id": 404713535
+    },
+    {
+      "from_ep": 10,
+      "start": 59.5,
+      "end": 76.1,
+      "file": "videos/clips/clip_ep10_constantinople.mp4",
+      "planned": "2026-10-30 17:00 – NOT scheduled (Metricool write for the clip was denied in the automated run); schedule manually"
     }
   ]
 }
