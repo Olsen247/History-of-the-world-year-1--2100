@@ -190,6 +190,18 @@ def face(spec, size=300):
         d.ellipse([cx - n*.27, top - n*.12, cx + n*.27, top + n*.18], fill=tc, outline=sh, width=int(n*.01))
         for k in range(3): d.arc([cx - n*.26, top - n*.09 + k*n*.06, cx + n*.26, top + n*.19 + k*n*.06], 200, 340, fill=sh, width=int(n*.01))
         if spec.get("jewel"): d.ellipse([cx - n*.03, top - n*.02, cx + n*.03, top + n*.04], fill=(220, 40, 60, 255))
+    elif hat == "plumebonnet":  # 16th-century flat velvet bonnet worn tilted, with a white ostrich plume (Francis I, Pizarro)
+        hc = spec.get("hat_col", (25, 25, 30)) + (255,)
+        d.ellipse([cx - n*.32, top - n*.06, cx + n*.28, top + n*.12], fill=hc)
+        d.rounded_rectangle([cx - n*.24, top + n*.02, cx + n*.22, top + n*.14], radius=n*.03, fill=hc)
+        d.ellipse([cx + n*.06, top - n*.16, cx + n*.40, top + n*.02], fill=(248, 248, 244, 255), outline=(200, 200, 196, 255), width=int(n*.008))
+        if spec.get("badge"): d.ellipse([cx - n*.02, top + n*.03, cx + n*.05, top + n*.10], fill=gold, outline=gdk)
+    elif hat == "suleimanturban":  # Suleiman's very tall, bulbous white ceremonial turban with a jewelled aigrette
+        tc = (250, 248, 242, 255); sh = (205, 200, 190, 255)
+        d.ellipse([cx - n*.27, top - n*.42, cx + n*.27, top + n*.18], fill=tc, outline=sh, width=int(n*.01))
+        for k in range(5): d.arc([cx - n*.26, top - n*.38 + k*n*.10, cx + n*.26, top - n*.02 + k*n*.06], 200, 340, fill=sh, width=int(n*.009))
+        d.ellipse([cx - n*.035, top - n*.12, cx + n*.035, top - n*.05], fill=(200, 40, 60, 255), outline=gold)
+        d.line([(cx, top - n*.12), (cx + n*.06, top - n*.32)], fill=(30, 30, 35, 255), width=int(n*.018))
     elif hat == "morion":       # Spanish conquistador morion: steel dome with high comb and up-curved brim
         mc = (190, 192, 200, 255); md = (100, 102, 112, 255)
         d.chord([cx - n*.19, top - n*.10, cx + n*.19, top + n*.24], 180, 360, fill=mc, outline=md, width=int(n*.008))
@@ -337,6 +349,14 @@ P = {
  "cortes": dict(hat="cap", hat_col=(25, 25, 30), beard="short", hair="short", hair_col=(55, 40, 28), beard_col=(60, 45, 30), armor=(175, 178, 186), cloak=(150, 30, 40), skin=(226, 186, 150), bg=(170, 110, 50)),
  "elcano": dict(hat="cap", hat_col=(40, 30, 25), beard="short", hair="short", hair_col=(60, 45, 30), beard_col=(70, 50, 35), robe=(40, 40, 50), cloak=(160, 120, 50), skin=(222, 180, 145), bg=(50, 90, 140)),
  "zhenghe": dict(hat="wingcap", beard="none", hair="short", hair_col=(25, 20, 18), robe=(170, 40, 45), skin=(205, 160, 120), bg=(40, 90, 140)),
+ # Ep 14
+ "gustav": dict(hat="flatbonnet", hat_col=(25, 25, 30), beard="long", hair="short", hair_col=(150, 110, 70), beard_col=(165, 125, 80), robe=(30, 30, 35), cloak=(40, 80, 170), skin=(228, 190, 158), age=True, bg=(40, 80, 160)),
+ "charlesv": dict(hat="flatbonnet", hat_col=(20, 20, 24), beard="short", hair="fringe", hair_col=(95, 70, 40), beard_col=(100, 75, 45), armor=(170, 172, 180), cloak=(30, 30, 35), skin=(230, 192, 160), nose=1.4, bg=(180, 150, 60)),
+ "francis": dict(hat="plumebonnet", hat_col=(25, 25, 30), badge=True, beard="full", hair="short", hair_col=(45, 32, 24), beard_col=(50, 36, 26), robe=(240, 236, 226), cloak=(40, 70, 170), skin=(226, 186, 150), nose=1.8, bg=(50, 80, 160)),
+ "babur": dict(hat="turban", hat_col=(245, 242, 232), jewel=True, beard="short", hair="short", hair_col=(30, 24, 20), beard_col=(35, 28, 22), robe=(40, 140, 90), cloak=(210, 170, 70), skin=(212, 168, 128), bg=(40, 130, 90)),
+ "suleiman": dict(hat="suleimanturban", beard="mustache", hair="none", beard_col=(50, 36, 26), robe=(170, 40, 45), cloak=(220, 180, 70), skin=(215, 172, 132), nose=1.7, eye=(40, 30, 25), bg=(170, 40, 45)),
+ "atahualpa": dict(hat="mascaypacha", beard="none", hair="short", hair_col=(25, 20, 18), robe=(40, 120, 150), cloak=(200, 150, 50), skin=(175, 120, 85), bg=(190, 120, 40)),
+ "pizarro": dict(hat="plumebonnet", hat_col=(25, 25, 30), beard="long", hair="short", hair_col=(150, 145, 140), beard_col=(185, 180, 172), armor=(175, 178, 186), cloak=(150, 30, 40), skin=(222, 180, 145), age=True, nose=1.4, bg=(170, 110, 50)),
 }
 
 def get(who, size=210):

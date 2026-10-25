@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("qizilbash", "visayan", "samurai", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
+FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -192,6 +192,33 @@ def soldier(col, size=40, kind="line"):
         d.line([(ox + n * .80, n * .62), (ox + n * .92, -n * .12)], fill=metal, width=n // 16)
         d.line([(ox + n * .74, n * .60), (ox + n * .86, n * .66)], fill=wood, width=n // 22)
         d.ellipse([ox + n * .02, n * .44, ox + n * .36, n * .86], fill=(130, 85, 45, 255), outline=(70, 45, 25, 255), width=n // 30)
+    elif kind == "landsknecht":  # German Landsknecht: huge slashed beret with ostrich feathers, puffed striped sleeves, long pike
+        d.ellipse([ox + n * .26, n * .06, ox + n * .74, n * .22], fill=(150, 30, 40, 255), outline=(80, 15, 20, 255))
+        d.line([(ox + n * .56, n * .10), (ox + n * .78, -n * .16)], fill=(250, 250, 250, 255), width=n // 14)
+        d.line([(ox + n * .48, n * .10), (ox + n * .60, -n * .14)], fill=(240, 210, 80, 255), width=n // 18)
+        d.chord([ox + n * .40, n * .28, ox + n * .60, n * .44], 0, 180, fill=(120, 80, 40, 255))
+        for k in range(4): d.line([(ox + n * (.38 + k * .08), n * .44), (ox + n * (.38 + k * .08), n * .94)], fill=(240, 220, 120, 255) if k % 2 else dk, width=n // 22)
+        d.ellipse([ox + n * .22, n * .40, ox + n * .40, n * .62], fill=(240, 220, 120, 255), outline=dk)
+        d.line([(ox + n * .82, -n * .40), (ox + n * .82, n * 1.28)], fill=wood, width=n // 26)
+        d.polygon([(ox + n * .79, -n * .40), (ox + n * .85, -n * .40), (ox + n * .82, -n * .56)], fill=metal)
+    elif kind == "swede":        # Swedish peasant soldier of Gustav Vasa (Dalecarlians): kettle hat, blue coat with yellow cross, halberd
+        d.chord([ox + n * .32, n * .06, ox + n * .68, n * .26], 180, 360, fill=metal)
+        d.polygon([(ox + n * .26, n * .18), (ox + n * .74, n * .18), (ox + n * .68, n * .13), (ox + n * .32, n * .13)], fill=metal)
+        d.chord([ox + n * .40, n * .28, ox + n * .60, n * .44], 0, 180, fill=(190, 150, 90, 255))
+        d.rectangle([ox + n * .36, n * .44, ox + n * .64, n * .94], fill=(40, 80, 170, 255))
+        d.line([(ox + n * .46, n * .46), (ox + n * .46, n * .92)], fill=(250, 210, 40, 255), width=n // 14)
+        d.line([(ox + n * .37, n * .62), (ox + n * .63, n * .62)], fill=(250, 210, 40, 255), width=n // 14)
+        d.line([(ox + n * .80, -n * .24), (ox + n * .80, n * 1.24)], fill=wood, width=n // 22)
+        d.polygon([(ox + n * .80, -n * .10), (ox + n * .96, -n * .02), (ox + n * .96, n * .14), (ox + n * .80, n * .10)], fill=metal)
+        d.polygon([(ox + n * .77, -n * .24), (ox + n * .83, -n * .24), (ox + n * .80, -n * .40)], fill=metal)
+    elif kind == "hussar":       # Hungarian hussar / foot soldier: tall fur kalpak with feather, braided dolman in banner colour, shield + lance
+        d.rectangle([ox + n * .36, -n * .04, ox + n * .64, n * .20], fill=(60, 45, 35, 255))
+        d.line([(ox + n * .58, n * .00), (ox + n * .70, -n * .26)], fill=(245, 245, 240, 255), width=n // 18)
+        d.chord([ox + n * .40, n * .28, ox + n * .60, n * .40], 0, 180, fill=(60, 40, 25, 255))
+        for k in range(4): d.line([(ox + n * .38, n * (.50 + k * .09)), (ox + n * .62, n * (.50 + k * .09))], fill=(240, 210, 90, 255), width=n // 36)
+        d.polygon([(ox + n * .06, n * .44), (ox + n * .34, n * .40), (ox + n * .30, n * .90), (ox + n * .14, n * .80)], fill=(200, 40, 50, 255), outline=(250, 250, 250, 255))
+        d.line([(ox + n * .80, -n * .30), (ox + n * .80, n * 1.24)], fill=wood, width=n // 26)
+        d.polygon([(ox + n * .80, -n * .26), (ox + n * 1.00, -n * .20), (ox + n * .80, -n * .12)], fill=(60, 140, 70, 255))
     elif kind == "samurai":      # Japanese ashigaru/samurai: kabuto with gold crest horns, lamellar armour in clan colour, sashimono flag, yari spear
         d.chord([ox + n * .30, n * .04, ox + n * .70, n * .32], 180, 360, fill=(40, 38, 44, 255))
         d.polygon([(ox + n * .24, n * .20), (ox + n * .76, n * .20), (ox + n * .70, n * .30), (ox + n * .30, n * .30)], fill=(40, 38, 44, 255))
