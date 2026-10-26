@@ -8,6 +8,11 @@ def _beard(d, n, kind, col, cx, chin):
     if kind == "none": return
     if kind == "stubble":
         d.chord([cx - n*.17, chin - n*.16, cx + n*.17, chin + n*.03], 0, 180, fill=col[:3] + (110,)); return
+    if kind == "goatee":   # 17th-century upturned mustache + small pointed chin beard (Gustavus Adolphus, Tasman)
+        d.polygon([(cx - n*.10, chin - n*.10), (cx, chin - n*.115), (cx + n*.10, chin - n*.10), (cx + n*.06, chin - n*.085), (cx, chin - n*.10), (cx - n*.06, chin - n*.085)], fill=col)
+        d.line([(cx - n*.095, chin - n*.10), (cx - n*.13, chin - n*.15)], fill=col, width=int(n*.018))
+        d.line([(cx + n*.095, chin - n*.10), (cx + n*.13, chin - n*.15)], fill=col, width=int(n*.018))
+        d.polygon([(cx - n*.04, chin - n*.04), (cx + n*.04, chin - n*.04), (cx, chin + n*.07)], fill=col); return
     if kind == "mustache":
         d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         d.line([(cx - n*.085, chin - n*.10), (cx - n*.12, chin - n*.03)], fill=col, width=int(n*.02))
@@ -46,6 +51,14 @@ def face(spec, size=300):
         d.ellipse([n*.62, n*.74, n*.70, n*.82], fill=(230, 190, 70, 255))
     neckw = 0.09 if spec.get("female") else 0.11
     d.rectangle([cx - n*neckw, n*.58, cx + n*neckw, n*.76], fill=sk_dk)
+    if spec.get("ruff"):   # Elizabethan millstone ruff / falling lace collar
+        rc = (250, 250, 246, 255); rs = (200, 200, 196, 255)
+        if spec["ruff"] == "lace":
+            d.polygon([(cx - n*.24, n*.70), (cx + n*.24, n*.70), (cx + n*.30, n*.84), (cx, n*.88), (cx - n*.30, n*.84)], fill=rc, outline=rs)
+        else:
+            for k in range(13):
+                a = math.pi * (k / 12); x = cx - math.cos(a) * n * .25; y = n * .72 + math.sin(a) * n * .045
+                d.ellipse([x - n*.055, y - n*.045, x + n*.055, y + n*.045], fill=rc, outline=rs, width=int(n*.006))
     hs = spec.get("hair", "short")
     # hair behind head
     if hs in ("long", "female_long"):
@@ -207,6 +220,28 @@ def face(spec, size=300):
         d.chord([cx - n*.19, top - n*.10, cx + n*.19, top + n*.24], 180, 360, fill=mc, outline=md, width=int(n*.008))
         d.chord([cx - n*.06, top - n*.22, cx + n*.06, top + n*.04], 180, 360, fill=mc, outline=md, width=int(n*.008))
         d.polygon([(cx - n*.34, top + n*.02), (cx - n*.20, top + n*.10), (cx + n*.20, top + n*.10), (cx + n*.34, top + n*.02), (cx + n*.30, top + n*.12), (cx - n*.30, top + n*.12)], fill=mc, outline=md)
+    elif hat == "monomakh":     # Cap of Monomakh: gold filigree dome with sable fur rim, jewels and a small cross on top
+        d.chord([cx - n*.19, top - n*.16, cx + n*.19, top + n*.22], 180, 360, fill=gold, outline=gdk, width=int(n*.01))
+        for k in range(5): x = cx - n*.14 + k*n*.07; d.line([(x, top + n*.03), (cx, top - n*.15)], fill=gdk, width=int(n*.006))
+        for k, gc in enumerate([(200, 30, 50), (40, 140, 70), (40, 80, 180)]): x = cx - n*.08 + k*n*.08; d.ellipse([x - n*.02, top - n*.04, x + n*.02, top], fill=gc + (255,))
+        d.rounded_rectangle([cx - n*.235, top + n*.02, cx + n*.235, top + n*.15], radius=n*.05, fill=(70, 50, 35, 255))
+        for k in range(10): x = cx - n*.21 + k*n*.047; d.line([(x, top + n*.03), (x + n*.01, top + n*.14)], fill=(45, 32, 22, 255), width=int(n*.006))
+        d.line([(cx, top - n*.16), (cx, top - n*.27)], fill=gold, width=int(n*.016)); d.line([(cx - n*.04, top - n*.225), (cx + n*.04, top - n*.225)], fill=gold, width=int(n*.016))
+    elif hat == "eboshi":       # tall black lacquered Japanese court cap (formal portraits of Tokugawa Ieyasu)
+        hc = (22, 22, 26, 255)
+        d.polygon([(cx - n*.17, top + n*.08), (cx + n*.17, top + n*.08), (cx + n*.12, top - n*.30), (cx - n*.06, top - n*.34), (cx - n*.15, top - n*.10)], fill=hc)
+        d.chord([cx - n*.205, top - n*.02, cx + n*.205, top + n*.24], 180, 360, fill=hc)
+    elif hat == "smallcrown":   # small jewelled crown set on top of curled hair (Elizabeth I)
+        d.rectangle([cx - n*.12, top - n*.06, cx + n*.12, top + n*.02], fill=gold, outline=gdk)
+        for k in range(4): x = cx - n*.12 + k*n*.08; d.polygon([(x, top - n*.06), (x + n*.04, top - n*.14), (x + n*.08, top - n*.06)], fill=gold, outline=gdk)
+        for k in range(5): x = cx - n*.10 + k*n*.05; d.ellipse([x - n*.012, top - n*.045, x + n*.012, top - n*.02], fill=(250, 248, 240, 255))
+    elif hat == "mughalturban": # Shah Jahan: gold-striped turban with jewelled sarpech and a feather aigrette
+        tc = (238, 220, 170, 255); sh = (190, 150, 70, 255)
+        d.ellipse([cx - n*.25, top - n*.14, cx + n*.25, top + n*.18], fill=tc, outline=sh, width=int(n*.01))
+        for k in range(4): d.arc([cx - n*.24, top - n*.11 + k*n*.06, cx + n*.24, top + n*.19 + k*n*.06], 200, 340, fill=sh, width=int(n*.01))
+        d.ellipse([cx - n*.04, top - n*.06, cx + n*.04, top + n*.03], fill=(200, 30, 50, 255), outline=gold, width=int(n*.01))
+        d.line([(cx, top - n*.06), (cx + n*.05, top - n*.30)], fill=(30, 30, 35, 255), width=int(n*.02))
+        for k in range(5): d.ellipse([cx - n*.20 + k*n*.10 - n*.012, n*.80, cx - n*.20 + k*n*.10 + n*.012, n*.83], fill=(250, 248, 240, 255))
     if spec.get("halo"):
         pass
     return im
@@ -356,6 +391,13 @@ P = {
  "babur": dict(hat="turban", hat_col=(245, 242, 232), jewel=True, beard="short", hair="short", hair_col=(30, 24, 20), beard_col=(35, 28, 22), robe=(40, 140, 90), cloak=(210, 170, 70), skin=(212, 168, 128), bg=(40, 130, 90)),
  "suleiman": dict(hat="suleimanturban", beard="mustache", hair="none", beard_col=(50, 36, 26), robe=(170, 40, 45), cloak=(220, 180, 70), skin=(215, 172, 132), nose=1.7, eye=(40, 30, 25), bg=(170, 40, 45)),
  "atahualpa": dict(hat="mascaypacha", beard="none", hair="short", hair_col=(25, 20, 18), robe=(40, 120, 150), cloak=(200, 150, 50), skin=(175, 120, 85), bg=(190, 120, 40)),
+ # Ep 15
+ "ivan4": dict(hat="monomakh", beard="long", hair="long", hair_col=(60, 40, 25), beard_col=(70, 45, 28), robe=(150, 30, 40), cloak=(220, 180, 70), skin=(222, 180, 145), nose=1.7, eye=(40, 30, 25), bg=(120, 40, 40)),
+ "elizabeth": dict(female=True, hat="smallcrown", hair="curly", hair_col=(200, 90, 40), ruff="millstone", robe=(30, 30, 40), cloak=(150, 30, 40), skin=(245, 225, 210), nose=1.3, bg=(160, 40, 50)),
+ "ieyasu": dict(hat="eboshi", beard="mustache", hair="short", hair_col=(25, 22, 20), beard_col=(35, 30, 26), robe=(40, 40, 50), cloak=(190, 170, 120), skin=(220, 185, 150), age=True, bg=(150, 40, 40)),
+ "gustavus": dict(beard="goatee", hair="short", hair_col=(170, 130, 70), beard_col=(175, 135, 75), armor=(150, 152, 160), ruff="lace", cloak=(40, 80, 170), skin=(232, 196, 165), eye=(70, 110, 160), bg=(40, 80, 160)),
+ "shahjahan": dict(hat="mughalturban", beard="full", hair="short", hair_col=(30, 24, 20), beard_col=(30, 24, 20), robe=(240, 236, 220), cloak=(60, 140, 90), skin=(200, 155, 115), nose=1.4, bg=(40, 130, 90)),
+ "tasman": dict(beard="goatee", hair="long", hair_col=(45, 32, 24), beard_col=(50, 36, 26), robe=(25, 25, 30), ruff="lace", skin=(226, 186, 150), bg=(220, 120, 40)),
  "pizarro": dict(hat="plumebonnet", hat_col=(25, 25, 30), beard="long", hair="short", hair_col=(150, 145, 140), beard_col=(185, 180, 172), armor=(175, 178, 186), cloak=(150, 30, 40), skin=(222, 180, 145), age=True, nose=1.4, bg=(170, 110, 50)),
 }
 

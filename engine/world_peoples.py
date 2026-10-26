@@ -14,7 +14,7 @@ PEOPLES = [
     ("Slavs", 28, 52, 500, 880), ("Magyars", 36, 48, 830, 895), ("Volga Bulgars", 49, 55, 700, 1236), ("Avars", 20, 47, 567, 796),
     # ---- Africa ----
     ("Berber tribes", 2, 30, -500, 1900), ("Garamantes", 14, 26, -500, 700), ("Kush", 33, 17, -800, 350),
-    ("Bantu peoples", 25, -5, -500, 1500), ("Khoisan peoples", 20, -27, -500, 1800), ("Swahili city-states", 39.6, -6.5, 800, 1500),
+    ("Bantu peoples", 25, -5, -500, 1885), ("Khoisan peoples", 20, -27, -500, 1800), ("Swahili city-states", 39.6, -6.5, 800, 1500),
     ("Great Zimbabwe", 31, -20, 1100, 1450), ("Yoruba states", 4.3, 7.8, 1000, 1830), ("Benin", 5.8, 6.4, 1180, 1897),
     ("Hausa states", 8.5, 12.0, 1000, 1808), ("Kanem-Bornu", 14.5, 13.5, 700, 1893), ("Malagasy peoples", 46.5, -19, 600, 1895),
     ("Nok culture", 8, 9.5, -1000, 300), ("Tuareg", 5, 21, 600, 1900), ("Somali clans", 46, 6, 900, 1880),
@@ -42,6 +42,15 @@ PEOPLES = [
     ("Māori", 174.5, -39, 1280, 1900), ("Chamorro", 144.8, 13.4, 1, 1668),
     # ---- added Ep 13 (Magellan's route) ----
     ("Visayan chiefdoms", 125.6, 12.3, 900, 1565), ("Moluccan sultanates", 127.6, 0.6, 1250, 1680), ("Kingdom of Kongo", 14.5, -6.0, 1390, 1857),
+    # ---- added Ep 15 (1533-1642) ----
+    ("Gaelic lordships", -7.6, 54.6, 1171, 1607), ("Nogai Horde", 52, 46.8, 1440, 1634), ("Kalmyks", 53, 47.5, 1630, 1771),
+    ("Kazakh Khanate", 68, 47.5, 1465, 1847), ("Tibetan kingdoms", 90, 31.5, 1300, 1642), ("Tibet", 90, 31.5, 1642, 1951),
+    ("Lan Xang", 102.6, 19.9, 1353, 1707), ("Aceh Sultanate", 96.5, 4.3, 1496, 1903), ("Johor Sultanate", 103.6, 1.9, 1528, 1855),
+    ("Brunei", 114.8, 4.5, 1368, 1888), ("Gowa (Makassar)", 119.6, -5.2, 1300, 1669), ("Ndongo", 15.8, -9.6, 1500, 1671),
+    ("Mutapa", 31.5, -17.0, 1430, 1760), ("Swahili coast", 39.8, -5.0, 1500, 1890), ("Pashalik of Timbuktu", -2.5, 16.6, 1612, 1833),
+    ("Dendi (Songhai)", 3.2, 12.5, 1591, 1901), ("Mande kingdoms", -8.5, 12.3, 1610, 1712), ("Pueblo peoples", -108.8, 35.6, 1600, 1900),
+    ("Apache & Navajo", -110.5, 33.8, 1500, 1886), ("Algonquian peoples", -78, 45.5, 1450, 1850), ("Cherokee", -84, 35.3, 1600, 1838),
+    ("Guaraní", -54.5, -27.5, 1500, 1900), ("Aboriginal Tasmanians", 146.6, -42.0, -500, 1876), ("Wik peoples", 142.6, -15.0, -500, 1900),
 ]
 
 def _inside(pt, poly):

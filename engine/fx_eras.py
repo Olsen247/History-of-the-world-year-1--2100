@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
+FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -68,6 +68,23 @@ def ship(style, col, size=60):
                 d.rectangle([n * (x - wd), base - n * top + n * .0, n * (x + wd), base - n * bot], fill=sail, outline=dk, width=lw)
         if style == "carrack": d.line([(n * .80, base - n * .66), (n * .80, base - n * .44)], fill=(200, 40, 40, 255), width=int(n * .06))  # cross on sail
         d.polygon([(n * x0, base - n * h0) for x0, h0 in ((.80, 1.06), (.96, 1.02), (.80, .98))], fill=c)   # pennant
+    elif style == "galley":   # Mediterranean war galley (Lepanto): long low hull, banks of oars, lateen sails
+        d.polygon([(n * .00, base - n * .30), (n * 1.46, base - n * .26), (n * 1.30, base + n * .02), (n * .12, base + n * .02)], fill=(105, 66, 34, 255), outline=dk, width=lw)
+        d.line([(n * .12, base - n * .14), (n * 1.32, base - n * .14)], fill=c, width=int(n * .05))
+        for k in range(11): x = n * (.18 + k * .10); d.line([(x, base - n * .04), (x - n * .10, base + n * .20)], fill=dk, width=max(1, lw))
+        for x, h in ((.55, .95), (1.00, .78)):
+            d.line([(n * x, base - n * .26), (n * x, base - n * h)], fill=dk, width=int(n * .035))
+            d.polygon([(n * (x - .30), base - n * .32), (n * (x + .22), base - n * h), (n * (x + .14), base - n * .30)], fill=sail, outline=dk, width=lw)
+        d.polygon([(n * 1.40, base - n * .27), (n * 1.62, base - n * .22), (n * 1.40, base - n * .18)], fill=dk)
+    elif style == "waka":     # Maori waka taua (war canoe): long dark hull, carved prow and stern, paddlers
+        d.polygon([(n * .05, base - n * .20), (n * 1.40, base - n * .20), (n * 1.25, base + n * .04), (n * .18, base + n * .04)], fill=(90, 45, 25, 255), outline=dk, width=lw)
+        d.polygon([(n * 1.36, base - n * .20), (n * 1.52, base - n * .42), (n * 1.46, base - n * .16)], fill=(150, 40, 30, 255), outline=dk)
+        d.polygon([(n * .08, base - n * .20), (n * .00, base - n * .70), (n * .14, base - n * .22)], fill=(150, 40, 30, 255), outline=dk)
+        for k in range(6):
+            x = n * (.30 + k * .17)
+            d.ellipse([x - n * .05, base - n * .44, x + n * .05, base - n * .34], fill=(60, 40, 30, 255))
+            d.line([(x, base - n * .34), (x, base - n * .20)], fill=(60, 40, 30, 255), width=int(n * .05))
+            d.line([(x + n * .03, base - n * .30), (x - n * .08, base + n * .14)], fill=(150, 110, 60, 255), width=max(1, lw))
     elif style == "steamer":
         d.polygon([(n * .04, base - n * .28), (n * 1.42, base - n * .28), (n * 1.24, base + n * .06), (n * .16, base + n * .06)], fill=(40, 40, 46, 255), outline=(15, 15, 18, 255), width=lw)
         d.line([(n * .10, base - n * .06), (n * 1.32, base - n * .06)], fill=(170, 40, 40, 255), width=int(n * .05))
@@ -94,7 +111,7 @@ class _Shift:
 def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
-    skin = {"inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255)}.get(kind, (226, 186, 150, 255))
+    skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255)}.get(kind, (226, 186, 150, 255))
     trousers = {"line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "ww1": (95, 100, 80, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
@@ -106,6 +123,7 @@ def soldier(col, size=40, kind="line"):
     if kind == "inca": coat = (200, 150, 60, 255) if col == (0, 0, 0) else c
     if kind == "ww1": coat = c
     if kind == "visayan": coat = (160, 110, 72, 255)
+    if kind == "maori": coat = (165, 112, 78, 255)
     long_coat = kind in ("janissary", "line", "napoleonic")
     d.rounded_rectangle([ox + n * .34, n * .40, ox + n * .66, n * (1.10 if long_coat else .98)], radius=n * .08, fill=coat, outline=dk, width=n // 30)
     d.ellipse([ox + n * .38, n * .14, ox + n * .62, n * .40], fill=skin)
@@ -229,4 +247,28 @@ def soldier(col, size=40, kind="line"):
         d.rectangle([ox + n * .12, -n * .30, ox + n * .30, -n * .02], fill=c, outline=dk, width=n // 40)
         d.line([(ox + n * .80, -n * .20), (ox + n * .80, n * 1.24)], fill=wood, width=n // 22)
         d.polygon([(ox + n * .77, -n * .20), (ox + n * .83, -n * .20), (ox + n * .80, -n * .38)], fill=metal)
+    elif kind == "strelets":     # Muscovite strelets (from 1550): fur-trimmed cap, long kaftan in banner colour, berdysh axe + arquebus
+        d.chord([ox + n * .34, n * .00, ox + n * .66, n * .30], 180, 360, fill=c, outline=dk)
+        d.rounded_rectangle([ox + n * .32, n * .12, ox + n * .68, n * .21], radius=n * .04, fill=(70, 50, 35, 255))
+        d.chord([ox + n * .40, n * .28, ox + n * .60, n * .46], 0, 180, fill=(110, 75, 45, 255))
+        d.rectangle([ox + n * .34, n * .40, ox + n * .66, n * 1.08], fill=c, outline=dk, width=n // 30)
+        d.line([(ox + n * .50, n * .44), (ox + n * .50, n * 1.06)], fill=(240, 210, 90, 255), width=n // 30)
+        d.line([(ox + n * .80, -n * .20), (ox + n * .80, n * 1.24)], fill=wood, width=n // 22)
+        d.chord([ox + n * .80, -n * .26, ox + n * 1.02, n * .26], 270, 90, fill=metal, outline=(90, 90, 100, 255))
+        d.line([(ox + n * .20, n * .46), (ox + n * .20, n * 1.20)], fill=wood, width=n // 22)
+    elif kind == "maori":        # Maori warrior: topknot with feathers, moko lines, flax kilt, taiaha staff
+        d.ellipse([ox + n * .44, n * .02, ox + n * .56, n * .14], fill=(30, 24, 20, 255))
+        d.line([(ox + n * .52, n * .05), (ox + n * .60, -n * .14)], fill=(245, 245, 240, 255), width=n // 22)
+        d.line([(ox + n * .48, n * .05), (ox + n * .42, -n * .12)], fill=(30, 30, 30, 255), width=n // 22)
+        d.chord([ox + n * .38, n * .12, ox + n * .62, n * .30], 180, 360, fill=(30, 24, 20, 255))
+        for k in range(3): d.arc([ox + n * (.40 + k * .02), n * (.24 + k * .03), ox + n * (.60 - k * .02), n * (.38 + k * .02)], 200, 340, fill=(40, 40, 60, 255), width=n // 50)
+        for k in range(6): d.line([(ox + n * (.35 + k * .06), n * .78), (ox + n * (.34 + k * .06), n * 1.06)], fill=(190, 160, 90, 255), width=n // 24)
+        d.line([(ox + n * .82, -n * .18), (ox + n * .82, n * 1.24)], fill=(120, 70, 35, 255), width=n // 18)
+        d.ellipse([ox + n * .78, -n * .26, ox + n * .86, -n * .14], fill=(200, 40, 40, 255))
+    elif kind == "dutch":        # Dutch VOC sailor-soldier: wide black hat, orange sash, morion-less, musket
+        d.ellipse([ox + n * .22, n * .10, ox + n * .78, n * .22], fill=blk)
+        d.rectangle([ox + n * .38, n * .00, ox + n * .62, n * .16], fill=blk)
+        d.rectangle([ox + n * .36, n * .62, ox + n * .64, n * .70], fill=(240, 130, 30, 255))
+        d.polygon([(ox + n * .40, n * .40), (ox + n * .60, n * .40), (ox + n * .50, n * .52)], fill=(245, 245, 240, 255))
+        musket()
     return im.resize((int(im.width / S), int(im.height / S)), Image.LANCZOS)
