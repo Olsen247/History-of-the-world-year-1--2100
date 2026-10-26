@@ -100,7 +100,16 @@ Episode 14 of History of the World, from Year 1 to 2026.
 #history #inca #pizarro #conquistadors #geography #shorts
 *(Planlagt i Metricool 30.10.2026 kl. 10:00, YouTube + Instagram Reels)*
 
-**Klipp 30.10 kl. 17:00 (IKKE planlagt – må legges inn manuelt):** «The Day a 1,000-Year Empire Fell 🗺️ | History of the World» – Gutenberg + Konstantinopels fall fra Ep 10 (`videos/clips/clip_ep10_constantinople.mp4`, Instagram: showReelOnFeed false)
+**Klipp 30.10 kl. 17:00 (planlagt i Metricool 26.10 av Ep 15-kjøringen):** «The Day a 1,000-Year Empire Fell 🗺️ | History of the World» – Gutenberg + Konstantinopels fall fra Ep 10 (`videos/clips/clip_ep10_constantinople.mp4`, Instagram: showReelOnFeed false)
 Tekst: Around 1450 Gutenberg built his printing press, and in 1453, after a 53-day siege, Mehmed II broke the walls of Constantinople and ended the Byzantine Empire.
 Full story: Episode 10 of History of the World – watch the whole series from Year 1 on the channel.
 #history #constantinople #ottomanempire #byzantine #shorts
+
+## #15 – Year 1642
+**Tittel:** History of the World Ep 15
+**Beskrivelse:** Year 1642 – Europeans reach Australia and New Zealand. Ivan the Terrible takes Kazan, over 400 galleys clash at Lepanto, the Spanish Armada fails, Tokugawa Ieyasu wins at Sekigahara, the Duyfken lands in Australia, Jamestown is founded, Dirk Hartog nails up his plate, Gustavus Adolphus enters the Thirty Years' War and Shah Jahan begins the Taj Mahal, until Abel Tasman reaches Tasmania and New Zealand.
+Episode 15 of History of the World, from Year 1 to 2026.
+#history #australia #newzealand #abeltasman #geography #shorts
+*(Planlagt i Metricool 31.10.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 31.10 kl. 17:00:** «The Year That Changed the World 🗺️ | History of the World» – Granada faller + Columbus i Bahamas fra Ep 11 (`videos/clips/clip_ep11_1492.mp4`, Instagram: showReelOnFeed false)
