@@ -1,9 +1,9 @@
 {
-  "next_episode": 16,
-  "previous_year": 1642,
-  "previous_year_module": "world_data_1642",
-  "previous_base_map": "hd_1642.png",
-  "next_publish_date": "2026-11-01",
+  "next_episode": 18,
+  "previous_year": 1776,
+  "previous_year_module": "world_data_1776",
+  "previous_base_map": "hd_1776.png",
+  "next_publish_date": "2026-11-02",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -158,6 +158,20 @@
       "video": "videos/ep15_year1642.mp4",
       "publish": "2026-10-31 10:00",
       "metricool_post_id": 406188351
+    },
+    {
+      "ep": 16,
+      "year": 1770,
+      "video": "videos/ep16_year1770.mp4",
+      "publish": "2026-11-01 10:00",
+      "metricool_post_id": 407392751
+    },
+    {
+      "ep": 17,
+      "year": 1776,
+      "video": "videos/ep17_year1776.mp4",
+      "publish": "2026-11-01 11:00",
+      "metricool_post_id": 407392790
     }
   ],
   "next_publish_time": "10:00",
@@ -223,6 +237,14 @@
       "date": "2026-10-31 17:00",
       "file": "videos/clips/clip_ep11_1492.mp4",
       "metricool_post_id": 406188457
+    },
+    {
+      "from_ep": 12,
+      "start": 52.41,
+      "end": 75.34,
+      "date": "2026-11-01 17:00",
+      "file": "videos/clips/clip_ep12_dagama.mp4",
+      "metricool_post_id": 407392820
     }
   ]
 }

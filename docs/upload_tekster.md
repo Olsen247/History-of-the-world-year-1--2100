@@ -113,3 +113,19 @@ Episode 15 of History of the World, from Year 1 to 2026.
 *(Planlagt i Metricool 31.10.2026 kl. 10:00, YouTube + Instagram Reels)*
 
 **Klipp 31.10 kl. 17:00:** «The Year That Changed the World 🗺️ | History of the World» – Granada faller + Columbus i Bahamas fra Ep 11 (`videos/clips/clip_ep11_1492.mp4`, Instagram: showReelOnFeed false)
+
+## #16 – Year 1770
+**Tittel:** History of the World Ep 16
+**Beskrivelse:** Year 1770 – James Cook in the Pacific. The Qing seize Beijing, Jan Sobieski's winged hussars save Vienna, Peter the Great wins at Poltava, Roggeveen reaches Easter Island, Nader Shah sacks Delhi, Bering reaches Alaska, Clive wins at Plassey and Britain wins at Quebec, until Cook sails around New Zealand and lands at Botany Bay.
+Episode 16 of History of the World, from Year 1 to 2026.
+#history #captaincook #australia #ageofexploration #geography #shorts
+*(Planlagt i Metricool 01.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #17 – Year 1776
+**Tittel:** History of the World Ep 17
+**Beskrivelse:** Year 1776 – The United States declares independence. The Boston Massacre, Poland carved up, Cook crosses the Antarctic Circle, Pugachev's revolt against Catherine the Great, the Boston Tea Party, Lexington and Concord, Bunker Hill, Washington frees Boston and Spanish settlers reach San Francisco, until Congress adopts the Declaration of Independence.
+Episode 17 of History of the World, from Year 1 to 2026.
+#history #1776 #americanrevolution #independence #geography #shorts
+*(Planlagt i Metricool 01.11.2026 kl. 11:00, YouTube + Instagram Reels)*
+
+**Klipp 01.11 kl. 17:00:** «The Sea Road to India 🗺️ | History of the World» – Vasco da Gama fra Lisboa til Calicut fra Ep 12 (`videos/clips/clip_ep12_dagama.mp4`, Instagram: showReelOnFeed false)
