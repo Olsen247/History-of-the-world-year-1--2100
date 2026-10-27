@@ -51,6 +51,11 @@ PEOPLES = [
     ("Dendi (Songhai)", 3.2, 12.5, 1591, 1901), ("Mande kingdoms", -8.5, 12.3, 1610, 1712), ("Pueblo peoples", -108.8, 35.6, 1600, 1900),
     ("Apache & Navajo", -110.5, 33.8, 1500, 1886), ("Algonquian peoples", -78, 45.5, 1450, 1850), ("Cherokee", -84, 35.3, 1600, 1838),
     ("Guaraní", -54.5, -27.5, 1500, 1900), ("Aboriginal Tasmanians", 146.6, -42.0, -500, 1876), ("Wik peoples", 142.6, -15.0, -500, 1900),
+    # ---- added Ep 16 (1642-1770) ----
+    ("Ashanti Empire", -1.6, 6.9, 1701, 1901), ("Dahomey", 2.1, 7.4, 1600, 1904), ("Lunda Empire", 23.0, -9.0, 1665, 1887),
+    ("Rozvi Empire", 30.0, -19.5, 1684, 1866), ("Omani Empire", 57.0, 22.3, 1696, 1856), ("Diriyah (first Saudi state)", 46.6, 24.7, 1727, 1818),
+    ("Sikh misls", 75.2, 31.2, 1748, 1799), ("Comanche", -102.5, 33.0, 1700, 1875), ("Tlingit", -135.0, 58.3, 1000, 1900),
+    ("Aleuts", -162.0, 55.2, -500, 1900), ("Tahitians", -149.4, -16.9, 1000, 1880),
 ]
 
 def _inside(pt, poly):

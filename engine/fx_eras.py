@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1")
+FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -265,6 +265,45 @@ def soldier(col, size=40, kind="line"):
         for k in range(6): d.line([(ox + n * (.35 + k * .06), n * .78), (ox + n * (.34 + k * .06), n * 1.06)], fill=(190, 160, 90, 255), width=n // 24)
         d.line([(ox + n * .82, -n * .18), (ox + n * .82, n * 1.24)], fill=(120, 70, 35, 255), width=n // 18)
         d.ellipse([ox + n * .78, -n * .26, ox + n * .86, -n * .14], fill=(200, 40, 40, 255))
+    elif kind == "bannerman":    # Manchu Qing bannerman: round helmet with tall spike + red tassel, studded armour coat in banner colour, flag on the back, bow
+        d.chord([ox + n * .36, n * .06, ox + n * .64, n * .30], 180, 360, fill=(70, 66, 70, 255))
+        d.line([(ox + n * .50, n * .08), (ox + n * .50, -n * .16)], fill=(70, 66, 70, 255), width=n // 30)
+        d.ellipse([ox + n * .45, -n * .24, ox + n * .55, -n * .12], fill=(200, 30, 40, 255))
+        for k in range(4):
+            for j in range(3): d.ellipse([ox + n * (.39 + j * .09), n * (.50 + k * .12), ox + n * (.43 + j * .09), n * (.54 + k * .12)], fill=(240, 210, 90, 255))
+        d.line([(ox + n * .32, n * .40), (ox + n * .32, -n * .30)], fill=wood, width=n // 30)
+        d.polygon([(ox + n * .32, -n * .30), (ox + n * .12, -n * .20), (ox + n * .32, -n * .06)], fill=c, outline=dk)
+        d.arc([ox + n * .66, n * .10, ox + n * .96, n * 1.0], 270, 90, fill=(120, 80, 30, 255), width=n // 22)
+        d.line([(ox + n * .81, n * .10), (ox + n * .81, n * 1.0)], fill=(230, 230, 220, 255), width=n // 60)
+    elif kind == "mughal":       # Mughal / Bengal soldier: white turban, long jama in banner colour with sash, round dhal shield, curved talwar
+        d.ellipse([ox + n * .34, n * .04, ox + n * .66, n * .22], fill=(245, 242, 232, 255))
+        d.chord([ox + n * .40, n * .28, ox + n * .60, n * .42], 0, 180, fill=(30, 24, 20, 255))
+        d.rectangle([ox + n * .34, n * .62, ox + n * .66, n * .70], fill=(240, 210, 90, 255))
+        d.rounded_rectangle([ox + n * .30, n * .70, ox + n * .70, n * 1.12], radius=n * .06, fill=c, outline=dk, width=n // 30)
+        d.ellipse([ox + n * .04, n * .44, ox + n * .34, n * .74], fill=(110, 70, 40, 255), outline=(240, 210, 90, 255), width=n // 30)
+        d.arc([ox + n * .62, -n * .20, ox + n * 1.02, n * .70], 300, 60, fill=metal, width=n // 22)
+    elif kind == "sepoy":        # East India Company sepoy: turban in coat colour, red coat, white cross-belts, musket with bayonet
+        d.ellipse([ox + n * .34, n * .06, ox + n * .66, n * .22], fill=(245, 245, 240, 255))
+        d.line([(ox + n * .35, n * .44), (ox + n * .65, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        d.line([(ox + n * .65, n * .44), (ox + n * .35, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        musket(bayonet=True)
+    elif kind == "minuteman":    # American militiaman: black tricorne, brown hunting coat/plain clothes, powder horn, long musket
+        d.polygon([(ox + n * .28, n * .18), (ox + n * .72, n * .18), (ox + n * .62, n * .04), (ox + n * .50, n * .10), (ox + n * .38, n * .04)], fill=blk)
+        d.line([(ox + n * .36, n * .44), (ox + n * .64, n * .86)], fill=(90, 60, 30, 255), width=n // 26)
+        d.polygon([(ox + n * .58, n * .80), (ox + n * .72, n * .84), (ox + n * .66, n * .92)], fill=(235, 225, 195, 255))
+        musket()
+    elif kind == "carolean":     # Swedish Carolean (Charles XII): black tricorne, blue coat with yellow cuffs/belt, sword raised for the charge
+        d.polygon([(ox + n * .28, n * .18), (ox + n * .72, n * .18), (ox + n * .62, n * .04), (ox + n * .50, n * .10), (ox + n * .38, n * .04)], fill=blk)
+        d.line([(ox + n * .35, n * .44), (ox + n * .65, n * .92)], fill=(250, 210, 40, 255), width=n // 18)
+        d.rectangle([ox + n * .34, n * .86, ox + n * .66, n * .94], fill=(250, 210, 40, 255))
+        d.line([(ox + n * .70, n * .50), (ox + n * .92, -n * .10)], fill=metal, width=n // 22)
+        d.line([(ox + n * .66, n * .56), (ox + n * .78, n * .48)], fill=(200, 170, 60, 255), width=n // 22)
+    elif kind == "grenadier":    # Prussian grenadier: tall pointed brass-fronted mitre cap, dark-blue coat, white cross-belts, musket
+        d.polygon([(ox + n * .36, n * .18), (ox + n * .64, n * .18), (ox + n * .56, -n * .14), (ox + n * .50, -n * .18), (ox + n * .44, -n * .14)], fill=(220, 190, 80, 255), outline=(150, 120, 40, 255))
+        d.ellipse([ox + n * .47, -n * .22, ox + n * .53, -n * .16], fill=(240, 240, 240, 255))
+        d.line([(ox + n * .35, n * .44), (ox + n * .65, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        d.line([(ox + n * .65, n * .44), (ox + n * .35, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        musket(bayonet=True)
     elif kind == "dutch":        # Dutch VOC sailor-soldier: wide black hat, orange sash, morion-less, musket
         d.ellipse([ox + n * .22, n * .10, ox + n * .78, n * .22], fill=blk)
         d.rectangle([ox + n * .38, n * .00, ox + n * .62, n * .16], fill=blk)

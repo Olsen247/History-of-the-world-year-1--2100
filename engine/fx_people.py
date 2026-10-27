@@ -51,6 +51,13 @@ def face(spec, size=300):
         d.ellipse([n*.62, n*.74, n*.70, n*.82], fill=(230, 190, 70, 255))
     neckw = 0.09 if spec.get("female") else 0.11
     d.rectangle([cx - n*neckw, n*.58, cx + n*neckw, n*.76], fill=sk_dk)
+    if spec.get("lapels"):   # 18th-century coat: facings/lapels in a second colour, white stock/cravat (and gold epaulette lace)
+        lc = spec["lapels"] + (255,)
+        d.polygon([(cx - n*.10, n*.74), (cx - n*.26, n*.80), (cx - n*.20, n*1.0), (cx - n*.05, n*1.0)], fill=lc)
+        d.polygon([(cx + n*.10, n*.74), (cx + n*.26, n*.80), (cx + n*.20, n*1.0), (cx + n*.05, n*1.0)], fill=lc)
+        if spec.get("lace"):
+            for sx in (-1, 1): d.line([(cx + sx*n*.22, n*.80), (cx + sx*n*.16, n*1.0)], fill=(230, 190, 70, 255), width=int(n*.014))
+        d.polygon([(cx - n*.08, n*.70), (cx + n*.08, n*.70), (cx + n*.05, n*.84), (cx, n*.88), (cx - n*.05, n*.84)], fill=(250, 250, 246, 255))
     if spec.get("ruff"):   # Elizabethan millstone ruff / falling lace collar
         rc = (250, 250, 246, 255); rs = (200, 200, 196, 255)
         if spec["ruff"] == "lace":
@@ -72,6 +79,14 @@ def face(spec, size=300):
     d.ellipse([cx - n*.235, n*.38, cx - n*.17, n*.50], fill=sk_dk); d.ellipse([cx + n*.17, n*.38, cx + n*.235, n*.50], fill=sk_dk)
     hw = 0.185 if spec.get("female") else 0.2
     d.ellipse([cx - n*hw, top, cx + n*hw, chin + n*.02], fill=skin)
+    if hs == "wig":   # 18th-century powdered wig: smooth top, rolled side curls over the ears
+        d.chord([cx - n*.205, top - n*.03, cx + n*.205, top + n*.24], 180, 360, fill=hair)
+        d.rectangle([cx - n*.205, top + n*.10, cx - n*.18, top + n*.20], fill=hair); d.rectangle([cx + n*.18, top + n*.10, cx + n*.205, top + n*.20], fill=hair)
+        hd = tuple(max(0, v - 40) for v in hair[:3]) + (255,)
+        for sx in (-1, 1):
+            for k in range(2):
+                yy = n*.34 + k*n*.075
+                d.ellipse([cx + sx*n*.215 - n*.065, yy - n*.035, cx + sx*n*.215 + n*.065, yy + n*.035], fill=hair, outline=hd, width=int(n*.008))
     # hair on top
     if hs in ("short", "long", "curly_long", "curly", "female_long", "bun", "fringe"):
         d.chord([cx - n*.205, top - n*.02, cx + n*.205, top + n*.26], 180, 360, fill=hair)
@@ -242,6 +257,21 @@ def face(spec, size=300):
         d.ellipse([cx - n*.04, top - n*.06, cx + n*.04, top + n*.03], fill=(200, 30, 50, 255), outline=gold, width=int(n*.01))
         d.line([(cx, top - n*.06), (cx + n*.05, top - n*.30)], fill=(30, 30, 35, 255), width=int(n*.02))
         for k in range(5): d.ellipse([cx - n*.20 + k*n*.10 - n*.012, n*.80, cx - n*.20 + k*n*.10 + n*.012, n*.83], fill=(250, 248, 240, 255))
+    elif hat == "tricorne":     # black three-cornered hat with gold lace edge
+        hc = spec.get("hat_col", (25, 25, 30)) + (255,)
+        d.polygon([(cx - n*.32, top + n*.08), (cx + n*.32, top + n*.08), (cx + n*.20, top - n*.14), (cx, top - n*.04), (cx - n*.20, top - n*.14)], fill=hc, outline=gold, width=int(n*.012))
+    elif hat == "kolah":        # Nader Shah's kolah-e Naderi: tall red four-peaked cap wound with a white shawl-turban, jewelled aigrette
+        d.polygon([(cx - n*.13, top + n*.04), (cx + n*.13, top + n*.04), (cx + n*.10, top - n*.30), (cx + n*.04, top - n*.24), (cx, top - n*.34), (cx - n*.04, top - n*.24), (cx - n*.10, top - n*.30)], fill=(190, 30, 40, 255), outline=gdk)
+        d.ellipse([cx - n*.25, top - n*.06, cx + n*.25, top + n*.16], fill=(245, 240, 225, 255), outline=(200, 190, 170, 255), width=int(n*.01))
+        for k in range(3): d.arc([cx - n*.24, top - n*.04 + k*n*.05, cx + n*.24, top + n*.16 + k*n*.05], 200, 340, fill=(200, 160, 80, 255), width=int(n*.008))
+        d.ellipse([cx - n*.04, top - n*.06, cx + n*.04, top + n*.02], fill=(30, 140, 80, 255), outline=gold, width=int(n*.01))
+        d.line([(cx, top - n*.06), (cx - n*.06, top - n*.26)], fill=(245, 245, 245, 255), width=int(n*.02))
+    elif hat == "kalpak":       # Polish fur kołpak with jewelled clasp and heron-feather plume (Jan III Sobieski)
+        hc = spec.get("hat_col", (110, 30, 40)) + (255,)
+        d.rounded_rectangle([cx - n*.17, top - n*.16, cx + n*.17, top + n*.06], radius=n*.06, fill=hc)
+        d.rounded_rectangle([cx - n*.22, top - n*.02, cx + n*.22, top + n*.10], radius=n*.05, fill=(70, 50, 38, 255))
+        d.ellipse([cx - n*.035, top - n*.03, cx + n*.035, top + n*.04], fill=gold, outline=gdk)
+        d.line([(cx, top - n*.02), (cx + n*.08, top - n*.34)], fill=(245, 245, 245, 255), width=int(n*.024))
     if spec.get("halo"):
         pass
     return im
@@ -399,6 +429,18 @@ P = {
  "shahjahan": dict(hat="mughalturban", beard="full", hair="short", hair_col=(30, 24, 20), beard_col=(30, 24, 20), robe=(240, 236, 220), cloak=(60, 140, 90), skin=(200, 155, 115), nose=1.4, bg=(40, 130, 90)),
  "tasman": dict(beard="goatee", hair="long", hair_col=(45, 32, 24), beard_col=(50, 36, 26), robe=(25, 25, 30), ruff="lace", skin=(226, 186, 150), bg=(220, 120, 40)),
  "pizarro": dict(hat="plumebonnet", hat_col=(25, 25, 30), beard="long", hair="short", hair_col=(150, 145, 140), beard_col=(185, 180, 172), armor=(175, 178, 186), cloak=(150, 30, 40), skin=(222, 180, 145), age=True, nose=1.4, bg=(170, 110, 50)),
+ # Ep 16
+ "cook": dict(hair="wig", hair_col=(225, 222, 215), beard="none", robe=(25, 40, 90), lapels=(240, 236, 226), lace=True, skin=(230, 192, 160), nose=1.3, eye=(70, 100, 130), bg=(40, 70, 130)),
+ "sobieski": dict(hat="kalpak", hat_col=(150, 30, 40), beard="mustache", hair="short", hair_col=(60, 42, 28), beard_col=(60, 42, 28), robe=(150, 30, 40), cloak=(220, 180, 70), armor=(175, 178, 186), skin=(228, 186, 150), nose=1.2, bg=(170, 40, 50)),
+ "peter1": dict(hair="curly", hair_col=(40, 28, 20), beard="mustache", beard_col=(40, 28, 20), armor=(170, 172, 180), cloak=(60, 120, 70), skin=(230, 192, 160), eye=(40, 30, 25), bg=(60, 110, 70)),
+ "nader": dict(hat="kolah", beard="full", hair="short", hair_col=(30, 24, 20), beard_col=(35, 28, 22), robe=(150, 30, 40), cloak=(220, 180, 70), skin=(205, 160, 120), nose=1.5, eye=(35, 28, 22), bg=(60, 130, 100)),
+ "clive": dict(hair="wig", hair_col=(200, 196, 188), beard="none", robe=(190, 30, 40), lapels=(30, 50, 110), lace=True, skin=(232, 196, 165), nose=1.3, bg=(170, 40, 50)),
+ "wolfe": dict(hat="tricorne", hair="wig", hair_col=(200, 120, 70), beard="none", robe=(190, 30, 40), lapels=(30, 40, 90), skin=(236, 205, 180), nose=1.6, bg=(170, 40, 50)),
+ # Ep 17
+ "washington": dict(hair="wig", hair_col=(230, 228, 222), beard="none", robe=(30, 45, 100), lapels=(220, 195, 140), lace=True, skin=(232, 196, 168), nose=1.4, eye=(80, 100, 120), age=True, bg=(40, 70, 140)),
+ "catherine": dict(female=True, hat="smallcrown", hair="wig", hair_col=(215, 210, 200), robe=(240, 236, 226), cloak=(60, 110, 160), skin=(242, 214, 196), bg=(60, 110, 160)),
+ "pugachev": dict(hat="fur", hat_col=(60, 45, 35), beard="full", hair="short", hair_col=(40, 28, 20), beard_col=(40, 28, 20), robe=(150, 30, 40), skin=(220, 178, 140), eye=(35, 28, 22), bg=(120, 70, 40)),
+ "jefferson": dict(hair="wig", hair_col=(200, 120, 80), beard="none", robe=(60, 45, 35), lapels=(70, 55, 42), skin=(236, 205, 180), nose=1.3, eye=(80, 110, 120), bg=(70, 90, 130)),
 }
 
 def get(who, size=210):
