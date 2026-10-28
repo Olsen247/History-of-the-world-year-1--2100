@@ -257,6 +257,16 @@ def face(spec, size=300):
         d.ellipse([cx - n*.04, top - n*.06, cx + n*.04, top + n*.03], fill=(200, 30, 50, 255), outline=gold, width=int(n*.01))
         d.line([(cx, top - n*.06), (cx + n*.05, top - n*.30)], fill=(30, 30, 35, 255), width=int(n*.02))
         for k in range(5): d.ellipse([cx - n*.20 + k*n*.10 - n*.012, n*.80, cx - n*.20 + k*n*.10 + n*.012, n*.83], fill=(250, 248, 240, 255))
+    elif hat == "bicorne":      # Napoleon's black bicorne worn sideways ("en bataille"), small tricolour cockade
+        hc = (22, 22, 26, 255)
+        d.chord([cx - n*.34, top - n*.22, cx + n*.34, top + n*.24], 180, 360, fill=hc)
+        d.rectangle([cx - n*.34, top + n*.0, cx + n*.34, top + n*.06], fill=hc)
+        for k, cc in enumerate([(40, 70, 170), (245, 245, 240), (200, 30, 40)]):
+            r = n * (.055 - k * .017); d.ellipse([cx + n*.22 - r, top - n*.07 - r, cx + n*.22 + r, top - n*.07 + r], fill=cc + (255,))
+    elif hat == "bicorne_fa":   # naval bicorne worn fore-and-aft, gold lace edge (Nelson); optional plume
+        hc = (22, 22, 26, 255)
+        d.polygon([(cx - n*.22, top + n*.08), (cx + n*.22, top + n*.08), (cx + n*.10, top - n*.24), (cx - n*.10, top - n*.24)], fill=hc, outline=gold, width=int(n*.012))
+        if spec.get("plume"): d.ellipse([cx - n*.18, top - n*.36, cx + n*.18, top - n*.18], fill=spec["plume"] + (255,))
     elif hat == "tricorne":     # black three-cornered hat with gold lace edge
         hc = spec.get("hat_col", (25, 25, 30)) + (255,)
         d.polygon([(cx - n*.32, top + n*.08), (cx + n*.32, top + n*.08), (cx + n*.20, top - n*.14), (cx, top - n*.04), (cx - n*.20, top - n*.14)], fill=hc, outline=gold, width=int(n*.012))
@@ -441,6 +451,13 @@ P = {
  "catherine": dict(female=True, hat="smallcrown", hair="wig", hair_col=(215, 210, 200), robe=(240, 236, 226), cloak=(60, 110, 160), skin=(242, 214, 196), bg=(60, 110, 160)),
  "pugachev": dict(hat="fur", hat_col=(60, 45, 35), beard="full", hair="short", hair_col=(40, 28, 20), beard_col=(40, 28, 20), robe=(150, 30, 40), skin=(220, 178, 140), eye=(35, 28, 22), bg=(120, 70, 40)),
  "jefferson": dict(hair="wig", hair_col=(200, 120, 80), beard="none", robe=(60, 45, 35), lapels=(70, 55, 42), skin=(236, 205, 180), nose=1.3, eye=(80, 110, 120), bg=(70, 90, 130)),
+ # Ep 18
+ "napoleon": dict(hat="bicorne", hair="short", hair_col=(60, 42, 28), beard="none", robe=(30, 45, 110), lapels=(240, 236, 226), lace=True, skin=(236, 206, 182), nose=1.3, eye=(90, 110, 130), bg=(40, 70, 150)),
+ "napoleon_emp": dict(hat="laurel", hair="short", hair_col=(60, 42, 28), beard="none", robe=(150, 25, 40), cloak=(245, 242, 235), skin=(236, 206, 182), nose=1.3, eye=(90, 110, 130), bg=(150, 30, 45)),
+ "nelson": dict(hat="bicorne_fa", hair="wig", hair_col=(225, 222, 215), beard="none", robe=(25, 35, 80), lapels=(240, 236, 226), lace=True, skin=(232, 198, 172), nose=1.5, eye=(80, 100, 120), bg=(30, 60, 120)),
+ "phillip": dict(hair="wig", hair_col=(220, 218, 210), beard="none", robe=(25, 40, 90), lapels=(240, 236, 226), skin=(230, 192, 160), nose=1.6, eye=(70, 90, 110), age=True, bg=(40, 90, 130)),
+ "dessalines": dict(hat="bicorne_fa", plume=(200, 30, 40), hair="short", hair_col=(25, 20, 18), beard="none", robe=(30, 45, 110), lapels=(200, 30, 40), lace=True, skin=(105, 70, 48), eye=(35, 28, 22), bg=(40, 50, 140)),
+ "kutuzov": dict(hair="short", hair_col=(225, 222, 215), beard="none", robe=(30, 70, 45), lapels=(200, 40, 40), lace=True, skin=(232, 196, 168), nose=1.4, eye=(70, 90, 110), age=True, bg=(60, 110, 70)),
 }
 
 def get(who, size=210):

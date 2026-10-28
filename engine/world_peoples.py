@@ -56,6 +56,9 @@ PEOPLES = [
     ("Rozvi Empire", 30.0, -19.5, 1684, 1866), ("Omani Empire", 57.0, 22.3, 1696, 1856), ("Diriyah (first Saudi state)", 46.6, 24.7, 1727, 1818),
     ("Sikh misls", 75.2, 31.2, 1748, 1799), ("Comanche", -102.5, 33.0, 1700, 1875), ("Tlingit", -135.0, 58.3, 1000, 1900),
     ("Aleuts", -162.0, 55.2, -500, 1900), ("Tahitians", -149.4, -16.9, 1000, 1880),
+    # ---- added Ep 18 (1776-1812) ----
+    ("Oyo Empire", 3.9, 8.6, 1400, 1836), ("Buganda", 32.5, 0.6, 1300, 1900), ("Merina Kingdom", 47.5, -19.0, 1540, 1897),
+    ("Khanate of Kokand", 71.5, 41.0, 1709, 1876), ("Lakota", -101.0, 44.5, 1750, 1890), ("Kingdom of Kandy", 80.7, 7.3, 1469, 1815),
 ]
 
 def _inside(pt, poly):

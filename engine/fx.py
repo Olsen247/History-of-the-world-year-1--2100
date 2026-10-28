@@ -311,7 +311,7 @@ def soldier(col, size=40, kind="legion"):
         d.rounded_rectangle([ox + n * 0.06, n * 0.42, ox + n * 0.52, n * 1.10], radius=n * 0.06, fill=c, outline=dk, width=n // 28)
         d.ellipse([ox + n * 0.23, n * 0.70, ox + n * 0.35, n * 0.82], fill=(240, 210, 90, 255))
     else:
-        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255), "teutonic": (235, 232, 225, 255), "french": (60, 80, 150, 255), "polish": (150, 40, 45, 255), "wallachian": (70, 50, 40, 255), "songhai": (235, 225, 205, 255), "wingedhussar": (110, 70, 40, 255), "afsharid": (80, 60, 45, 255), "cossack": (60, 45, 35, 255)}.get(kind, (96, 64, 40, 255))
+        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255), "teutonic": (235, 232, 225, 255), "french": (60, 80, 150, 255), "polish": (150, 40, 45, 255), "wallachian": (70, 50, 40, 255), "songhai": (235, 225, 205, 255), "wingedhussar": (110, 70, 40, 255), "afsharid": (80, 60, 45, 255), "cossack": (60, 45, 35, 255), "mamluk": (230, 225, 215, 255)}.get(kind, (96, 64, 40, 255))
         _horse(d, n, n * 0.02, n * 0.62, 1.4, coat=coat)
         if kind == "sasanian":   # armoured horse: mail barding rows
             pass
@@ -430,6 +430,14 @@ def soldier(col, size=40, kind="legion"):
             d.line([(rx - n * 0.01, ry + n * 0.48), (rx + n * 0.27, ry + n * 0.48)], fill=(240, 210, 90, 255), width=n // 30)
             d.line([(rx - n * 0.30, ry + n * 0.56), (rx + n * 0.90, ry + n * 0.16)], fill=(130, 100, 60, 255), width=n // 20)
             d.polygon([(rx + n * 0.86, ry + n * 0.18), (rx + n * 0.98, ry + n * 0.10), (rx + n * 0.90, ry + n * 0.22)], fill=(200, 200, 208, 255))
+        elif kind == "mamluk":      # Egyptian Mamluk horseman (1798): tall turban wound round a red cap, colourful robe, curved scimitar raised
+            d.ellipse([rx - n * 0.04, ry - n * 0.10, rx + n * 0.30, ry + n * 0.14], fill=(245, 242, 232, 255), outline=(190, 180, 160, 255))
+            d.ellipse([rx + n * 0.08, ry - n * 0.16, rx + n * 0.18, ry - n * 0.04], fill=(200, 40, 40, 255))
+            d.ellipse([rx + n * 0.04, ry + n * 0.06, rx + n * 0.22, ry + n * 0.24], fill=(200, 155, 115, 255))
+            d.line([(rx + n * 0.06, ry + n * 0.21), (rx + n * 0.20, ry + n * 0.21)], fill=(30, 22, 18, 255), width=n // 26)
+            d.rounded_rectangle([rx - n * 0.01, ry + n * 0.26, rx + n * 0.27, ry + n * 0.66], radius=n * 0.06, fill=c, outline=dk, width=n // 40)
+            d.line([(rx - n * 0.01, ry + n * 0.46), (rx + n * 0.27, ry + n * 0.46)], fill=(240, 210, 90, 255), width=n // 26)
+            d.arc([rx + n * 0.18, ry - n * 0.30, rx + n * 0.70, ry + n * 0.40], 200, 290, fill=(215, 215, 222, 255), width=n // 22)
         elif kind == "cossack":     # Don/Yaik Cossack: tall black papakha with red top, long red zhupan, lance with pennant, sabre
             d.rounded_rectangle([rx + n * 0.02, ry - n * 0.12, rx + n * 0.24, ry + n * 0.10], radius=n * 0.03, fill=(30, 26, 24, 255))
             d.rectangle([rx + n * 0.04, ry - n * 0.14, rx + n * 0.22, ry - n * 0.08], fill=(200, 40, 40, 255))
