@@ -129,3 +129,15 @@ Episode 17 of History of the World, from Year 1 to 2026.
 *(Planlagt i Metricool 01.11.2026 kl. 11:00, YouTube + Instagram Reels)*
 
 **Klipp 01.11 kl. 17:00:** «The Sea Road to India 🗺️ | History of the World» – Vasco da Gama fra Lisboa til Calicut fra Ep 12 (`videos/clips/clip_ep12_dagama.mp4`, Instagram: showReelOnFeed false)
+
+## #18 – Year 1812
+**Tittel:** History of the World Ep 18
+**Beskrivelse:** Year 1812 – Napoleon's empire and the march on Moscow. Britain accepts American independence, the First Fleet reaches Sydney, Paris storms the Bastille, Poland is swallowed, Napoleon invades Egypt, sells Louisiana and crowns himself emperor, Haiti wins its freedom, Nelson dies at Trafalgar, until Napoleon invades Russia and Moscow burns.
+Episode 18 of History of the World, from Year 1 to 2026.
+#history #napoleon #1812 #frenchrevolution #geography #shorts
+*(Planlagt i Metricool 02.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 02.11 kl. 17:00:** «168 Men vs an Empire 🗺️ | History of the World» – Pizarro fanger Atahualpa + rommet fullt av gull fra Ep 14 (`videos/clips/clip_ep14_atahualpa.mp4`, Instagram: showReelOnFeed false)
+Tekst: In November 1532, Pizarro's 168 Spaniards captured the Inca emperor Atahualpa, who promised a room full of gold for his freedom.
+Full story: Episode 14 of History of the World – watch the whole series from Year 1 on the channel.
+#history #inca #pizarro #atahualpa #shorts
