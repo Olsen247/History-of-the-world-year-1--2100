@@ -13,6 +13,13 @@ def _beard(d, n, kind, col, cx, chin):
         d.line([(cx - n*.095, chin - n*.10), (cx - n*.13, chin - n*.15)], fill=col, width=int(n*.018))
         d.line([(cx + n*.095, chin - n*.10), (cx + n*.13, chin - n*.15)], fill=col, width=int(n*.018))
         d.polygon([(cx - n*.04, chin - n*.04), (cx + n*.04, chin - n*.04), (cx, chin + n*.07)], fill=col); return
+    if kind in ("sideburns", "sideburns_m"):   # early-19th-century side-whiskers down the cheeks (Bolivar, San Martin), optional mustache
+        for sx in (-1, 1):
+            d.polygon([(cx + sx * n*.205, chin - n*.34), (cx + sx * n*.15, chin - n*.34), (cx + sx * n*.14, chin - n*.12), (cx + sx * n*.17, chin - n*.06),
+                       (cx + sx * n*.20, chin - n*.14)], fill=col)
+        if kind == "sideburns_m":
+            d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
+        return
     if kind == "mustache":
         d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         d.line([(cx - n*.085, chin - n*.10), (cx - n*.12, chin - n*.03)], fill=col, width=int(n*.02))
@@ -457,6 +464,15 @@ P = {
  "nelson": dict(hat="bicorne_fa", hair="wig", hair_col=(225, 222, 215), beard="none", robe=(25, 35, 80), lapels=(240, 236, 226), lace=True, skin=(232, 198, 172), nose=1.5, eye=(80, 100, 120), bg=(30, 60, 120)),
  "phillip": dict(hair="wig", hair_col=(220, 218, 210), beard="none", robe=(25, 40, 90), lapels=(240, 236, 226), skin=(230, 192, 160), nose=1.6, eye=(70, 90, 110), age=True, bg=(40, 90, 130)),
  "dessalines": dict(hat="bicorne_fa", plume=(200, 30, 40), hair="short", hair_col=(25, 20, 18), beard="none", robe=(30, 45, 110), lapels=(200, 30, 40), lace=True, skin=(105, 70, 48), eye=(35, 28, 22), bg=(40, 50, 140)),
+ # Ep 19
+ "wellington": dict(hair="short", hair_col=(120, 95, 70), beard="none", robe=(180, 30, 40), lapels=(30, 32, 45), lace=True, skin=(232, 198, 172), nose=1.9, eye=(70, 100, 130), bg=(170, 40, 50)),
+ "blucher": dict(hair="short", hair_col=(235, 232, 228), beard="mustache", beard_col=(240, 238, 232), robe=(30, 40, 80), lapels=(200, 40, 40), lace=True, skin=(230, 192, 165), nose=1.4, age=True, bg=(40, 50, 90)),
+ "sanmartin": dict(hair="short", hair_col=(30, 24, 20), beard="sideburns", beard_col=(30, 24, 20), robe=(25, 35, 80), lapels=(190, 30, 40), lace=True, skin=(215, 172, 135), nose=1.5, eye=(35, 28, 22), bg=(90, 150, 210)),
+ "bolivar": dict(hair="curly", hair_col=(25, 20, 18), beard="sideburns", beard_col=(25, 20, 18), robe=(25, 35, 85), lapels=(190, 30, 40), lace=True, skin=(212, 168, 130), nose=1.6, eye=(35, 28, 22), bg=(200, 160, 40)),
+ "sucre": dict(hair="curly", hair_col=(40, 30, 22), beard="sideburns", beard_col=(40, 30, 22), robe=(25, 35, 85), lapels=(220, 190, 60), lace=True, skin=(222, 182, 145), nose=1.3, eye=(40, 32, 25), bg=(200, 120, 50)),
+ "iturbide": dict(hair="short", hair_col=(120, 75, 45), beard="sideburns", beard_col=(120, 75, 45), robe=(30, 80, 50), lapels=(200, 40, 40), lace=True, skin=(232, 196, 165), nose=1.3, eye=(80, 100, 90), bg=(110, 160, 80)),
+ "pedro1": dict(hair="curly", hair_col=(35, 26, 20), beard="sideburns_m", beard_col=(35, 26, 20), robe=(40, 110, 60), lapels=(230, 190, 60), lace=True, skin=(228, 190, 158), nose=1.3, eye=(40, 32, 25), bg=(40, 130, 70)),
+ "monroe": dict(hair="wig", hair_col=(215, 212, 205), beard="none", robe=(28, 28, 34), lapels=(40, 40, 48), skin=(232, 198, 172), nose=1.4, eye=(70, 100, 130), age=True, bg=(60, 80, 140)),
  "kutuzov": dict(hair="short", hair_col=(225, 222, 215), beard="none", robe=(30, 70, 45), lapels=(200, 40, 40), lace=True, skin=(232, 196, 168), nose=1.4, eye=(70, 90, 110), age=True, bg=(60, 110, 70)),
 }
 

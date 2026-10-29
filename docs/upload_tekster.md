@@ -141,3 +141,15 @@ Episode 18 of History of the World, from Year 1 to 2026.
 Tekst: In November 1532, Pizarro's 168 Spaniards captured the Inca emperor Atahualpa, who promised a room full of gold for his freedom.
 Full story: Episode 14 of History of the World – watch the whole series from Year 1 on the channel.
 #history #inca #pizarro #atahualpa #shorts
+
+## #19 – Year 1825
+**Tittel:** History of the World Ep 19
+**Beskrivelse:** Year 1825 – Latin American independence. Napoleon falls at Waterloo, Tambora brings a year without a summer, the United Provinces declare independence at Tucumán, San Martín crosses the Andes to free Chile, Bolívar wins at Boyacá and Gran Colombia is born, San Martín takes Lima, Mexico wins its freedom, Pedro I becomes emperor of Brazil and Monroe warns Europe off, until Sucre wins at Ayacucho and Bolivia is named after Bolívar.
+Episode 19 of History of the World, from Year 1 to 2026.
+#history #latinamerica #simonbolivar #independence #geography #shorts
+*(Planlagt i Metricool 03.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 03.11 kl. 17:00:** «400 Galleys and an Armada 🗺️ | History of the World» – Lepanto 1571 + den spanske armadaen 1588 fra Ep 15 (`videos/clips/clip_ep15_lepanto_armada.mp4`, Instagram: showReelOnFeed false)
+Tekst: In 1571 over 400 galleys clashed at Lepanto and the Ottoman fleet was smashed – and in 1588 fireships and storms scattered Spain's Armada.
+Full story: Episode 15 of History of the World – watch the whole series from Year 1 on the channel.
+#history #lepanto #spanisharmada #navalhistory #shorts

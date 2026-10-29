@@ -162,6 +162,18 @@ def icon_fire(size=140):
     flame(n * 0.5, n * 0.9, n * 0.36, n * 0.15, (255, 230, 120, 255))
     return _finish(im, size)
 
+def icon_snow(size=140):   # snowflake: cold / "year without a summer" (1816)
+    im, n = _canvas(size); d = ImageDraw.Draw(im); cx = cy = n * 0.5; R = n * 0.40; col = (225, 240, 255, 255); w = max(2, int(n * 0.06))
+    for k in range(6):
+        a = math.pi / 3 * k; ex, ey = cx + math.cos(a) * R, cy + math.sin(a) * R
+        d.line([(cx, cy), (ex, ey)], fill=col, width=w)
+        for f in (0.55, 0.8):
+            bx, by = cx + math.cos(a) * R * f, cy + math.sin(a) * R * f
+            for da in (0.6, -0.6):
+                d.line([(bx, by), (bx + math.cos(a + da) * R * 0.25, by + math.sin(a + da) * R * 0.25)], fill=col, width=max(2, w * 2 // 3))
+    d.ellipse([cx - n * 0.07, cy - n * 0.07, cx + n * 0.07, cy + n * 0.07], fill=col)
+    return _finish(im, size)
+
 def icon_rat(size=140):
     im, n = _canvas(size); d = ImageDraw.Draw(im)
     g = (110, 105, 100, 255); dg = (70, 66, 62, 255)
@@ -200,7 +212,7 @@ def icon_spice(size=140):
     for k in range(3): d.line([(n*.26, n*(.55 + k*.08)), (n*.74, n*(.55 + k*.08))], fill=(170, 135, 85, 255), width=n // 160)
     return _finish(im, size)
 
-ICONS = dict(gold=icon_gold, scroll=icon_scroll, temple=icon_temple, wheel=icon_wheel, ship=icon_ship, camel=icon_camel,
+ICONS = dict(snow=icon_snow, gold=icon_gold, scroll=icon_scroll, temple=icon_temple, wheel=icon_wheel, ship=icon_ship, camel=icon_camel,
              people=icon_people, nopeople=lambda size=130: icon_people(size, True), laurel=icon_laurel, swords=icon_swords,
              bird=icon_bird, pyramid=icon_pyramid, fire=icon_fire, rat=icon_rat, spice=icon_spice)
 
@@ -311,7 +323,7 @@ def soldier(col, size=40, kind="legion"):
         d.rounded_rectangle([ox + n * 0.06, n * 0.42, ox + n * 0.52, n * 1.10], radius=n * 0.06, fill=c, outline=dk, width=n // 28)
         d.ellipse([ox + n * 0.23, n * 0.70, ox + n * 0.35, n * 0.82], fill=(240, 210, 90, 255))
     else:
-        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255), "teutonic": (235, 232, 225, 255), "french": (60, 80, 150, 255), "polish": (150, 40, 45, 255), "wallachian": (70, 50, 40, 255), "songhai": (235, 225, 205, 255), "wingedhussar": (110, 70, 40, 255), "afsharid": (80, 60, 45, 255), "cossack": (60, 45, 35, 255), "mamluk": (230, 225, 215, 255)}.get(kind, (96, 64, 40, 255))
+        coat = {"xianbei": (150, 130, 110, 255), "hun": (70, 50, 36, 255), "mongol": (120, 95, 70, 255), "knight": (235, 232, 225, 255), "sasanian": (150, 150, 160, 255), "arab": (230, 225, 215, 255), "timurid": (90, 70, 60, 255), "serb": (110, 100, 95, 255), "teutonic": (235, 232, 225, 255), "french": (60, 80, 150, 255), "polish": (150, 40, 45, 255), "wallachian": (70, 50, 40, 255), "songhai": (235, 225, 205, 255), "wingedhussar": (110, 70, 40, 255), "afsharid": (80, 60, 45, 255), "cossack": (60, 45, 35, 255), "mamluk": (230, 225, 215, 255), "llanero": (150, 105, 60, 255), "granadero": (40, 34, 30, 255)}.get(kind, (96, 64, 40, 255))
         _horse(d, n, n * 0.02, n * 0.62, 1.4, coat=coat)
         if kind == "sasanian":   # armoured horse: mail barding rows
             pass
@@ -437,6 +449,22 @@ def soldier(col, size=40, kind="legion"):
             d.line([(rx + n * 0.06, ry + n * 0.21), (rx + n * 0.20, ry + n * 0.21)], fill=(30, 22, 18, 255), width=n // 26)
             d.rounded_rectangle([rx - n * 0.01, ry + n * 0.26, rx + n * 0.27, ry + n * 0.66], radius=n * 0.06, fill=c, outline=dk, width=n // 40)
             d.line([(rx - n * 0.01, ry + n * 0.46), (rx + n * 0.27, ry + n * 0.46)], fill=(240, 210, 90, 255), width=n // 26)
+            d.arc([rx + n * 0.18, ry - n * 0.30, rx + n * 0.70, ry + n * 0.40], 200, 290, fill=(215, 215, 222, 255), width=n // 22)
+        elif kind == "llanero":     # Venezuelan llanero lancer (Paez/Bolivar 1819): wide straw hat, poncho, very long lance with pennant, bare feet
+            d.ellipse([rx - n * 0.10, ry + n * 0.02, rx + n * 0.36, ry + n * 0.12], fill=(215, 190, 120, 255), outline=(150, 125, 70, 255))
+            d.chord([rx + n * 0.03, ry - n * 0.06, rx + n * 0.23, ry + n * 0.12], 180, 360, fill=(215, 190, 120, 255))
+            d.ellipse([rx + n * 0.04, ry + n * 0.08, rx + n * 0.22, ry + n * 0.26], fill=(190, 145, 105, 255))
+            d.polygon([(rx - n * 0.06, ry + n * 0.56), (rx + n * 0.13, ry + n * 0.26), (rx + n * 0.32, ry + n * 0.56)], fill=c, outline=dk)
+            d.line([(rx - n * 0.06, ry + n * 0.48), (rx + n * 0.32, ry + n * 0.48)], fill=(240, 236, 226, 255), width=n // 34)
+            d.line([(rx - n * 0.40, ry + n * 0.60), (rx + n * 1.00, ry + n * 0.08)], fill=(130, 100, 60, 255), width=n // 24)
+            d.polygon([(rx + n * 1.00, ry + n * 0.08), (rx + n * 0.90, ry + n * 0.08), (rx + n * 0.94, ry + n * 0.16)], fill=(220, 220, 228, 255))
+            d.polygon([(rx + n * 0.74, ry + n * 0.18), (rx + n * 0.88, ry + n * 0.04), (rx + n * 0.82, ry + n * 0.22)], fill=(240, 200, 50, 255))
+        elif kind == "granadero":   # San Martin's Mounted Grenadier: tall black shako with plume, dark-blue coat with red collar, sabre raised
+            d.rectangle([rx + n * 0.04, ry - n * 0.14, rx + n * 0.22, ry + n * 0.10], fill=(25, 22, 20, 255))
+            d.ellipse([rx + n * 0.09, ry - n * 0.28, rx + n * 0.17, ry - n * 0.12], fill=(200, 40, 40, 255))
+            d.ellipse([rx + n * 0.04, ry + n * 0.06, rx + n * 0.22, ry + n * 0.24], fill=(215, 172, 135, 255))
+            d.rounded_rectangle([rx - n * 0.01, ry + n * 0.26, rx + n * 0.27, ry + n * 0.66], radius=n * 0.06, fill=c, outline=dk, width=n // 40)
+            d.rectangle([rx + n * 0.02, ry + n * 0.26, rx + n * 0.24, ry + n * 0.32], fill=(200, 40, 40, 255))
             d.arc([rx + n * 0.18, ry - n * 0.30, rx + n * 0.70, ry + n * 0.40], 200, 290, fill=(215, 215, 222, 255), width=n // 22)
         elif kind == "cossack":     # Don/Yaik Cossack: tall black papakha with red top, long red zhupan, lance with pennant, sabre
             d.rounded_rectangle([rx + n * 0.02, ry - n * 0.12, rx + n * 0.24, ry + n * 0.10], radius=n * 0.03, fill=(30, 26, 24, 255))

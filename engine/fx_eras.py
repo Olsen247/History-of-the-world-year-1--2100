@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier", "sansculotte", "haitian")
+FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier", "sansculotte", "haitian", "redcoat", "landwehr", "insurgente", "patriot")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -112,7 +112,7 @@ def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
     skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255), "haitian": (112, 74, 50, 255)}.get(kind, (226, 186, 150, 255))
-    trousers = {"line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255)}.get(kind, (45, 38, 32, 255))
+    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
     d.line([(ox + n * .42, n * .96), (ox + n * .36, n * 1.46)], fill=trousers, width=n // 9)
@@ -124,7 +124,7 @@ def soldier(col, size=40, kind="line"):
     if kind == "ww1": coat = c
     if kind == "visayan": coat = (160, 110, 72, 255)
     if kind == "maori": coat = (165, 112, 78, 255)
-    long_coat = kind in ("janissary", "line", "napoleonic", "haitian")
+    long_coat = kind in ("janissary", "line", "napoleonic", "haitian", "redcoat", "patriot")
     d.rounded_rectangle([ox + n * .34, n * .40, ox + n * .66, n * (1.10 if long_coat else .98)], radius=n * .08, fill=coat, outline=dk, width=n // 30)
     d.ellipse([ox + n * .38, n * .14, ox + n * .62, n * .40], fill=skin)
     # gear per kind
@@ -315,6 +315,34 @@ def soldier(col, size=40, kind="line"):
         d.ellipse([ox + n * .54, n * .06, ox + n * .64, n * .16], fill=(200, 30, 40, 255))
         d.polygon([(ox + n * .42, n * .42), (ox + n * .58, n * .42), (ox + n * .50, n * .70)], fill=(200, 30, 40, 255))
         d.line([(ox + n * .35, n * .44), (ox + n * .65, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        musket(bayonet=True)
+    elif kind == "redcoat":      # British infantry of 1815: tall "Belgic" shako with raised false front + white plume, red coat, white cross-belts
+        d.rectangle([ox + n * .38, n * .02, ox + n * .62, n * .20], fill=blk)
+        d.polygon([(ox + n * .38, n * .06), (ox + n * .62, n * .06), (ox + n * .60, -n * .14), (ox + n * .40, -n * .14)], fill=blk)
+        d.ellipse([ox + n * .56, -n * .22, ox + n * .64, -n * .06], fill=(245, 245, 240, 255))
+        d.polygon([(ox + n * .45, n * .06), (ox + n * .55, n * .06), (ox + n * .50, n * .14)], fill=(230, 200, 90, 255))
+        d.line([(ox + n * .35, n * .44), (ox + n * .65, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        d.line([(ox + n * .65, n * .44), (ox + n * .35, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
+        musket(bayonet=True)
+    elif kind == "landwehr":     # Prussian Landwehr 1813-15: soft dark peaked cap (Landwehrmuetze) with a cross badge, dark tunic with coloured collar, musket
+        d.chord([ox + n * .34, n * .04, ox + n * .66, n * .30], 180, 360, fill=(30, 34, 50, 255))
+        d.rectangle([ox + n * .34, n * .14, ox + n * .66, n * .19], fill=(200, 40, 40, 255))
+        d.polygon([(ox + n * .52, n * .18), (ox + n * .72, n * .21), (ox + n * .52, n * .22)], fill=blk)
+        d.line([(ox + n * .47, n * .09), (ox + n * .53, n * .09)], fill=(245, 245, 240, 255), width=max(1, n // 40))
+        d.rectangle([ox + n * .40, n * .40, ox + n * .60, n * .46], fill=(200, 40, 40, 255))
+        musket(bayonet=True)
+    elif kind == "insurgente":   # Mexican insurgent / Trigarante soldier: wide sombrero, white shirt, red-white-green sash, musket
+        d.ellipse([ox + n * .16, n * .12, ox + n * .84, n * .24], fill=(190, 160, 100, 255), outline=(120, 95, 55, 255))
+        d.chord([ox + n * .38, n * .00, ox + n * .62, n * .26], 180, 360, fill=(190, 160, 100, 255))
+        d.rectangle([ox + n * .34, n * .40, ox + n * .66, n * .96], fill=(240, 236, 226, 255))
+        for k, cc in enumerate([(40, 130, 70), (245, 245, 240), (200, 40, 40)]): d.rectangle([ox + n * .34, n * (.62 + k * .04), ox + n * .66, n * (.66 + k * .04)], fill=cc + (255,))
+        musket()
+    elif kind == "patriot":      # South American patriot infantry (Sucre's army, 1824): stovepipe shako with cockade, dark coat with red facings, white belts
+        d.rectangle([ox + n * .38, -n * .04, ox + n * .62, n * .20], fill=blk)
+        d.ellipse([ox + n * .44, n * .00, ox + n * .56, n * .12], fill=(240, 200, 50, 255))
+        d.ellipse([ox + n * .47, n * .03, ox + n * .53, n * .09], fill=(200, 40, 40, 255))
+        d.rectangle([ox + n * .36, n * .40, ox + n * .64, n * .48], fill=(200, 40, 40, 255))
+        d.line([(ox + n * .35, n * .48), (ox + n * .65, n * .92)], fill=(245, 245, 240, 255), width=n // 20)
         musket(bayonet=True)
     elif kind == "dutch":        # Dutch VOC sailor-soldier: wide black hat, orange sash, morion-less, musket
         d.ellipse([ox + n * .22, n * .10, ox + n * .78, n * .22], fill=blk)
