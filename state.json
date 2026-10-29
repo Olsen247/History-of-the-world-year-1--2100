@@ -1,9 +1,9 @@
 {
-  "next_episode": 19,
-  "previous_year": 1812,
-  "previous_year_module": "world_data_1812",
-  "previous_base_map": "hd_1812.png",
-  "next_publish_date": "2026-11-03",
+  "next_episode": 20,
+  "previous_year": 1825,
+  "previous_year_module": "world_data_1825",
+  "previous_base_map": "hd_1825.png",
+  "next_publish_date": "2026-11-04",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -179,6 +179,13 @@
       "video": "videos/ep18_year1812.mp4",
       "publish": "2026-11-02 10:00",
       "metricool_post_id": 408516590
+    },
+    {
+      "ep": 19,
+      "year": 1825,
+      "video": "videos/ep19_year1825.mp4",
+      "publish": "2026-11-03 10:00",
+      "metricool_post_id": 409640564
     }
   ],
   "next_publish_time": "10:00",
@@ -260,6 +267,14 @@
       "date": "2026-11-02 17:00",
       "file": "videos/clips/clip_ep14_atahualpa.mp4",
       "metricool_post_id": 408516599
+    },
+    {
+      "from_ep": 15,
+      "start": 13.17,
+      "end": 29.22,
+      "date": "2026-11-03 17:00",
+      "file": "videos/clips/clip_ep15_lepanto_armada.mp4",
+      "metricool_post_id": 409640577
     }
   ]
 }
