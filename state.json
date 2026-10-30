@@ -1,9 +1,9 @@
 {
-  "next_episode": 20,
-  "previous_year": 1825,
-  "previous_year_module": "world_data_1825",
-  "previous_base_map": "hd_1825.png",
-  "next_publish_date": "2026-11-04",
+  "next_episode": 21,
+  "previous_year": 1900,
+  "previous_year_module": "world_data_1900",
+  "previous_base_map": "hd_1900.png",
+  "next_publish_date": "2026-11-05",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -186,6 +186,13 @@
       "video": "videos/ep19_year1825.mp4",
       "publish": "2026-11-03 10:00",
       "metricool_post_id": 409640564
+    },
+    {
+      "ep": 20,
+      "year": 1900,
+      "video": "videos/ep20_year1900.mp4",
+      "publish": "2026-11-04 10:00",
+      "metricool_post_id": 410777235
     }
   ],
   "next_publish_time": "10:00",
@@ -275,6 +282,14 @@
       "date": "2026-11-03 17:00",
       "file": "videos/clips/clip_ep15_lepanto_armada.mp4",
       "metricool_post_id": 409640577
+    },
+    {
+      "from_ep": 16,
+      "start": 14.15,
+      "end": 28.33,
+      "date": "2026-11-04 17:00",
+      "file": "videos/clips/clip_ep16_vienna_poltava.mp4",
+      "metricool_post_id": 410777253
     }
   ]
 }

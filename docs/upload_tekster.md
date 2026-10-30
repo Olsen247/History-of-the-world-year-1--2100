@@ -153,3 +153,15 @@ Episode 19 of History of the World, from Year 1 to 2026.
 Tekst: In 1571 over 400 galleys clashed at Lepanto and the Ottoman fleet was smashed – and in 1588 fireships and storms scattered Spain's Armada.
 Full story: Episode 15 of History of the World – watch the whole series from Year 1 on the channel.
 #history #lepanto #spanisharmada #navalhistory #shorts
+
+## #20 – Year 1900
+**Tittel:** History of the World Ep 20
+**Beskrivelse:** Year 1900 – The age of empires and colonialism. The first inter-city railway and France in Algeria, the Opium War and Hong Kong, Mexico loses half its land, Crown rule in India, the Suez Canal, one Germany, the Scramble for Africa, Ethiopia's victory at Adwa, America takes the Philippines, until the Boxer Uprising.
+Episode 20 of History of the World, from Year 1 to 2026.
+#history #colonialism #britishempire #scrambleforafrica #geography #shorts
+*(Planlagt i Metricool 04.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 04.11 kl. 17:00:** «Winged Hussars Save Vienna 🗺️ | History of the World» – Sobieski ved Wien 1683 + Poltava 1709 fra Ep 16 (`videos/clips/clip_ep16_vienna_poltava.mp4`, Instagram: showReelOnFeed false)
+Tekst: In 1683 Poland's King Jan Sobieski and his winged hussars broke the Ottoman siege of Vienna – and in 1709 Peter the Great crushed Sweden at Poltava.
+Full story: Episode 16 of History of the World – watch the whole series from Year 1 on the channel.
+#history #wingedhussars #vienna1683 #petergreat #shorts
