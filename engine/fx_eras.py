@@ -19,7 +19,7 @@ import math
 from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
-FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier", "sansculotte", "haitian", "redcoat", "landwehr", "insurgente", "patriot")
+FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier", "sansculotte", "haitian", "redcoat", "landwehr", "insurgente", "patriot", "pickelhaube", "ethiopian", "bersagliere", "boxer")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -111,8 +111,8 @@ class _Shift:
 def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
-    skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255), "haitian": (112, 74, 50, 255)}.get(kind, (226, 186, 150, 255))
-    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255)}.get(kind, (45, 38, 32, 255))
+    skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255), "haitian": (112, 74, 50, 255), "ethiopian": (110, 75, 52, 255), "boxer": (222, 184, 142, 255)}.get(kind, (226, 186, 150, 255))
+    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
     d.line([(ox + n * .42, n * .96), (ox + n * .36, n * 1.46)], fill=trousers, width=n // 9)
@@ -124,6 +124,8 @@ def soldier(col, size=40, kind="line"):
     if kind == "ww1": coat = c
     if kind == "visayan": coat = (160, 110, 72, 255)
     if kind == "maori": coat = (165, 112, 78, 255)
+    if kind == "ethiopian": coat = (240, 236, 226, 255)
+    if kind == "boxer": coat = (232, 226, 205, 255)
     long_coat = kind in ("janissary", "line", "napoleonic", "haitian", "redcoat", "patriot")
     d.rounded_rectangle([ox + n * .34, n * .40, ox + n * .66, n * (1.10 if long_coat else .98)], radius=n * .08, fill=coat, outline=dk, width=n // 30)
     d.ellipse([ox + n * .38, n * .14, ox + n * .62, n * .40], fill=skin)
@@ -350,4 +352,30 @@ def soldier(col, size=40, kind="line"):
         d.rectangle([ox + n * .36, n * .62, ox + n * .64, n * .70], fill=(240, 130, 30, 255))
         d.polygon([(ox + n * .40, n * .40), (ox + n * .60, n * .40), (ox + n * .50, n * .52)], fill=(245, 245, 240, 255))
         musket()
+    elif kind == "pickelhaube":  # Prussian/German infantry 1870: black leather spiked helmet (Pickelhaube) with brass plate, dark-blue tunic, needle rifle
+        d.chord([ox + n * .34, n * .02, ox + n * .66, n * .30], 180, 360, fill=blk)
+        d.rectangle([ox + n * .34, n * .15, ox + n * .66, n * .20], fill=blk)
+        d.polygon([(ox + n * .47, n * .04), (ox + n * .53, n * .04), (ox + n * .50, -n * .16)], fill=(230, 200, 90, 255))
+        d.ellipse([ox + n * .45, n * .07, ox + n * .55, n * .15], fill=(230, 200, 90, 255))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
+        musket(bayonet=True, y0=.04)
+    elif kind == "ethiopian":    # Ethiopian warrior at Adwa (1896): white shamma cloak with red stripe, round hide shield with boss, rifle, bare head
+        d.ellipse([ox + n * .38, n * .10, ox + n * .62, n * .26], fill=(30, 24, 20, 255))
+        d.rectangle([ox + n * .34, n * .58, ox + n * .66, n * .64], fill=(200, 40, 40, 255))
+        d.ellipse([ox + n * .06, n * .46, ox + n * .40, n * .80], fill=(150, 100, 55, 255), outline=(90, 60, 30, 255), width=max(1, n // 30))
+        d.ellipse([ox + n * .19, n * .59, ox + n * .27, n * .67], fill=(230, 200, 90, 255))
+        musket(y0=.06)
+    elif kind == "bersagliere":  # Italian Bersagliere: round wide-brimmed hat with a big plume of black cock feathers, dark-blue coat, rifle
+        d.ellipse([ox + n * .24, n * .12, ox + n * .76, n * .22], fill=blk)
+        d.chord([ox + n * .38, n * .02, ox + n * .62, n * .24], 180, 360, fill=blk)
+        for k in range(5): d.line([(ox + n * .58, n * .10), (ox + n * (.70 + k * .04), n * (.02 + k * .05))], fill=(20, 40, 30, 255), width=max(2, n // 18))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
+        musket(bayonet=True, y0=.04)
+    elif kind == "boxer":        # Boxer (Yihetuan) fighter of 1900: red head cloth, light tunic with red sash and red wrist bands, long spear with red tassel
+        d.chord([ox + n * .37, n * .10, ox + n * .63, n * .32], 180, 360, fill=(210, 35, 40, 255))
+        d.polygon([(ox + n * .37, n * .20), (ox + n * .30, n * .30), (ox + n * .36, n * .30)], fill=(210, 35, 40, 255))
+        d.rectangle([ox + n * .34, n * .64, ox + n * .66, n * .72], fill=(210, 35, 40, 255))
+        d.line([(ox + n * .80, -n * .10), (ox + n * .80, n * 1.30)], fill=wood, width=n // 18)
+        d.polygon([(ox + n * .77, -n * .10), (ox + n * .83, -n * .10), (ox + n * .80, -n * .30)], fill=metal)
+        d.ellipse([ox + n * .74, -n * .08, ox + n * .86, n * .04], fill=(210, 35, 40, 255))
     return im.resize((int(im.width / S), int(im.height / S)), Image.LANCZOS)

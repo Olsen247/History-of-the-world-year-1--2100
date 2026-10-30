@@ -464,6 +464,14 @@ P = {
  "nelson": dict(hat="bicorne_fa", hair="wig", hair_col=(225, 222, 215), beard="none", robe=(25, 35, 80), lapels=(240, 236, 226), lace=True, skin=(232, 198, 172), nose=1.5, eye=(80, 100, 120), bg=(30, 60, 120)),
  "phillip": dict(hair="wig", hair_col=(220, 218, 210), beard="none", robe=(25, 40, 90), lapels=(240, 236, 226), skin=(230, 192, 160), nose=1.6, eye=(70, 90, 110), age=True, bg=(40, 90, 130)),
  "dessalines": dict(hat="bicorne_fa", plume=(200, 30, 40), hair="short", hair_col=(25, 20, 18), beard="none", robe=(30, 45, 110), lapels=(200, 30, 40), lace=True, skin=(105, 70, 48), eye=(35, 28, 22), bg=(40, 50, 140)),
+ # Ep 20
+ "victoria": dict(female=True, hat="smallcrown", hair="bun", hair_col=(190, 186, 180), robe=(25, 25, 30), cloak=(240, 236, 228), lace=True, skin=(240, 214, 196), nose=1.3, eye=(80, 100, 130), age=True, bg=(170, 60, 100)),
+ "bismarck": dict(hair="thin", hair_col=(215, 210, 200), beard="mustache", beard_col=(225, 220, 210), robe=(40, 45, 70), lapels=(240, 236, 226), skin=(232, 196, 168), nose=1.3, eye=(70, 90, 110), age=True, bg=(80, 80, 95)),
+ "wilhelm1": dict(hair="thin", hair_col=(235, 232, 226), beard="sideburns_m", beard_col=(240, 238, 232), robe=(40, 45, 70), lapels=(200, 40, 40), lace=True, skin=(232, 198, 172), nose=1.4, eye=(80, 100, 130), age=True, bg=(90, 90, 110)),
+ "lesseps": dict(hair="short", hair_col=(230, 228, 222), beard="mustache", beard_col=(235, 232, 226), robe=(28, 28, 34), lapels=(40, 40, 48), skin=(232, 196, 168), nose=1.3, eye=(60, 80, 100), age=True, bg=(60, 100, 170)),
+ "leopold2": dict(hair="thin", hair_col=(180, 176, 168), beard="long", beard_col=(205, 200, 190), robe=(30, 35, 60), lapels=(200, 160, 60), lace=True, skin=(232, 198, 172), nose=1.8, eye=(70, 90, 110), age=True, bg=(150, 110, 190)),
+ "menelik": dict(hat="crown", crown_col=(230, 190, 70), beard="short", hair="short", hair_col=(25, 20, 18), beard_col=(30, 24, 20), robe=(240, 236, 226), cloak=(60, 50, 120), skin=(110, 75, 52), nose=1.3, eye=(35, 28, 22), bg=(60, 140, 80)),
+ "mckinley": dict(hair="short", hair_col=(60, 50, 45), beard="none", robe=(28, 28, 34), lapels=(40, 40, 48), skin=(232, 198, 172), nose=1.2, eye=(70, 80, 90), age=True, bg=(60, 90, 160)),
  # Ep 19
  "wellington": dict(hair="short", hair_col=(120, 95, 70), beard="none", robe=(180, 30, 40), lapels=(30, 32, 45), lace=True, skin=(232, 198, 172), nose=1.9, eye=(70, 100, 130), bg=(170, 40, 50)),
  "blucher": dict(hair="short", hair_col=(235, 232, 228), beard="mustache", beard_col=(240, 238, 232), robe=(30, 40, 80), lapels=(200, 40, 40), lace=True, skin=(230, 192, 165), nose=1.4, age=True, bg=(40, 50, 90)),
