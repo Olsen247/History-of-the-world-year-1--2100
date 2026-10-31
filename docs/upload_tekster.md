@@ -165,3 +165,15 @@ Episode 20 of History of the World, from Year 1 to 2026.
 Tekst: In 1683 Poland's King Jan Sobieski and his winged hussars broke the Ottoman siege of Vienna – and in 1709 Peter the Great crushed Sweden at Poltava.
 Full story: Episode 16 of History of the World – watch the whole series from Year 1 on the channel.
 #history #wingedhussars #vienna1683 #petergreat #shorts
+
+## #21 – Year 1911
+**Tittel:** History of the World Ep 21
+**Beskrivelse:** Year 1911 – Amundsen reaches the South Pole; China's last dynasty falls. Australia unites and Queen Victoria dies, the Boer War ends, the Wright brothers fly, Japan wins at Tsushima, Norway breaks free from Sweden, Belgium takes the Congo, Japan annexes Korea, the Mexican Revolution erupts, the Wuchang uprising shakes the Qing, and Amundsen plants Norway's flag at the South Pole.
+Episode 21 of History of the World, from Year 1 to 2026.
+#history #geography #amundsen #southpole #chinarevolution #shorts
+*(Planlagt i Metricool 05.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 05.11 kl. 17:00 (IKKE planlagt – må legges inn manuelt):** «342 Chests of Tea Start a Revolution 🗺️ | History of the World» – Boston Tea Party 1773 + Lexington 1775 fra Ep 17 (`videos/clips/clip_ep17_teaparty_lexington.mp4`, Instagram: showReelOnFeed false)
+Tekst: In December 1773 Boston colonists dumped 342 chests of tea into the harbor – and in April 1775 the first shots of the American Revolution rang out at Lexington and Concord.
+Full story: Episode 17 of History of the World – watch the whole series from Year 1 on the channel.
+#history #bostonteaparty #americanrevolution #lexington #shorts
