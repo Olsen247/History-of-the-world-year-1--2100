@@ -1,9 +1,9 @@
 {
-  "next_episode": 22,
-  "previous_year": 1911,
-  "previous_year_module": "world_data_1911",
-  "previous_base_map": "hd_1911.png",
-  "next_publish_date": "2026-11-06",
+  "next_episode": 23,
+  "previous_year": 1914,
+  "previous_year_module": "world_data_1914w",
+  "previous_base_map": "hd_1914w.png",
+  "next_publish_date": "2026-11-07",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -200,6 +200,13 @@
       "video": "videos/ep21_year1911.mp4",
       "publish": "2026-11-05 10:00",
       "metricool_post_id": 411872044
+    },
+    {
+      "ep": 22,
+      "year": 1914,
+      "video": "videos/ep22_year1914.mp4",
+      "publish": "2026-11-06 10:00",
+      "metricool_post_id": 412636486
     }
   ],
   "next_publish_time": "10:00",
@@ -304,6 +311,14 @@
       "end": 49.68,
       "file": "videos/clips/clip_ep17_teaparty_lexington.mp4",
       "planned": "2026-11-05 17:00 – NOT scheduled (Metricool call blocked in the automated run; schedule manually)"
+    },
+    {
+      "from_ep": 18,
+      "start": 67.33,
+      "end": 82.11,
+      "date": "2026-11-06 17:00",
+      "file": "videos/clips/clip_ep18_moscow.mp4",
+      "metricool_post_id": 412636490
     }
   ]
 }

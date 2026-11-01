@@ -177,3 +177,15 @@ Episode 21 of History of the World, from Year 1 to 2026.
 Tekst: In December 1773 Boston colonists dumped 342 chests of tea into the harbor – and in April 1775 the first shots of the American Revolution rang out at Lexington and Concord.
 Full story: Episode 17 of History of the World – watch the whole series from Year 1 on the channel.
 #history #bostonteaparty #americanrevolution #lexington #shorts
+
+## #22 – Year 1914
+**Tittel:** History of the World Ep 22
+**Beskrivelse:** Year 1914 – The road to the First World War. Italy invades Libya and the first air raid in history, China's last emperor gives up the throne, the Titanic sinks, two Balkan Wars push the Ottomans almost out of Europe, Europe splits into two armed camps, Franz Ferdinand is shot in Sarajevo, Austria-Hungary declares war on Serbia, Germany marches through Belgium, Britain joins, and the Marne halts the Germans as trenches stretch from the North Sea to Switzerland.
+Episode 22 of History of the World, from Year 1 to 2026.
+#history #geography #ww1 #worldwarone #1914 #sarajevo #shorts
+*(Planlagt i Metricool 06.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+**Klipp 06.11 kl. 17:00:** «Napoleon Marches on Moscow 🗺️ | History of the World» – invasjonen av Russland og brannen i Moskva fra Ep 18 (`videos/clips/clip_ep18_moscow.mp4`, Instagram: showReelOnFeed false)
+Tekst: In June 1812 Napoleon invaded Russia with more than 400,000 men – he took Moscow, but the city burned and most of his army was lost in the freezing retreat.
+Full story: Episode 18 of History of the World – watch the whole series from Year 1 on the channel.
+#history #napoleon #1812 #moscow #shorts
