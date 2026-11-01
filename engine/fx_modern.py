@@ -27,6 +27,7 @@ def _flag(code, w=30, h=20):
     elif code == "ru": hstripes([Wh, (40, 80, 180), R])
     elif code == "ah": hstripes([R, Wh, R])
     elif code == "nl": hstripes([R, Wh, B])
+    elif code == "rs": hstripes([R, (40, 70, 160), Wh])
     elif code == "ot":
         d.rectangle([0, 0, W, H], fill=R)
         d.ellipse([W * .30, H * .25, W * .55, H * .75], fill=Wh); d.ellipse([W * .36, H * .28, W * .60, H * .72], fill=R)

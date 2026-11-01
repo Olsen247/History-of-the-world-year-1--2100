@@ -20,6 +20,11 @@ def _beard(d, n, kind, col, cx, chin):
         if kind == "sideburns_m":
             d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         return
+    if kind == "kaiser":   # big upturned mustache (Wilhelm II, Franz Ferdinand)
+        d.polygon([(cx - n*.10, chin - n*.10), (cx, chin - n*.12), (cx + n*.10, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
+        for sx in (-1, 1):
+            d.line([(cx + sx*n*.09, chin - n*.10), (cx + sx*n*.16, chin - n*.13), (cx + sx*n*.19, chin - n*.20)], fill=col, width=int(n*.026))
+        return
     if kind == "mustache":
         d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         d.line([(cx - n*.085, chin - n*.10), (cx - n*.12, chin - n*.03)], fill=col, width=int(n*.02))
@@ -289,6 +294,27 @@ def face(spec, size=300):
         d.rounded_rectangle([cx - n*.22, top - n*.02, cx + n*.22, top + n*.10], radius=n*.05, fill=(70, 50, 38, 255))
         d.ellipse([cx - n*.035, top - n*.03, cx + n*.035, top + n*.04], fill=gold, outline=gdk)
         d.line([(cx, top - n*.02), (cx + n*.08, top - n*.34)], fill=(245, 245, 245, 255), width=int(n*.024))
+    elif hat == "pickelhaube":  # German spiked leather helmet with gold eagle plate and spike
+        hc = (25, 25, 28, 255)
+        d.chord([cx - n*.22, top - n*.08, cx + n*.22, top + n*.30], 180, 360, fill=hc)
+        d.rectangle([cx - n*.24, top + n*.09, cx + n*.24, top + n*.13], fill=hc)
+        d.polygon([(cx - n*.025, top - n*.06), (cx + n*.025, top - n*.06), (cx, top - n*.24)], fill=gold, outline=gdk)
+        d.ellipse([cx - n*.05, top - n*.02, cx + n*.05, top + n*.08], fill=gold, outline=gdk)
+    elif hat == "peaked":       # officer's / captain's peaked cap: crown, band, black visor, gold badge
+        hc = spec.get("hat_col", (25, 30, 50)) + (255,)
+        d.ellipse([cx - n*.25, top - n*.08, cx + n*.25, top + n*.10], fill=spec.get("top_col", hc[:3]) + (255,))
+        d.rectangle([cx - n*.21, top + n*.01, cx + n*.21, top + n*.10], fill=spec.get("band_col", hc[:3]) + (255,))
+        d.chord([cx - n*.22, top + n*.04, cx + n*.22, top + n*.18], 0, 180, fill=(15, 15, 18, 255))
+        d.ellipse([cx - n*.035, top + n*.02, cx + n*.035, top + n*.08], fill=gold, outline=gdk)
+    elif hat == "plumehat":     # Austrian general's hat with a big plume of green feathers (Franz Ferdinand in Sarajevo)
+        hc = (22, 22, 26, 255)
+        d.ellipse([cx - n*.28, top + n*.0, cx + n*.28, top + n*.10], fill=hc)
+        d.chord([cx - n*.20, top - n*.14, cx + n*.20, top + n*.10], 180, 360, fill=hc)
+        for k in range(9):
+            a = math.radians(200 + k * 17)
+            x = cx + math.cos(a) * n*.24; y = top - n*.08 + math.sin(a) * n*.16
+            d.ellipse([x - n*.07, y - n*.04, x + n*.07, y + n*.04], fill=(60, 130, 70, 255), outline=(35, 90, 45, 255))
+        d.ellipse([cx - n*.035, top + n*.01, cx + n*.035, top + n*.07], fill=gold)
     if spec.get("halo"):
         pass
     return im
@@ -492,6 +518,14 @@ P = {
  "iturbide": dict(hair="short", hair_col=(120, 75, 45), beard="sideburns", beard_col=(120, 75, 45), robe=(30, 80, 50), lapels=(200, 40, 40), lace=True, skin=(232, 196, 165), nose=1.3, eye=(80, 100, 90), bg=(110, 160, 80)),
  "pedro1": dict(hair="curly", hair_col=(35, 26, 20), beard="sideburns_m", beard_col=(35, 26, 20), robe=(40, 110, 60), lapels=(230, 190, 60), lace=True, skin=(228, 190, 158), nose=1.3, eye=(40, 32, 25), bg=(40, 130, 70)),
  "monroe": dict(hair="wig", hair_col=(215, 212, 205), beard="none", robe=(28, 28, 34), lapels=(40, 40, 48), skin=(232, 198, 172), nose=1.4, eye=(70, 100, 130), age=True, bg=(60, 80, 140)),
+ # Ep 22
+ "wilhelm2": dict(hat="pickelhaube", hair="short", hair_col=(110, 85, 60), beard="kaiser", beard_col=(110, 85, 60), robe=(30, 35, 60), lapels=(200, 40, 40), lace=True, skin=(232, 198, 172), nose=1.4, eye=(70, 100, 130), bg=(90, 90, 100)),
+ "nicholas2": dict(hair="short", hair_col=(120, 85, 55), beard="short", beard_col=(120, 85, 55), robe=(45, 70, 50), lapels=(200, 40, 40), lace=True, skin=(232, 198, 172), nose=1.3, eye=(70, 100, 130), bg=(60, 110, 70)),
+ "franzjoseph": dict(hair="thin", hair_col=(235, 232, 228), beard="sideburns_m", beard_col=(240, 238, 232), robe=(240, 238, 232), lapels=(200, 40, 40), lace=True, skin=(232, 198, 172), nose=1.4, eye=(70, 100, 130), age=True, bg=(200, 180, 80)),
+ "franzferdinand": dict(hat="plumehat", hair="short", hair_col=(80, 60, 45), beard="kaiser", beard_col=(80, 60, 45), robe=(140, 170, 200), lapels=(200, 40, 40), lace=True, skin=(230, 192, 165), nose=1.4, eye=(70, 100, 130), bg=(200, 180, 80)),
+ "princip": dict(hair="short", hair_col=(30, 24, 20), beard="none", robe=(40, 40, 46), lapels=(240, 240, 236), skin=(225, 190, 160), nose=1.2, eye=(40, 32, 25), bg=(150, 60, 60)),
+ "smith": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(245, 245, 240), hair="short", hair_col=(225, 222, 215), beard="short", beard_col=(240, 238, 232), robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(40, 70, 120)),
+ "joffre": dict(hat="peaked", hat_col=(30, 35, 60), top_col=(190, 40, 50), hair="short", hair_col=(235, 232, 228), beard="mustache", beard_col=(245, 242, 238), robe=(30, 35, 60), lapels=(45, 52, 85), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(60, 95, 200)),
  "kutuzov": dict(hair="short", hair_col=(225, 222, 215), beard="none", robe=(30, 70, 45), lapels=(200, 40, 40), lace=True, skin=(232, 196, 168), nose=1.4, eye=(70, 90, 110), age=True, bg=(60, 110, 70)),
 }
 

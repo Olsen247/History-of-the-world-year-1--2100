@@ -112,7 +112,7 @@ def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
     skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255), "haitian": (112, 74, 50, 255), "ethiopian": (110, 75, 52, 255), "boxer": (222, 184, 142, 255)}.get(kind, (226, 186, 150, 255))
-    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255), "revolucionario": (240, 236, 226, 255), "tommy": (180, 160, 110, 255), "boer": (90, 75, 55, 255)}.get(kind, (45, 38, 32, 255))
+    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255), "revolucionario": (240, 236, 226, 255), "tommy": (180, 160, 110, 255), "boer": (90, 75, 55, 255), "evzone": (240, 238, 232, 255), "ottoman1912": (150, 135, 95, 255), "serb1912": (100, 105, 85, 255), "montenegrin": (30, 40, 80, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
     d.line([(ox + n * .42, n * .96), (ox + n * .36, n * 1.46)], fill=trousers, width=n // 9)
@@ -128,6 +128,10 @@ def soldier(col, size=40, kind="line"):
     if kind == "boxer": coat = (232, 226, 205, 255)
     if kind == "tommy": coat = (190, 170, 120, 255)
     if kind == "newarmy": coat = (120, 120, 100, 255)
+    if kind == "ottoman1912": coat = (165, 150, 105, 255)
+    if kind == "serb1912": coat = (110, 115, 90, 255)
+    if kind == "evzone": coat = (40, 60, 130, 255)
+    if kind == "montenegrin": coat = (40, 60, 120, 255)
     if kind == "boer": coat = (95, 80, 60, 255) if col == (0, 0, 0) else c
     long_coat = kind in ("janissary", "line", "napoleonic", "haitian", "redcoat", "patriot")
     d.rounded_rectangle([ox + n * .34, n * .40, ox + n * .66, n * (1.10 if long_coat else .98)], radius=n * .08, fill=coat, outline=dk, width=n // 30)
@@ -407,6 +411,41 @@ def soldier(col, size=40, kind="line"):
         d.chord([ox + n * .36, n * .06, ox + n * .64, n * .30], 180, 360, fill=(120, 120, 100, 255))
         d.polygon([(ox + n * .58, n * .18), (ox + n * .74, n * .21), (ox + n * .60, n * .23)], fill=blk)
         d.rectangle([ox + n * .34, n * .50, ox + n * .42, n * .58], fill=(250, 250, 246, 255))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
+        musket(bayonet=True, y0=.04)
+    elif kind == "serb1912":     # Serbian infantry 1912: grey-olive sajkaca cap (boat-shaped, dipped in the middle), grey-olive tunic, rifle
+        cap = (110, 115, 90, 255)
+        d.polygon([(ox + n * .35, n * .20), (ox + n * .65, n * .20), (ox + n * .66, n * .06), (ox + n * .50, n * .12), (ox + n * .34, n * .06)], fill=cap, outline=dk)
+        d.ellipse([ox + n * .47, n * .13, ox + n * .53, n * .18], fill=(200, 40, 40, 255))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
+        musket(bayonet=True, y0=.04)
+    elif kind == "bulgar1912":   # Bulgarian infantry 1912: round peaked cap with green band, dark tunic, white-green-red cockade, rifle
+        d.chord([ox + n * .35, n * .05, ox + n * .65, n * .30], 180, 360, fill=(60, 60, 50, 255))
+        d.rectangle([ox + n * .35, n * .15, ox + n * .65, n * .19], fill=(40, 120, 60, 255))
+        d.polygon([(ox + n * .58, n * .18), (ox + n * .74, n * .21), (ox + n * .60, n * .23)], fill=blk)
+        d.ellipse([ox + n * .47, n * .08, ox + n * .53, n * .14], fill=(245, 245, 240, 255))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
+        musket(bayonet=True, y0=.04)
+    elif kind == "evzone":       # Greek evzone: red farion cap with long black tassel, white fustanella kilt, rifle
+        d.chord([ox + n * .38, n * .08, ox + n * .62, n * .30], 180, 360, fill=(190, 30, 40, 255))
+        d.line([(ox + n * .50, n * .09), (ox + n * .30, n * .40)], fill=blk, width=n // 22)
+        d.polygon([(ox + n * .34, n * .80), (ox + n * .66, n * .80), (ox + n * .74, n * 1.08), (ox + n * .26, n * 1.08)], fill=(245, 245, 240, 255), outline=(190, 190, 185, 255))
+        musket(bayonet=True, y0=.04)
+    elif kind == "montenegrin":  # Montenegrin soldier: flat round kapa cap (black rim, red top), red waistcoat with gold trim, rifle
+        d.rectangle([ox + n * .38, n * .10, ox + n * .62, n * .19], fill=(25, 22, 22, 255))
+        d.rectangle([ox + n * .40, n * .09, ox + n * .60, n * .13], fill=(190, 30, 40, 255))
+        d.rectangle([ox + n * .37, n * .44, ox + n * .63, n * .72], fill=(190, 30, 40, 255), outline=(230, 190, 70, 255))
+        musket(y0=.04)
+    elif kind == "ottoman1912":  # Ottoman infantry 1912: khaki kabalak (wrapped cloth helmet), khaki tunic, rifle
+        kh = (165, 150, 105, 255)
+        d.ellipse([ox + n * .35, n * .04, ox + n * .65, n * .24], fill=kh, outline=(120, 105, 70, 255))
+        for k in range(3): d.arc([ox + n * .35, n * (.05 + k * .045), ox + n * .65, n * (.20 + k * .045)], 200, 340, fill=(120, 105, 70, 255), width=n // 40)
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
+        musket(bayonet=True, y0=.04)
+    elif kind == "dorobant":     # Romanian dorobant: black round hat with a plume of turkey feathers, dark-blue tunic, rifle
+        d.ellipse([ox + n * .30, n * .14, ox + n * .70, n * .22], fill=(25, 22, 22, 255))
+        d.chord([ox + n * .38, n * .02, ox + n * .62, n * .24], 180, 360, fill=(25, 22, 22, 255))
+        d.polygon([(ox + n * .60, n * .10), (ox + n * .78, n * -.10), (ox + n * .70, n * .14)], fill=(70, 60, 50, 255))
         d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=blk)
         musket(bayonet=True, y0=.04)
     return im.resize((int(im.width / S), int(im.height / S)), Image.LANCZOS)
