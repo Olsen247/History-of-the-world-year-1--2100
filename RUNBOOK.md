@@ -59,6 +59,16 @@ Same satellite map as always – only the war overlay changes (`fx_modern.py`, r
 - Close camera (view width ≈ 380–520) so the flags are readable. Keep event labels away from the front line.
 - For modern wars stay neutral and factual; never cover ongoing wars.
 
+## ⚠️ Metricool FREE plan (since 2 Nov 2026) – read before step 2
+The free plan publishes at most **20 posts per calendar month** (a post with YouTube + Instagram counts as 1). In October
+the limit was hit and Ep 13–15 silently failed ("You have reached your Metricool account limit"). Until the owner upgrades:
+- **Skip production** (do nothing except report "buffer full" in one line) if `next_publish_date` is more than 6 days after today.
+- Publish **one episode every other day at 10:00**; no Sunday double episode, **no quick-fact clips** (step 8b is paused).
+- Before scheduling: `getScheduledPosts` for the whole calendar month and count published + pending non-draft posts. If the
+  month already has 20, schedule on the 1st of the next month at 10:00 instead.
+- After scheduling, next slot = publish date + 2 days.
+- Every run also checks the last 7 days in Metricool for posts with status ERROR and reports them to the owner in Norwegian.
+
 ## 1. Set up the session
 ```bash
 # the repo is cloned at /home/claude/history-of-the-world-year-1--2100 (use add_repo with access "push" if needed)

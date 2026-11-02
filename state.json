@@ -3,7 +3,7 @@
   "previous_year": 1914,
   "previous_year_module": "world_data_1914w",
   "previous_base_map": "hd_1914w.png",
-  "next_publish_date": "2026-11-07",
+  "next_publish_date": "2026-11-12",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -142,22 +142,22 @@
       "ep": 13,
       "year": 1522,
       "video": "videos/ep13_year1522.mp4",
-      "publish": "2026-10-29 10:00",
-      "metricool_post_id": 404713521
+      "publish": "2026-11-02 08:00",
+      "metricool_post_id": 413397757
     },
     {
       "ep": 14,
       "year": 1533,
       "video": "videos/ep14_year1533.mp4",
-      "publish": "2026-10-30 10:00",
-      "metricool_post_id": 405413928
+      "publish": "2026-11-02 08:30",
+      "metricool_post_id": 413397807
     },
     {
       "ep": 15,
       "year": 1642,
       "video": "videos/ep15_year1642.mp4",
-      "publish": "2026-10-31 10:00",
-      "metricool_post_id": 406188351
+      "publish": "2026-11-02 09:00",
+      "metricool_post_id": 413397853
     },
     {
       "ep": 16,
@@ -184,33 +184,33 @@
       "ep": 19,
       "year": 1825,
       "video": "videos/ep19_year1825.mp4",
-      "publish": "2026-11-03 10:00",
-      "metricool_post_id": 409640564
+      "publish": "2026-11-04 10:00",
+      "metricool_post_id": 413397936
     },
     {
       "ep": 20,
       "year": 1900,
       "video": "videos/ep20_year1900.mp4",
-      "publish": "2026-11-04 10:00",
-      "metricool_post_id": 410777235
+      "publish": "2026-11-06 10:00",
+      "metricool_post_id": 413397979
     },
     {
       "ep": 21,
       "year": 1911,
       "video": "videos/ep21_year1911.mp4",
-      "publish": "2026-11-05 10:00",
-      "metricool_post_id": 411872044
+      "publish": "2026-11-08 10:00",
+      "metricool_post_id": 413398023
     },
     {
       "ep": 22,
       "year": 1914,
       "video": "videos/ep22_year1914.mp4",
-      "publish": "2026-11-06 10:00",
-      "metricool_post_id": 412636486
+      "publish": "2026-11-10 10:00",
+      "metricool_post_id": 413398067
     }
   ],
   "next_publish_time": "10:00",
-  "schedule_rule": "Mon-Sat: one episode at 10:00. Sunday: two episodes, 10:00 and 11:00 (Europe/Oslo). See RUNBOOK step 8-9.",
+  "schedule_rule": "FREE Metricool plan = max 20 published posts per calendar month (all networks in one post count as 1). One episode every OTHER day at 10:00 (no Sunday double, no clips). Never schedule a post in a month that already has 20 published+scheduled (non-draft) posts – move it to the 1st of the next month. See RUNBOOK step 8.",
   "clips_done": [
     {
       "from_ep": 4,
@@ -320,5 +320,6 @@
       "file": "videos/clips/clip_ep18_moscow.mp4",
       "metricool_post_id": 412636490
     }
-  ]
+  ],
+  "clips_paused": "Clips 14,15,16,18 set to DRAFT in Metricool (free plan limit). Do not make or schedule clips while on the free plan."
 }
