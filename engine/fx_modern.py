@@ -35,6 +35,7 @@ def _flag(code, w=30, h=20):
         d.rectangle([0, H * 0.5 / 7, W, H], outline=None)
         for i in range(7): d.rectangle([0, H * (i + 0.5) / 7, W, H * (i + 1) / 7], fill=Wh)
         d.rectangle([0, 0, W * .42, H * .54], fill=B)
+    elif code == "rs": hstripes([R, (40, 70, 160), Wh])
     elif code == "uk":
         d.rectangle([0, 0, W, H], fill=B)
         d.line([(0, 0), (W, H)], fill=Wh, width=int(H * .22)); d.line([(0, H), (W, 0)], fill=Wh, width=int(H * .22))
