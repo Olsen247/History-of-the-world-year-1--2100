@@ -80,33 +80,68 @@
     },
     {
       "ep": 23,
-      "year": 1922,
-      "topic": "The world after the First World War"
+      "year": 1916,
+      "topic": "The First World War, part 2: Gallipoli, poison gas, Verdun, the Somme (first tanks), Jutland – how trench warfare worked"
     },
     {
       "ep": 24,
-      "year": 1942,
-      "topic": "The Second World War at its height"
+      "year": 1918,
+      "topic": "The First World War, part 3: U-boats, the USA joins, the Russian Revolution, stormtroopers and the Spring Offensive, Lawrence and the Arab Revolt, the Hundred Days and the armistice"
     },
     {
       "ep": 25,
+      "year": 1922,
+      "topic": "The world after the First World War: Versailles, new countries, the Spanish flu, the end of the Ottoman Empire, the USSR is founded"
+    },
+    {
+      "ep": 26,
+      "year": 1939,
+      "topic": "The Second World War, part 1: the road to war – the Great Depression, Manchuria, Hitler in power, the Spanish Civil War, Anschluss, Munich, the invasion of Poland"
+    },
+    {
+      "ep": 27,
+      "year": 1941,
+      "topic": "The Second World War, part 2: Blitzkrieg, Dunkirk, the Battle of Britain (radar, Spitfires), Barbarossa, Pearl Harbor"
+    },
+    {
+      "ep": 28,
+      "year": 1943,
+      "topic": "The Second World War, part 3: Midway, El Alamein, Stalingrad, the Battle of the Atlantic and Enigma, Kursk – the largest tank battle"
+    },
+    {
+      "ep": 29,
+      "year": 1945,
+      "topic": "The Second World War, part 4: D-Day, Operation Bagration, Leyte Gulf, the Bulge, Iwo Jima, Berlin, the atomic bombs and the surrender"
+    },
+    {
+      "ep": 30,
+      "year": 1953,
+      "topic": "The Cold War begins: the iron curtain, the Berlin Airlift, NATO, China's revolution, the Korean War"
+    },
+    {
+      "ep": 31,
       "year": 1960,
       "topic": "Decolonisation of Africa and Asia"
     },
     {
-      "ep": 26,
+      "ep": 32,
       "year": 1969,
-      "topic": "The Moon landing and the Cold War"
+      "topic": "The space race and the Moon landing; the Vietnam War escalates"
     },
     {
-      "ep": 27,
+      "ep": 33,
+      "year": 1975,
+      "topic": "The Vietnam War ends: Tet, the Ho Chi Minh trail, helicopters and jungle war, the fall of Saigon"
+    },
+    {
+      "ep": 34,
       "year": 1991,
-      "topic": "The Soviet Union falls"
+      "topic": "The Soviet Union falls; the Gulf War"
     },
     {
-      "ep": 28,
+      "ep": 35,
       "year": 2026,
-      "topic": "The world today"
+      "topic": "The world today (no ongoing wars – neutral overview)"
     }
   ],
   "done": [

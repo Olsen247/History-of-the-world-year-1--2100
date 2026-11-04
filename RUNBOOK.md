@@ -47,6 +47,20 @@ Effect syntax:
 - `dict(type="cities", cities=[(lon, lat, weight 0.5–1.5), ...], t0, t1, until=…)` – glowing city lights.
 Detail should grow gradually: early episodes stay clean; from ~1700 more labels/cities; from 1914 the full modern overlay.
 
+## War episodes (owner's wish, Nov 2026): big wars get several episodes, with lots of exact detail
+The plan in state.json splits the world wars (and Korea/Vietnam) into several episodes. For every war episode:
+- Explain HOW the fighting worked, not only who won: weapons (machine guns, artillery and creeping barrages, poison gas,
+  tanks, U-boats and convoys, aircraft carriers, radar, Blitzkrieg = tanks + dive bombers + radio), tactics, numbers of
+  troops/ships/tanks, the commanders, and how each attack actually went (where they attacked, from which direction, what
+  stopped them). At least 2 such "how it worked" details per battle line. Every number is fact-checked (step 2b).
+- Animate it in detail with the modern overlay: flag fronts that move day by day, separate arrows for each army, vehicles of
+  the right kind (`plane`, `airship`, `warship`, `jet`, `train`; add new sprites to `fx_modern.py` when needed – e.g.
+  `tank`, `submarine`, `bomber`, `carrier`, `landing_craft` – and commit them), silent blasts on the battle sites.
+- Name the battles on the map in gold, and use headings like "VERDUN – 300 DAYS".
+- Stay factual and respectful: no gore, give casualty numbers soberly, mention the Holocaust and other atrocities clearly and
+  respectfully when the period covers them, never show Nazi or other hate symbols (plain colour chips), never cover wars that
+  are still going on.
+
 ## Modern wars (from about Year 1914 and later) – overlay style approved by the owner
 Same satellite map as always – only the war overlay changes (`fx_modern.py`, reference: `engine/demo_ww1.py`):
 - **Front lines of flags** instead of marching soldiers: `dict(type="front", path0=[...], path1=[...], t_in, t_out, move0, move1,
