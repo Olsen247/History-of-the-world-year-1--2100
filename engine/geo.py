@@ -119,24 +119,68 @@ def build_terrain():
     img = Image.fromarray(out, "RGB").filter(ImageFilter.UnsharpMask(radius=2, percent=70, threshold=2))
     return img, landi
 
+def _rough(data, name, polys, land):
+    im = Image.new("L", (W, H), 0); d = ImageDraw.Draw(im)
+    for pts in polys: d.polygon(P.poly(pts), fill=255)
+    m = np.minimum(np.asarray(im), land)
+    if getattr(data, "EXCLUSIVE", False):
+        later = Image.new("L", (W, H), 0); dl = ImageDraw.Draw(later)
+        idx = [e[0] for e in data.EMPIRES].index(name)
+        for e2 in data.EMPIRES[idx + 1:]:
+            for pts in e2[2]: dl.polygon(P.poly(pts), fill=255)
+        m = np.where(np.asarray(later) > 0, 0, m).astype(np.uint8)
+    return m
+
+def _crop(name, col, m, pad=40):
+    ys, xs = np.nonzero(m)
+    if len(xs) == 0: return None
+    bb = (max(0, xs.min() - pad), max(0, ys.min() - pad), min(W, xs.max() + pad), min(H, ys.max() + pad))
+    return (name, col, Image.fromarray(m[bb[1]:bb[3], bb[0]:bb[2]]), bb)
+
+def map_year(data):
+    """Year used to pick real borders: data.YEAR, else the digits in the module name (world_data_1453b -> 1453)."""
+    if getattr(data, "YEAR", None) is not None: return data.YEAR
+    import re
+    m = re.search(r"(\d{1,4})", getattr(data, "__name__", ""))
+    return int(m.group(1)) if m else None
+
 def empire_masks(data, land_l):
+    """Empire colour masks. Unless data.HB is False, every empire is snapped to real historical borders (hb_snap.py)."""
     land = np.asarray(land_l)
+    year = map_year(data)
+    if getattr(data, "HB", True) is False or year is None:
+        out = []
+        for name, col, polys, lab in data.EMPIRES:
+            c = _crop(name, col, _rough(data, name, polys, land))
+            if c: out.append(c)
+        return out
+    import hb_snap
+    lab, names = hb_snap.label_image(year, P, W, H)
+    if lab is None:
+        data.HB = False; return empire_masks(data, land_l)
+    landb = land > 127
+    labl = np.where(landb, lab, 0); del lab
+    n = int(labl.max()) + 1
+    area = np.bincount(labl.ravel(), minlength=n).astype(np.float64)
+    owner = np.full(n, -1, np.int32); best = np.zeros(n); blanks = []
+    for e, (name, col, polys, _) in enumerate(data.EMPIRES):
+        m = _rough(data, name, polys, land) > 127
+        cnt = np.bincount(labl[m], minlength=n).astype(np.float64)
+        share = cnt / np.maximum(area, 1)
+        take = share >= max(hb_snap.MIN_SHARE, 1e-9)
+        take &= (share >= best) if getattr(data, "EXCLUSIVE", False) else (share > best)
+        take[0] = False
+        owner[take] = e; best[take] = share[take]
+        blanks.append(_crop(name, col, ((m & (labl == 0)) * 255).astype(np.uint8), pad=0))   # land the dataset leaves blank
+    own = owner[labl]; own[labl == 0] = -1
     out = []
-    for name, col, polys, lab in data.EMPIRES:
-        im = Image.new("L", (W, H), 0); d = ImageDraw.Draw(im)
-        for pts in polys: d.polygon(P.poly(pts), fill=255)
-        m = np.minimum(np.asarray(im), land)
-        if getattr(data, "EXCLUSIVE", False):
-            later = Image.new("L", (W, H), 0); dl = ImageDraw.Draw(later)
-            idx = [e[0] for e in data.EMPIRES].index(name)
-            for e2 in data.EMPIRES[idx + 1:]:
-                for pts in e2[2]: dl.polygon(P.poly(pts), fill=255)
-            m = np.where(np.asarray(later) > 0, 0, m).astype(np.uint8)
-        ys, xs = np.nonzero(m)
-        if len(xs) == 0: continue
-        pad = 40
-        bb = (max(0, xs.min() - pad), max(0, ys.min() - pad), min(W, xs.max() + pad), min(H, ys.max() + pad))
-        out.append((name, col, Image.fromarray(m[bb[1]:bb[3], bb[0]:bb[2]]), bb))
+    for e, (name, col, polys, _) in enumerate(data.EMPIRES):
+        m = (own == e)
+        b = blanks[e]
+        if b is not None:
+            x0, y0, x1, y1 = b[3]; m[y0:y1, x0:x1] |= np.asarray(b[2]) > 127
+        c = _crop(name, col, (m * 255).astype(np.uint8))
+        if c: out.append(c)
     return out
 
 def overlay_empires(ter, masks, alpha=0.88):
@@ -184,3 +228,17 @@ if __name__ == "__main__":
         overlay_empires(ter, empire_masks(D, land)).save(sys.argv[2]); print("ok", sys.argv[2]); raise SystemExit
     overlay_empires(ter, empire_masks(B, land)).save("/home/claude/shortgen/hd_117.png")
     print("ok", ter.size)
+
+_MASK_CACHE = {}
+def mask_of(data, name):
+    """Full-size bool mask of one empire, exactly as drawn on the base map (snapped to real borders). None if absent."""
+    key = getattr(data, "__name__", id(data))
+    if key not in _MASK_CACHE:
+        land = Image.open("/home/claude/shortgen/hd_land.png").convert("L")
+        if len(_MASK_CACHE) >= 3: _MASK_CACHE.pop(next(iter(_MASK_CACHE)))   # keep memory low
+        _MASK_CACHE[key] = {n: (mi, bb) for n, col, mi, bb in empire_masks(data, land)}
+    got = _MASK_CACHE[key].get(name)
+    if got is None: return None
+    mi, (x0, y0, x1, y1) = got
+    m = np.zeros((H, W), bool); m[y0:y1, x0:x1] = np.asarray(mi) > 127
+    return m

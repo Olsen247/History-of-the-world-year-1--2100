@@ -24,6 +24,7 @@ class _Lazy(dict):
         m = self._calc(nm)
         if m is None: return default
         self[nm] = m; return m
+_Lazy._calc = lambda self, nm: geo.mask_of(self.data, nm)   # snapped borders
 R.masks = _Lazy
 def grp(a, b, specs):
     R._mc.clear(); R.build(a, b, specs, None, merge=regs)

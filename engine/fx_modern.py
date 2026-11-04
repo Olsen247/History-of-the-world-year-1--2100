@@ -27,7 +27,6 @@ def _flag(code, w=30, h=20):
     elif code == "ru": hstripes([Wh, (40, 80, 180), R])
     elif code == "ah": hstripes([R, Wh, R])
     elif code == "nl": hstripes([R, Wh, B])
-    elif code == "rs": hstripes([R, (40, 70, 160), Wh])
     elif code == "ot":
         d.rectangle([0, 0, W, H], fill=R)
         d.ellipse([W * .30, H * .25, W * .55, H * .75], fill=Wh); d.ellipse([W * .36, H * .28, W * .60, H * .72], fill=R)
@@ -132,13 +131,66 @@ def _rocket(size=90):
     d.polygon([(w * .34, n * .80), (w * .66, n * .80), (w * .5, n * 1.0)], fill=(255, 170, 40, 255))
     return im.resize((int(w / S3), size), Image.LANCZOS)
 
+
+def _outl(im, pad=4):
+    out = Image.new("RGBA", (im.width + 2 * pad, im.height + 2 * pad), (0, 0, 0, 0))
+    a = Image.new("L", out.size, 0); a.paste(im.getchannel("A"), (pad, pad))
+    ol = Image.new("RGBA", out.size, (255, 255, 255, 255)); ol.putalpha(a.filter(ImageFilter.MaxFilter(3)).point(lambda v: int(v * .85)))
+    out.alpha_composite(ol); out.alpha_composite(im, (pad, pad)); return out
+
+def _tank(size=60, col=(95, 105, 80)):
+    """Side view, gun to the right (WW1 rhomboid if size<0 not used; generic WW2 style)."""
+    n = size * S3; h = int(n * .6); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    dk = tuple(int(v * .55) for v in col) + (255,); c = col + (255,)
+    d.rounded_rectangle([n * .04, h * .55, n * .92, h * .95], radius=h * .2, fill=(45, 45, 45, 255))          # tracks
+    for x in (.14, .3, .46, .62, .78): d.ellipse([n * x - h * .1, h * .62, n * x + h * .1, h * .88], fill=(110, 110, 110, 255))
+    d.polygon([(n * .08, h * .58), (n * .2, h * .36), (n * .82, h * .36), (n * .9, h * .58)], fill=c, outline=dk)   # hull
+    d.rounded_rectangle([n * .32, h * .12, n * .64, h * .4], radius=h * .08, fill=c, outline=dk)                      # turret
+    d.rectangle([n * .64, h * .2, n * 1.0, h * .27], fill=dk)                                                      # gun
+    return _outl(im.resize((size, int(size * .6)), Image.LANCZOS))
+
+def _submarine(size=70):
+    n = size * S3; h = int(n * .3); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    g = (70, 78, 86, 255)
+    d.ellipse([0, h * .45, n, h * .95], fill=g)
+    d.rounded_rectangle([n * .42, h * .1, n * .58, h * .6], radius=h * .05, fill=g)
+    d.line([(n * .5, 0), (n * .5, h * .12)], fill=g, width=S3 * 2)
+    return _outl(im.resize((size, int(size * .3)), Image.LANCZOS))
+
+def _bomber(size=70, col=(200, 205, 210)):
+    n = size * S3; im = Image.new("RGBA", (n, n), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    dk = (80, 85, 92, 255); c = col + (255,)
+    d.rounded_rectangle([n * .45, n * .05, n * .55, n * .92], radius=n * .05, fill=c, outline=dk)
+    d.polygon([(n * .02, n * .42), (n * .98, n * .42), (n * .98, n * .5), (n * .02, n * .5)], fill=c, outline=dk)
+    for x in (.16, .32, .68, .84): d.ellipse([n * x - n * .035, n * .36, n * x + n * .035, n * .44], fill=dk)
+    d.polygon([(n * .3, n * .84), (n * .7, n * .84), (n * .7, n * .9), (n * .3, n * .9)], fill=c, outline=dk)
+    im = im.resize((size, size), Image.LANCZOS)
+    sh = Image.new("RGBA", im.size, (0, 0, 0, 0)); sh.putalpha(im.getchannel("A").point(lambda v: int(v * .45)))
+    out = Image.new("RGBA", (size + 14, size + 14), (0, 0, 0, 0)); out.alpha_composite(sh, (12, 12)); out.alpha_composite(im, (0, 0)); return out
+
+def _carrier(size=90):
+    n = size * S3; h = int(n * .26); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.polygon([(0, h * .5), (n * .08, h * .1), (n * .95, h * .1), (n, h * .5), (n * .95, h * .9), (n * .08, h * .9)], fill=(120, 125, 130, 255), outline=(60, 62, 66, 255))
+    d.line([(n * .1, h * .5), (n * .9, h * .5)], fill=(235, 235, 235, 255), width=S3)
+    d.rectangle([n * .62, h * .02, n * .72, h * .3], fill=(90, 94, 100, 255))
+    return im.resize((size, int(size * .26)), Image.LANCZOS)
+
+def _landing(size=40):
+    n = size * S3; h = int(n * .5); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.polygon([(0, h * .2), (n * .85, h * .2), (n, h * .5), (n * .85, h * .8), (0, h * .8)], fill=(95, 110, 95, 255), outline=(50, 60, 50, 255))
+    return _outl(im.resize((size, int(size * .5)), Image.LANCZOS))
+
+EXTRA = {"tank": (_tank, 56), "submarine": (_submarine, 70), "bomber": (_bomber, 66), "carrier": (_carrier, 92), "landing_craft": (_landing, 40)}
+
 def sprite(kind, size):
     k = (kind, size)
     if k not in _cache:
         if kind == "steamer":
             import fx_eras as FE; _cache[k] = FE.ship("steamer", (190, 60, 50), size)
         else:
-            _cache[k] = {"plane": _plane, "airship": _airship, "warship": _warship, "jet": _jet, "train": _train, "rocket": _rocket}[kind](size)
+            fns = {"plane": _plane, "airship": _airship, "warship": _warship, "jet": _jet, "train": _train, "rocket": _rocket}
+            fns.update({k2: v[0] for k2, v in EXTRA.items()})
+            _cache[k] = fns[kind](size)
     return _cache[k]
 
 # ---------------- path helpers ----------------
@@ -215,10 +267,10 @@ def draw_vehicle(fr, S, vw, t, ev, zscale):
         elif kind == "rocket":
             pass
         else:
-            dotted(d, pts, k if kind not in ("warship", "steamer") else 1.0, col=(235, 235, 235, int(190 * fade)), width=max(2, int(4 * zw)))
+            dotted(d, pts, k if kind not in ("warship", "steamer", "carrier", "submarine") else 1.0, col=(235, 235, 235, int(190 * fade)), width=max(2, int(4 * zw)))
         fr.paste(lay, (0, 0), lay)
     (x, y), ang = point_at(pts, k)
-    size = int({"plane": 54, "airship": 120, "warship": 78, "jet": 58, "train": 64, "steamer": 66}[ev["kind"]] * zscale(vw) * ev.get("scale", 1.0))
+    size = int({"plane": 54, "airship": 120, "warship": 78, "jet": 58, "train": 64, "steamer": 66, **{k2: v[1] for k2, v in EXTRA.items()}}[ev["kind"]] * zscale(vw) * ev.get("scale", 1.0))
     im = sprite(ev["kind"], size)
     if ev["kind"] == "train":
         rnd = random.Random(int(t * 30))
@@ -229,7 +281,9 @@ def draw_vehicle(fr, S, vw, t, ev, zscale):
             d.ellipse([px - r, py - r, px + r, py + r], fill=(245, 245, 245, int(150 * fade * (1 - j / 5))))
         fr.paste(lay.filter(ImageFilter.GaussianBlur(2)), (0, 0), lay.filter(ImageFilter.GaussianBlur(2)))
         if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
-    elif ev["kind"] in ("plane", "jet"): im = rotate(im, -math.degrees(ang) - 90)
+    elif ev["kind"] in ("plane", "jet", "bomber"): im = rotate(im, -math.degrees(ang) - 90)
+    elif ev["kind"] in ("tank", "submarine", "carrier", "landing_craft"):
+        if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     elif ev["kind"] == "steamer":
         if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     elif ev["kind"] == "warship":

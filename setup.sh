@@ -12,6 +12,11 @@ BMD=$(python3 -c "import mpl_toolkits.basemap_data as b; print(list(b.__path__)[
 sed -i "s|^BMD = .*|BMD = \"$BMD/\"|" /home/claude/shortgen/geo.py
 ls /usr/share/fonts/opentype/inter/InterDisplay-BlackItalic.otf /usr/share/fonts/truetype/crosextra/Caladea-Bold.ttf >/dev/null || \
   (apt-get install -y fonts-inter fonts-crosextra-caladea >/dev/null 2>&1 || echo "FONTS MISSING")
+# real historical borders (historical-basemaps by A. Ourednik, GPL-3.0) used by hb_snap.py
+if [ ! -f /home/claude/shortgen/hb/world_1900.geojson ]; then
+  rm -rf /tmp/hb_src && git clone -q --depth 1 https://github.com/aourednik/historical-basemaps.git /tmp/hb_src
+  mkdir -p /home/claude/shortgen/hb && cp /tmp/hb_src/geojson/world_*.geojson /home/claude/shortgen/hb/ && cp /tmp/hb_src/LICENSE /home/claude/shortgen/hb/LICENSE_historical-basemaps
+fi
 cd /home/claude/shortgen
 # full-resolution terrain + land mask (takes a few minutes, needs ~3 GB RAM)
 [ -f hd_terrain.png ] || python3 -c "import geo; t,l=geo.build_terrain(); t.save('hd_terrain.png'); l.save('hd_land.png')"

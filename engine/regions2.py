@@ -10,6 +10,12 @@ Image.MAX_IMAGE_PIXELS = None
 LAND = None
 
 def masks(data):
+    if getattr(data, "HB", True) is not False:      # same snapped borders as the base map
+        out = {}
+        for name, col, polys, lab in data.EMPIRES:
+            m = geo.mask_of(data, name)
+            if m is not None: out[name] = m
+        return out
     land = np.asarray(Image.open("/home/claude/shortgen/hd_land.png").convert("L")) > 110
     out = {}
     for name, col, polys, lab in data.EMPIRES:

@@ -61,6 +61,17 @@ The plan in state.json splits the world wars (and Korea/Vietnam) into several ep
   respectfully when the period covers them, never show Nazi or other hate symbols (plain colour chips), never cover wars that
   are still going on.
 
+## Real borders (owner's wish, Nov 2026): colours must cover each country exactly
+`geo.py` now snaps every empire to real historical borders (`hb_snap.py`, data in `/home/claude/shortgen/hb/`, installed by
+setup.sh from github.com/aourednik/historical-basemaps, GPL-3.0). The dataset year closest to the map year is used
+(the year comes from `YEAR = ...` in the data module, else the digits in its name). Each border shape goes to the empire whose
+rough polygon covers most of it, so rough polygons only decide WHO owns a country – the exact shape comes from the dataset.
+Region reveals use the same snapped masks (`geo.mask_of`). Rules:
+- Still draw sensible rough polygons (they decide ownership); check stills: no holes, no colour bleeding into neighbours.
+- If a country is split wrongly (e.g. a colony that the dataset lumps together), draw its rough polygon to cover clearly
+  more than 35 % of the shape, or set `HB = False` in that one data module as a last resort.
+- In the episode's `regions_epNN.py`, if you write your own lazy mask class, its mask must come from `geo.mask_of(data, name)`.
+
 ## Modern wars (from about Year 1914 and later) – overlay style approved by the owner
 Same satellite map as always – only the war overlay changes (`fx_modern.py`, reference: `engine/demo_ww1.py`):
 - **Front lines of flags** instead of marching soldiers: `dict(type="front", path0=[...], path1=[...], t_in, t_out, move0, move1,
