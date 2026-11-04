@@ -225,21 +225,21 @@
     {
       "ep": 20,
       "year": 1900,
-      "video": "videos/ep20_year1900.mp4",
+      "video": "videos/ep20_year1900_v2.mp4",
       "publish": "2026-11-06 10:00",
       "metricool_post_id": 413397979
     },
     {
       "ep": 21,
       "year": 1911,
-      "video": "videos/ep21_year1911.mp4",
+      "video": "videos/ep21_year1911_v2.mp4",
       "publish": "2026-11-08 10:00",
       "metricool_post_id": 413398023
     },
     {
       "ep": 22,
       "year": 1914,
-      "video": "videos/ep22_year1914.mp4",
+      "video": "videos/ep22_year1914_v2.mp4",
       "publish": "2026-11-10 10:00",
       "metricool_post_id": 413398067
     }
