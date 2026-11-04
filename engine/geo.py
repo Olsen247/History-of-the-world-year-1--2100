@@ -162,16 +162,24 @@ def empire_masks(data, land_l):
     labl = np.where(landb, lab, 0); del lab
     n = int(labl.max()) + 1
     area = np.bincount(labl.ravel(), minlength=n).astype(np.float64)
-    owner = np.full(n, -1, np.int32); best = np.zeros(n); blanks = []
+    shares = []
     for e, (name, col, polys, _) in enumerate(data.EMPIRES):
         m = _rough(data, name, polys, land) > 127
-        cnt = np.bincount(labl[m], minlength=n).astype(np.float64)
-        share = cnt / np.maximum(area, 1)
-        take = share >= max(hb_snap.MIN_SHARE, 1e-9)
-        take &= (share >= best) if getattr(data, "EXCLUSIVE", False) else (share > best)
-        take[0] = False
-        owner[take] = e; best[take] = share[take]
-        blanks.append(_crop(name, col, ((m & (labl == 0)) * 255).astype(np.uint8), pad=0))   # land the dataset leaves blank
+        shares.append(np.bincount(labl[m], minlength=n).astype(np.float64) / np.maximum(area, 1))
+    S = np.array(shares)                                   # empires x shapes
+    order = np.argsort(-S, axis=0, kind="stable")
+    best_e = order[0]; best = S[best_e, np.arange(n)]
+    second = S[order[1], np.arange(n)] if len(S) > 1 else np.zeros(n)
+    if getattr(data, "EXCLUSIVE", False):                  # later empires win exact ties
+        for e in range(len(S)): best_e = np.where(S[e] >= best, e, best_e)
+    # snap a shape only when one empire clearly owns it; shapes split between empires keep the rough borders inside them
+    snap_ok = (best >= hb_snap.MIN_SHARE) & (second < 0.15); snap_ok[0] = False
+    owner = np.where(snap_ok, best_e, -1).astype(np.int32)
+    rough_zone = ~snap_ok[labl]                            # land where rough polygons decide (blank or split shapes)
+    blanks = []
+    for e, (name, col, polys, _) in enumerate(data.EMPIRES):
+        m = _rough(data, name, polys, land) > 127
+        blanks.append(_crop(name, col, ((m & rough_zone) * 255).astype(np.uint8), pad=0))
     own = owner[labl]; own[labl == 0] = -1
     out = []
     for e, (name, col, polys, _) in enumerate(data.EMPIRES):

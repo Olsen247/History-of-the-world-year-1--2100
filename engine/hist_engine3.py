@@ -61,6 +61,7 @@ def setup(cfg):
     e.regions = pickle.load(open(cfg["regions"], "rb")) if cfg.get("regions") else {}
     e.pieces = {}
     for rv in e.reveals:
+        if rv["key"] not in e.regions: print("note: region missing, reveal skipped:", rv["key"]); continue
         if rv.get("mode") == "shatter": e.pieces[rv["key"]] = make_pieces(e, e.regions[rv["key"]], rv)
     e.vig = make_vignette()
     e.routes = cfg.get("routes", [])
@@ -223,6 +224,7 @@ def draw_shatter(fr, rv, t, x0, y0, s):
 
 def draw_reveal(fr, rv, t, x0, y0, s):
     e = CFG
+    if rv["key"] not in e.regions: return
     if rv.get("mode") == "shatter": return draw_shatter(fr, rv, t, x0, y0, s)
     key, t0, t1, until = rv["key"], rv["t0"], rv["t1"], rv.get("until", 1e9)
     if t < t0 or t >= until: return
