@@ -1,9 +1,9 @@
 {
-  "next_episode": 23,
-  "previous_year": 1914,
-  "previous_year_module": "world_data_1914w",
-  "previous_base_map": "hd_1914w.png",
-  "next_publish_date": "2026-11-12",
+  "next_episode": 24,
+  "previous_year": 1916,
+  "previous_year_module": "world_data_1916",
+  "previous_base_map": "hd_1916.png",
+  "next_publish_date": "2026-11-14",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -242,6 +242,13 @@
       "video": "videos/ep22_year1914_v2.mp4",
       "publish": "2026-11-10 10:00",
       "metricool_post_id": 413398067
+    },
+    {
+      "ep": 23,
+      "year": 1916,
+      "video": "videos/ep23_year1916.mp4",
+      "publish": "2026-11-12 10:00",
+      "metricool_post_id": 418472642
     }
   ],
   "next_publish_time": "10:00",
