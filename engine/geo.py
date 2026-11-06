@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 Image.MAX_IMAGE_PIXELS = None
 
-BMD = "/usr/local/lib/python3.13/dist-packages/mpl_toolkits/basemap_data/"
+BMD = "/usr/local/lib/python3.13/site-packages/mpl_toolkits/basemap_data/"
 TOPO = "/home/claude/geo/node_modules/world-atlas/land-50m.json"
 LAT_N, LAT_S = 78.0, -56.0
 W = 9600
@@ -181,12 +181,35 @@ def empire_masks(data, land_l):
         m = _rough(data, name, polys, land) > 127
         blanks.append(_crop(name, col, ((m & rough_zone) * 255).astype(np.uint8), pad=0))
     own = owner[labl]; own[labl == 0] = -1
+    # OVERLAY entries (wartime occupations etc.) keep their rough polygon on top of the snapped borders
+    # OVERLAY = ["NAME", ...] or {"NAME": ["VICTIM EMPIRE", ...]} – with a dict the overlay only replaces those empires' land
+    ov_spec = getattr(data, "OVERLAY", ())
+    ov_spec = ov_spec if isinstance(ov_spec, dict) else {nm: None for nm in ov_spec}
+    idx = {name: e for e, (name, *_r) in enumerate(data.EMPIRES)}
+    ov = {}
+    for e, (name, col, polys, _) in enumerate(data.EMPIRES):
+        if name in ov_spec:
+            m = (_rough(data, name, polys, land) > 127) & landb
+            if ov_spec[name]:
+                keep = np.zeros_like(m)
+                for v in ov_spec[name]:
+                    if v in idx: keep |= (own == idx[v])
+                keep |= (own == -1)
+                m &= keep
+            ov[e] = m
+    ov_any = None
+    for e in ov: ov_any = ov[e] if ov_any is None else (ov_any | ov[e])
     out = []
     for e, (name, col, polys, _) in enumerate(data.EMPIRES):
         m = (own == e)
         b = blanks[e]
         if b is not None:
             x0, y0, x1, y1 = b[3]; m[y0:y1, x0:x1] |= np.asarray(b[2]) > 127
+        if e in ov:
+            m = m | ov[e]
+            for e2 in ov:
+                if e2 > e: m &= ~ov[e2]
+        elif ov_any is not None: m &= ~ov_any
         c = _crop(name, col, (m * 255).astype(np.uint8))
         if c: out.append(c)
     return out

@@ -527,6 +527,13 @@ P = {
  "smith": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(245, 245, 240), hair="short", hair_col=(225, 222, 215), beard="short", beard_col=(240, 238, 232), robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(40, 70, 120)),
  "joffre": dict(hat="peaked", hat_col=(30, 35, 60), top_col=(190, 40, 50), hair="short", hair_col=(235, 232, 228), beard="mustache", beard_col=(245, 242, 238), robe=(30, 35, 60), lapels=(45, 52, 85), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(60, 95, 200)),
  "kutuzov": dict(hair="short", hair_col=(225, 222, 215), beard="none", robe=(30, 70, 45), lapels=(200, 40, 40), lace=True, skin=(232, 196, 168), nose=1.4, eye=(70, 90, 110), age=True, bg=(60, 110, 70)),
+ # Ep 23
+ "kemal": dict(hat="fur", hat_col=(120, 112, 100), hair="short", hair_col=(170, 130, 85), beard="mustache", beard_col=(160, 120, 80), robe=(135, 125, 90), lapels=(110, 100, 70), skin=(232, 196, 168), nose=1.2, eye=(90, 125, 160), bg=(180, 50, 50)),
+ "falkenhayn": dict(hat="peaked", hat_col=(180, 40, 40), top_col=(110, 115, 100), hair="short", hair_col=(225, 222, 215), beard="mustache", beard_col=(235, 232, 226), robe=(110, 115, 100), lapels=(90, 95, 82), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(90, 90, 100)),
+ "petain": dict(hat="peaked", hat_col=(30, 35, 60), top_col=(190, 40, 50), hair="short", hair_col=(240, 238, 232), beard="mustache", beard_col=(245, 243, 238), robe=(115, 135, 165), lapels=(80, 95, 130), lace=True, skin=(232, 196, 170), nose=1.2, eye=(80, 120, 170), age=True, bg=(60, 95, 200)),
+ "haig": dict(hat="peaked", hat_col=(180, 35, 40), top_col=(140, 125, 85), hair="short", hair_col=(200, 196, 188), beard="mustache", beard_col=(215, 210, 200), robe=(150, 132, 92), lapels=(125, 110, 75), lace=True, skin=(232, 196, 170), nose=1.2, eye=(80, 110, 140), age=True, bg=(210, 100, 130)),
+ "jellicoe": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(245, 245, 240), hair="short", hair_col=(120, 100, 80), beard="none", robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(232, 196, 170), nose=1.6, eye=(70, 100, 130), bg=(40, 70, 120)),
+ "scheer": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(20, 25, 45), hair="short", hair_col=(200, 196, 190), beard="short", beard_col=(215, 212, 206), robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(90, 90, 100)),
 }
 
 def get(who, size=210):

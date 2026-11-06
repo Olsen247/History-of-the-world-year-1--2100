@@ -36,6 +36,17 @@ def _flag(code, w=30, h=20):
         for i in range(7): d.rectangle([0, H * (i + 0.5) / 7, W, H * (i + 1) / 7], fill=Wh)
         d.rectangle([0, 0, W * .42, H * .54], fill=B)
     elif code == "rs": hstripes([R, (40, 70, 160), Wh])
+    elif code in ("au", "nz"):      # blue ensigns: small Union canton + Southern Cross stars
+        NB = (20, 40, 120); d.rectangle([0, 0, W, H], fill=NB)
+        cw, ch = W * .5, H * .5
+        d.line([(0, 0), (cw, ch)], fill=Wh, width=int(H * .1)); d.line([(0, ch), (cw, 0)], fill=Wh, width=int(H * .1))
+        d.rectangle([cw * .40, 0, cw * .60, ch], fill=Wh); d.rectangle([0, ch * .35, cw, ch * .65], fill=Wh)
+        d.rectangle([cw * .45, 0, cw * .55, ch], fill=R); d.rectangle([0, ch * .42, cw, ch * .58], fill=R)
+        stars = [(.75, .25), (.62, .55), (.88, .5), (.75, .82)] + ([(.25, .78)] if code == "au" else [])
+        for sx, sy in stars:
+            r = H * (.09 if code == "au" else .08)
+            if code == "nz": d.ellipse([W * sx - r * 1.4, H * sy - r * 1.4, W * sx + r * 1.4, H * sy + r * 1.4], fill=Wh)
+            d.ellipse([W * sx - r, H * sy - r, W * sx + r, H * sy + r], fill=Wh if code == "au" else R)
     elif code == "uk":
         d.rectangle([0, 0, W, H], fill=B)
         d.line([(0, 0), (W, H)], fill=Wh, width=int(H * .22)); d.line([(0, H), (W, 0)], fill=Wh, width=int(H * .22))
@@ -150,6 +161,32 @@ def _tank(size=60, col=(95, 105, 80)):
     d.rectangle([n * .64, h * .2, n * 1.0, h * .27], fill=dk)                                                      # gun
     return _outl(im.resize((size, int(size * .6)), Image.LANCZOS))
 
+def _tank1916(size=60, col=(120, 110, 80)):
+    """British Mark I (1916): rhomboid hull with tracks running all the way round, gun in a side sponson, no turret."""
+    n = size * S3; h = int(n * .55); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    dk = tuple(int(v * .55) for v in col) + (255,); c = col + (255,)
+    hull = [(n * .02, h * .55), (n * .16, h * .08), (n * .70, h * .08), (n * .98, h * .62), (n * .86, h * .96), (n * .12, h * .96)]
+    d.polygon(hull, fill=(50, 48, 42, 255))
+    inner = [(n * .08, h * .56), (n * .19, h * .2), (n * .68, h * .2), (n * .9, h * .62), (n * .82, h * .86), (n * .15, h * .86)]
+    d.polygon(inner, fill=c, outline=dk)
+    for i in range(12):
+        x = n * (.12 + i * .065); d.line([(x, h * .9), (x + n * .02, h * .97)], fill=(90, 88, 80, 255), width=S3 * 2)
+    d.rounded_rectangle([n * .38, h * .42, n * .58, h * .72], radius=h * .06, fill=dk)
+    d.rectangle([n * .56, h * .5, n * .74, h * .58], fill=(40, 40, 40, 255))
+    d.line([(n * .05, h * .6), (-1, h * .9)], fill=(40, 40, 40, 255), width=S3 * 2)   # steering tail
+    return _outl(im.resize((size, int(size * .55)), Image.LANCZOS))
+
+def _truck(size=40, col=(110, 120, 95)):
+    """WW1 lorry (Verdun's Sacred Way): cab at the front (right), canvas-covered load bed, solid wheels."""
+    n = size * S3; h = int(n * .6); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    dk = tuple(int(v * .6) for v in col) + (255,); c = col + (255,)
+    d.rounded_rectangle([n * .04, h * .12, n * .66, h * .7], radius=h * .14, fill=(170, 160, 125, 255), outline=dk)   # canvas
+    d.rectangle([n * .68, h * .3, n * .92, h * .7], fill=c, outline=dk)                                               # cab
+    d.rectangle([n * .76, h * .36, n * .88, h * .5], fill=(190, 210, 220, 255))
+    d.rectangle([n * .02, h * .66, n * .96, h * .76], fill=dk)
+    for x in (.18, .5, .82): d.ellipse([n * x - h * .14, h * .62, n * x + h * .14, h * .9], fill=(40, 40, 40, 255))
+    return _outl(im.resize((size, int(size * .6)), Image.LANCZOS))
+
 def _submarine(size=70):
     n = size * S3; h = int(n * .3); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     g = (70, 78, 86, 255)
@@ -181,7 +218,7 @@ def _landing(size=40):
     d.polygon([(0, h * .2), (n * .85, h * .2), (n, h * .5), (n * .85, h * .8), (0, h * .8)], fill=(95, 110, 95, 255), outline=(50, 60, 50, 255))
     return _outl(im.resize((size, int(size * .5)), Image.LANCZOS))
 
-EXTRA = {"tank": (_tank, 56), "submarine": (_submarine, 70), "bomber": (_bomber, 66), "carrier": (_carrier, 92), "landing_craft": (_landing, 40)}
+EXTRA = {"truck": (_truck, 40), "tank1916": (_tank1916, 58), "tank": (_tank, 56), "submarine": (_submarine, 70), "bomber": (_bomber, 66), "carrier": (_carrier, 92), "landing_craft": (_landing, 40)}
 
 def sprite(kind, size):
     k = (kind, size)
@@ -283,7 +320,7 @@ def draw_vehicle(fr, S, vw, t, ev, zscale):
         fr.paste(lay.filter(ImageFilter.GaussianBlur(2)), (0, 0), lay.filter(ImageFilter.GaussianBlur(2)))
         if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     elif ev["kind"] in ("plane", "jet", "bomber"): im = rotate(im, -math.degrees(ang) - 90)
-    elif ev["kind"] in ("tank", "submarine", "carrier", "landing_craft"):
+    elif ev["kind"] in ("tank", "tank1916", "truck", "submarine", "carrier", "landing_craft"):
         if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     elif ev["kind"] == "steamer":
         if math.cos(ang) < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
@@ -352,3 +389,24 @@ def draw_cities(fr, S, vw, t, ev, zscale):
         x, y = S(lon, lat); r = 6 * w * z * g
         d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 250, 235, int(255 * g)))
     fr.paste(lay, (0, 0), lay)
+
+
+def draw_gas(fr, S, vw, t, ev, zscale):
+    """Poison-gas cloud: puffs released along a line (the cylinders), drifting with the wind and spreading.
+    ev: line=[(lon,lat),...], drift=(dlon, dlat) moved by t1, t0, t1, until, color."""
+    t0, t1 = ev["t0"], ev["t1"]; until = ev.get("until", t1 + 1.0)
+    if t < t0 or t > until: return
+    fade = 1 - pr(t, until - 0.8, until)
+    col = ev.get("color", (200, 215, 95)); z = zscale(vw) * ev.get("scale", 1.0)
+    rnd = random.Random(11); lay = Image.new("RGBA", fr.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+    line = ev["line"]; dl, dt_ = ev.get("drift", (-0.3, 0.0))
+    for i in range(ev.get("puffs", 70)):
+        birth = t0 + (t1 - t0) * 0.45 * rnd.random()
+        if t < birth: continue
+        f = rnd.random(); (lon, lat), _ = point_at(line, f)
+        age = pr(t, birth, t1 + 0.6)
+        lon += dl * age + rnd.uniform(-.04, .04); lat += dt_ * age + rnd.uniform(-.03, .03) + math.sin(t + i) * 0.01
+        x, y = S(lon, lat); r = (14 + 46 * age) * z * rnd.uniform(.7, 1.3)
+        a = int(120 * fade * min(1, (t - birth) / 0.4) * (1 - 0.35 * age))
+        d.ellipse([x - r, y - r, x + r, y + r], fill=col + (a,))
+    lay = lay.filter(ImageFilter.GaussianBlur(9 * max(z, .5))); fr.paste(lay, (0, 0), lay)

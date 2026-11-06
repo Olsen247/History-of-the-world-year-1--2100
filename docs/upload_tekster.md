@@ -189,3 +189,10 @@ Episode 22 of History of the World, from Year 1 to 2026.
 Tekst: In June 1812 Napoleon invaded Russia with more than 400,000 men – he took Moscow, but the city burned and most of his army was lost in the freezing retreat.
 Full story: Episode 18 of History of the World – watch the whole series from Year 1 on the channel.
 #history #napoleon #1812 #moscow #shorts
+
+## #23 – Year 1916
+**Tittel:** History of the World Ep 23
+**Beskrivelse:** Year 1916 – The First World War, part 2: how trench warfare worked. The Christmas truce of 1914, chlorine gas at Ypres, the Gallipoli landings, the Lusitania sinks, the Armenian genocide, 303 days at Verdun and the Sacred Way, 250 warships at Jutland, the first day of the Somme and the first tanks in battle.
+Episode 23 of History of the World, from Year 1 to 2026.
+#history #geography #ww1 #worldwarone #1916 #somme #verdun #shorts
+*(Planlagt i Metricool 12.11.2026 kl. 10:00, YouTube + Instagram Reels)*

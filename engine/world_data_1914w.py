@@ -4,3 +4,4 @@ import ep22_world as _W
 EXCLUSIVE = True
 EMPIRES = _W.build(19141)
 CULTURES = []
+OVERLAY = ["GERMAN-OCCUPIED"]

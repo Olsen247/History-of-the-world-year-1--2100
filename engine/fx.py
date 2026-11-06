@@ -681,6 +681,8 @@ def draw_all(fr, S, vw, t, events):
     for ev in events:
         if ev["type"] == "glow": FM.draw_glow(fr, S, vw, t, ev)
     for ev in events:
+        if ev["type"] == "gas": FM.draw_gas(fr, S, vw, t, ev, zscale)
+    for ev in events:
         if ev["type"] == "front": FM.draw_front(fr, S, vw, t, ev, zscale)
     for ev in events:
         if ev["type"] == "vehicle": FM.draw_vehicle(fr, S, vw, t, ev, zscale)
