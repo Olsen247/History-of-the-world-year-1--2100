@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
 FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier", "sansculotte", "haitian", "redcoat", "landwehr", "insurgente", "patriot", "pickelhaube", "ethiopian", "bersagliere", "boxer",
-         "boer", "tommy", "revolucionario", "newarmy", "serb1912", "bulgar1912", "evzone", "montenegrin", "ottoman1912", "dorobant", "anzac")
+         "boer", "tommy", "revolucionario", "newarmy", "serb1912", "bulgar1912", "evzone", "montenegrin", "ottoman1912", "dorobant", "anzac", "stormtrooper", "doughboy", "brodie", "arabrevolt")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -113,7 +113,7 @@ def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
     skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255), "haitian": (112, 74, 50, 255), "ethiopian": (110, 75, 52, 255), "boxer": (222, 184, 142, 255)}.get(kind, (226, 186, 150, 255))
-    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255), "revolucionario": (240, 236, 226, 255), "tommy": (180, 160, 110, 255), "anzac": (160, 140, 95, 255), "boer": (90, 75, 55, 255), "evzone": (240, 238, 232, 255), "ottoman1912": (150, 135, 95, 255), "serb1912": (100, 105, 85, 255), "montenegrin": (30, 40, 80, 255)}.get(kind, (45, 38, 32, 255))
+    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255), "revolucionario": (240, 236, 226, 255), "tommy": (180, 160, 110, 255), "anzac": (160, 140, 95, 255), "boer": (90, 75, 55, 255), "evzone": (240, 238, 232, 255), "ottoman1912": (150, 135, 95, 255), "serb1912": (100, 105, 85, 255), "montenegrin": (30, 40, 80, 255), "stormtrooper": (100, 105, 95, 255), "doughboy": (120, 110, 75, 255), "brodie": (150, 130, 90, 255), "arabrevolt": (235, 230, 215, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
     d.line([(ox + n * .42, n * .96), (ox + n * .36, n * 1.46)], fill=trousers, width=n // 9)
@@ -129,6 +129,10 @@ def soldier(col, size=40, kind="line"):
     if kind == "boxer": coat = (232, 226, 205, 255)
     if kind == "tommy": coat = (190, 170, 120, 255)
     if kind == "anzac": coat = (165, 145, 100, 255)
+    if kind == "stormtrooper": coat = (115, 120, 105, 255)
+    if kind == "doughboy": coat = (125, 115, 75, 255)
+    if kind == "brodie": coat = (160, 140, 95, 255)
+    if kind == "arabrevolt": coat = (235, 230, 215, 255)
     if kind == "newarmy": coat = (120, 120, 100, 255)
     if kind == "ottoman1912": coat = (165, 150, 105, 255)
     if kind == "serb1912": coat = (110, 115, 90, 255)
@@ -206,6 +210,27 @@ def soldier(col, size=40, kind="line"):
         d.line([(ox + n * .26, n * .20), (ox + n * .74, n * .20)], fill=(80, 85, 70, 255), width=n // 22)
         d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(70, 60, 45, 255))
         musket(bayonet=True, y0=.06)
+    elif kind == "stormtrooper":  # German Sturmtruppen 1918: M1916 steel helmet with flared neck guard, grenade bags, stick grenade, carbine
+        hc = (90, 95, 85, 255)
+        d.chord([ox + n * .31, n * .02, ox + n * .69, n * .32], 180, 360, fill=hc)
+        d.polygon([(ox + n * .27, n * .17), (ox + n * .73, n * .17), (ox + n * .76, n * .26), (ox + n * .66, n * .22), (ox + n * .34, n * .22), (ox + n * .24, n * .26)], fill=hc)
+        for x in (.38, .62): d.rectangle([ox + n * (x - .06), n * .70, ox + n * (x + .06), n * .82], fill=(90, 80, 60, 255))
+        d.line([(ox + n * .22, n * .50), (ox + n * .14, n * .30)], fill=wood, width=n // 26)
+        d.ellipse([ox + n * .10, n * .24, ox + n * .18, n * .32], fill=(80, 85, 75, 255))
+        musket(y0=.10)
+    elif kind in ("doughboy", "brodie"):   # US doughboy / British Tommy 1916-18: flat "soup-plate" Brodie helmet, webbing, rifle
+        hc = (110, 105, 70, 255) if kind == "doughboy" else (120, 115, 85, 255)
+        d.ellipse([ox + n * .22, n * .15, ox + n * .78, n * .23], fill=hc, outline=(70, 65, 45, 255))
+        d.chord([ox + n * .35, n * .04, ox + n * .65, n * .27], 180, 360, fill=hc)
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(110, 95, 60, 255))
+        musket(bayonet=True, y0=.04)
+    elif kind == "arabrevolt":    # Arab Revolt fighter: white thawb, keffiyeh with black agal, bandolier, rifle
+        d.chord([ox + n * .32, n * .02, ox + n * .68, n * .34], 180, 360, fill=(245, 242, 232, 255))
+        d.polygon([(ox + n * .32, n * .18), (ox + n * .28, n * .44), (ox + n * .38, n * .42), (ox + n * .37, n * .22)], fill=(245, 242, 232, 255))
+        d.polygon([(ox + n * .68, n * .18), (ox + n * .72, n * .44), (ox + n * .62, n * .42), (ox + n * .63, n * .22)], fill=(245, 242, 232, 255))
+        d.rectangle([ox + n * .33, n * .12, ox + n * .67, n * .16], fill=(25, 22, 20, 255))
+        d.line([(ox + n * .35, n * .44), (ox + n * .65, n * .92)], fill=(130, 95, 50, 255), width=n // 14)
+        musket(y0=.04)
     elif kind == "qizilbash":    # Safavid Qizilbash ("red head"): white turban round a tall red baton, kaftan in banner colour, spear
         d.polygon([(ox + n * .45, n * .14), (ox + n * .55, n * .14), (ox + n * .53, -n * .18), (ox + n * .47, -n * .18)], fill=(200, 35, 40, 255))
         d.ellipse([ox + n * .33, n * .06, ox + n * .67, n * .24], fill=(245, 242, 232, 255), outline=(170, 165, 155, 255))
