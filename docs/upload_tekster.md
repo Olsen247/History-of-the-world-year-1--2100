@@ -196,3 +196,10 @@ Full story: Episode 18 of History of the World – watch the whole series from Y
 Episode 23 of History of the World, from Year 1 to 2026.
 #history #geography #ww1 #worldwarone #1916 #somme #verdun #shorts
 *(Planlagt i Metricool 12.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #24 – Year 1918
+**Tittel:** History of the World Ep 24
+**Beskrivelse:** Year 1918 – The First World War, part 3: how the war was won and lost. Germany's all-out U-boat war, the Tsar falls, the Zimmermann telegram brings America in, Lawrence and the Arab Revolt take Aqaba, Lenin seizes power and Brest-Litovsk, stormtroopers and the Spring Offensive, the Paris Gun, over 500 tanks at Amiens, Damascus falls, the Kaiser flees, and the guns fall silent at 11 a.m. on 11 November.
+Episode 24 of History of the World, from Year 1 to 2026.
+#history #geography #ww1 #worldwarone #1918 #armistice #shorts
+*(Planlagt i Metricool 14.11.2026 kl. 10:00, YouTube + Instagram Reels)*
