@@ -568,6 +568,13 @@ P = {
  "foch": dict(hat="kepi", hat_col=(190, 40, 50), hair="short", hair_col=(230, 228, 222), beard="mustache", beard_col=(240, 238, 232), robe=(115, 135, 165), lapels=(80, 95, 130), lace=True, skin=(232, 196, 170), nose=1.3, eye=(80, 110, 150), age=True, bg=(60, 95, 200)),
  "jellicoe": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(245, 245, 240), hair="short", hair_col=(120, 100, 80), beard="none", robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(232, 196, 170), nose=1.6, eye=(70, 100, 130), bg=(40, 70, 120)),
  "scheer": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(20, 25, 45), hair="short", hair_col=(200, 196, 190), beard="short", beard_col=(215, 212, 206), robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(232, 196, 170), nose=1.3, eye=(70, 100, 130), age=True, bg=(90, 90, 100)),
+ # Ep 25
+ "clemenceau": dict(hair="bald", hair_col=(235, 232, 225), beard="mustache", beard_col=(240, 238, 232), robe=(30, 30, 36), lapels=(45, 45, 52), skin=(225, 190, 165), nose=1.3, eye=(50, 45, 40), age=True, bg=(60, 95, 200)),
+ "lloydgeorge": dict(hair="long", hair_col=(225, 222, 215), beard="mustache", beard_col=(230, 228, 222), robe=(30, 30, 36), lapels=(45, 45, 52), skin=(232, 196, 170), nose=1.2, eye=(70, 100, 130), age=True, bg=(210, 100, 130)),
+ "pilsudski": dict(hat="kepi", hat_col=(140, 140, 120), hair="short", hair_col=(150, 140, 130), beard="kaiser", beard_col=(170, 160, 150), robe=(120, 125, 105), lapels=(100, 105, 85), skin=(232, 196, 170), nose=1.3, eye=(80, 110, 140), age=True, bg=(200, 60, 70)),
+ "trotsky": dict(hair="curly", hair_col=(45, 40, 38), beard="goatee", beard_col=(45, 40, 38), glasses=True, robe=(55, 50, 45), lapels=(70, 65, 58), skin=(232, 200, 175), nose=1.3, eye=(60, 70, 90), bg=(170, 40, 40)),
+ "collins": dict(hair="short", hair_col=(55, 40, 30), beard="none", robe=(70, 85, 60), lapels=(55, 68, 48), skin=(235, 200, 178), nose=1.2, eye=(90, 110, 130), bg=(60, 140, 80)),
+ "mussolini": dict(hair="bald", hair_col=(60, 50, 45), beard="none", robe=(25, 25, 28), lapels=(40, 40, 44), skin=(222, 186, 158), nose=1.3, eye=(45, 35, 30), bg=(60, 60, 70)),
 }
 
 def get(who, size=210):

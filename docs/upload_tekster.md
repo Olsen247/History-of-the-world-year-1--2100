@@ -203,3 +203,10 @@ Episode 23 of History of the World, from Year 1 to 2026.
 Episode 24 of History of the World, from Year 1 to 2026.
 #history #geography #ww1 #worldwarone #1918 #armistice #shorts
 *(Planlagt i Metricool 14.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #25 – Year 1922
+**Tittel:** History of the World Ep 25
+**Beskrivelse:** Year 1922 – The world after the First World War. The Spanish flu rides the troopships around the globe, Poland returns after 123 years with Czechoslovakia and the Baltic states, Germany signs at Versailles, the League of Nations is born without America, Britain and France take the Ottoman Arab lands, the Miracle on the Vistula saves Warsaw, the last White army flees Crimea, the Irish Free State is created, Mussolini marches on Rome, the Ottoman sultanate ends, and the Soviet Union is founded.
+Episode 25 of History of the World, from Year 1 to 2026.
+#history #geography #1922 #versailles #sovietunion #shorts
+*(Planlagt i Metricool 16.11.2026 kl. 10:00, YouTube + Instagram Reels)*
