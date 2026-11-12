@@ -210,3 +210,10 @@ Episode 24 of History of the World, from Year 1 to 2026.
 Episode 25 of History of the World, from Year 1 to 2026.
 #history #geography #1922 #versailles #sovietunion #shorts
 *(Planlagt i Metricool 16.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #26 – Year 1939
+**Tittel:** History of the World Ep 26
+**Beskrivelse:** Year 1939 – The Second World War, part 1: the road to war. Wall Street crashes and the Great Depression leaves six million Germans out of work, Japan stages the Mukden Incident and seizes Manchuria, Hitler takes power, Spain's civil war and the bombing of Guernica, Japan's full-scale war on China – Shanghai and the Nanjing massacre, the Anschluss and Kristallnacht, Munich and Prague, the Hitler–Stalin pact, and the invasion of Poland: panzers, Stukas and radio – Blitzkrieg.
+Episode 26 of History of the World, from Year 1 to 2026.
+#history #geography #ww2 #worldwartwo #1939 #blitzkrieg #shorts
+*(Planlagt i Metricool 18.11.2026 kl. 10:00, YouTube + Instagram Reels)*
