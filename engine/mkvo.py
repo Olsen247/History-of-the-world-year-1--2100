@@ -13,7 +13,17 @@ for i,idd in enumerate(ids,1):
         w=wave.open(f"{out}/f{i}.wav"); dur=w.getnframes()/w.getframerate()
         spans.append((round(t,2),round(t+dur,2))); print(i,'wav',round(dur,2)); t+=dur+0.4; continue
     _f=_g.glob('/root/.claude/projects/*/*/tool-results/mcp-Speko-audio_synthesize-%s.txt'%idd)+_g.glob('/root/.claude/projects/*/tool-results/mcp-Speko-audio_synthesize-%s.txt'%idd)
-    d=json.load(open(_f[0])); open(f"{out}/seg{i}.wav","wb").write(base64.b64decode(d['audio_base64']))
+    d=json.load(open(_f[0]))
+    if isinstance(d,list):   # newer MCP result: [ {text: "...saved to <blob>.wav"}, {text: "<json with url/duration/audio_base64>"} ]
+        meta={}
+        for x in d:
+            try: meta.update(json.loads(x['text']))
+            except Exception: pass
+        blob=[w for x in d for w in x['text'].split() if w.endswith('.wav') and w.startswith('/')]
+        raw=base64.b64decode(meta['audio_base64']) if meta.get('audio_base64') else open(blob[0],'rb').read()
+        d=dict(meta, duration_seconds=meta.get('duration_seconds', meta.get('durationSeconds', 0)))
+    else: raw=base64.b64decode(d['audio_base64'])
+    open(f"{out}/seg{i}.wav","wb").write(raw)
     subprocess.run(["ffmpeg","-v","error","-y","-i",f"{out}/seg{i}.wav","-af","silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,atempo="+__import__("os").environ.get("TEMPO","1.11"),"-ar","44100","-ac","1",f"{out}/f{i}.wav"],check=True)
     w=wave.open(f"{out}/f{i}.wav"); dur=w.getnframes()/44100
     spans.append((round(t,2),round(t+dur,2))); print(i,d['duration_seconds'],round(dur,2))

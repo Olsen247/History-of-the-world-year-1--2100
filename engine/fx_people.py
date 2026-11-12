@@ -29,6 +29,13 @@ def _beard(d, n, kind, col, cx, chin):
         d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         d.polygon([(cx - n*.12, chin - n*.08), (cx - n*.06, chin - n*.04), (cx, chin - n*.05), (cx + n*.06, chin - n*.04), (cx + n*.12, chin - n*.08),
                    (cx + n*.08, chin + n*.04), (cx, chin + n*.10), (cx - n*.08, chin + n*.04)], fill=col); return
+    if kind == "toothbrush":   # short square mustache only as wide as the nose (Hitler)
+        d.rectangle([cx - n*.035, chin - n*.125, cx + n*.035, chin - n*.085], fill=col); return
+    if kind == "thinmus":      # thin trimmed mustache (Franco)
+        d.polygon([(cx - n*.07, chin - n*.095), (cx, chin - n*.11), (cx + n*.07, chin - n*.095), (cx + n*.05, chin - n*.085), (cx - n*.05, chin - n*.085)], fill=col); return
+    if kind == "walrus":       # thick bushy mustache drooping at the ends (Stalin)
+        d.polygon([(cx - n*.12, chin - n*.07), (cx - n*.10, chin - n*.115), (cx, chin - n*.135), (cx + n*.10, chin - n*.115), (cx + n*.12, chin - n*.07),
+                   (cx + n*.07, chin - n*.075), (cx, chin - n*.09), (cx - n*.07, chin - n*.075)], fill=col); return
     if kind == "mustache":
         d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         d.line([(cx - n*.085, chin - n*.10), (cx - n*.12, chin - n*.03)], fill=col, width=int(n*.02))
@@ -104,7 +111,7 @@ def face(spec, size=300):
                 yy = n*.34 + k*n*.075
                 d.ellipse([cx + sx*n*.215 - n*.065, yy - n*.035, cx + sx*n*.215 + n*.065, yy + n*.035], fill=hair, outline=hd, width=int(n*.008))
     # hair on top
-    if hs in ("short", "long", "curly_long", "curly", "female_long", "bun", "fringe"):
+    if hs in ("short", "long", "curly_long", "curly", "female_long", "bun", "fringe", "sidepart", "swept"):
         d.chord([cx - n*.205, top - n*.02, cx + n*.205, top + n*.26], 180, 360, fill=hair)
         d.rectangle([cx - n*.205, top + n*.10, cx - n*.17, top + n*.22], fill=hair); d.rectangle([cx + n*.17, top + n*.10, cx + n*.205, top + n*.22], fill=hair)
         if hs in ("curly", "curly_long"):
@@ -113,6 +120,10 @@ def face(spec, size=300):
         if hs == "fringe":
             for k in range(7):
                 x = cx - n*.15 + k * n*.05; d.polygon([(x - n*.03, top + n*.06), (x + n*.03, top + n*.06), (x, top + n*.14)], fill=hair)
+        if hs == "sidepart":   # hair parted on one side, a forelock falling diagonally over the forehead (Hitler)
+            d.polygon([(cx + n*.10, top + n*.02), (cx - n*.04, top + n*.06), (cx - n*.16, top + n*.13), (cx - n*.12, top + n*.19), (cx + n*.02, top + n*.10)], fill=hair)
+        if hs == "swept":      # thick hair brushed straight back, high and full on top (Stalin)
+            d.chord([cx - n*.215, top - n*.07, cx + n*.215, top + n*.20], 180, 360, fill=hair)
         if hs == "bun": d.ellipse([cx - n*.08, top - n*.12, cx + n*.08, top + n*.02], fill=hair)
     if hs == "bald":    # bald crown, hair only at the sides (Lenin, Ludendorff)
         for sx in (-1, 1):
@@ -574,6 +585,12 @@ P = {
  "pilsudski": dict(hat="kepi", hat_col=(140, 140, 120), hair="short", hair_col=(150, 140, 130), beard="kaiser", beard_col=(170, 160, 150), robe=(120, 125, 105), lapels=(100, 105, 85), skin=(232, 196, 170), nose=1.3, eye=(80, 110, 140), age=True, bg=(200, 60, 70)),
  "trotsky": dict(hair="curly", hair_col=(45, 40, 38), beard="goatee", beard_col=(45, 40, 38), glasses=True, robe=(55, 50, 45), lapels=(70, 65, 58), skin=(232, 200, 175), nose=1.3, eye=(60, 70, 90), bg=(170, 40, 40)),
  "collins": dict(hair="short", hair_col=(55, 40, 30), beard="none", robe=(70, 85, 60), lapels=(55, 68, 48), skin=(235, 200, 178), nose=1.2, eye=(90, 110, 130), bg=(60, 140, 80)),
+ # Ep 26 (plain uniforms/suits, no party badges or symbols)
+ "hitler": dict(hair="sidepart", hair_col=(55, 42, 32), beard="toothbrush", beard_col=(50, 38, 30), robe=(120, 105, 80), lapels=(105, 92, 70), skin=(232, 200, 176), nose=1.3, eye=(70, 100, 140), bg=(90, 90, 100)),
+ "franco": dict(hair="bald", hair_col=(45, 38, 32), beard="thinmus", beard_col=(40, 34, 30), robe=(150, 130, 90), lapels=(130, 112, 75), lace=True, skin=(226, 190, 160), nose=1.2, eye=(50, 40, 32), bg=(196, 140, 52)),
+ "chiang": dict(hair="bald", hair_col=(226, 196, 166), beard="thinmus", beard_col=(40, 34, 30), robe=(140, 130, 95), lapels=(120, 110, 80), skin=(232, 200, 168), nose=1.0, eye=(35, 28, 22), bg=(225, 185, 85)),
+ "chamberlain": dict(hair="short", hair_col=(200, 196, 190), beard="mustache", beard_col=(190, 186, 180), robe=(30, 30, 36), lapels=(45, 45, 52), skin=(232, 198, 172), nose=1.4, eye=(70, 80, 95), age=True, bg=(210, 100, 130)),
+ "stalin": dict(hair="swept", hair_col=(50, 45, 42), beard="walrus", beard_col=(50, 45, 42), robe=(150, 140, 110), lapels=(135, 125, 95), skin=(222, 186, 156), nose=1.3, eye=(150, 120, 60), bg=(170, 40, 40)),
  "mussolini": dict(hair="bald", hair_col=(60, 50, 45), beard="none", robe=(25, 25, 28), lapels=(40, 40, 44), skin=(222, 186, 158), nose=1.3, eye=(45, 35, 30), bg=(60, 60, 70)),
 }
 

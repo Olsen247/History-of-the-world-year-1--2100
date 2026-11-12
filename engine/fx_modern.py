@@ -36,6 +36,7 @@ def _flag(code, w=30, h=20):
         for i in range(7): d.rectangle([0, H * (i + 0.5) / 7, W, H * (i + 1) / 7], fill=Wh)
         d.rectangle([0, 0, W * .42, H * .54], fill=B)
     elif code == "rs": hstripes([R, (40, 70, 160), Wh])
+    elif code == "pl": hstripes([Wh, (220, 20, 60)])
     elif code in ("au", "nz"):      # blue ensigns: small Union canton + Southern Cross stars
         NB = (20, 40, 120); d.rectangle([0, 0, W, H], fill=NB)
         cw, ch = W * .5, H * .5
