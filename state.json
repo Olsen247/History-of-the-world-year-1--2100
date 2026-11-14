@@ -1,9 +1,9 @@
 {
-  "next_episode": 27,
-  "previous_year": 1939,
-  "previous_year_module": "world_data_1939",
-  "previous_base_map": "hd_1939.png",
-  "next_publish_date": "2026-11-20",
+  "next_episode": 28,
+  "previous_year": 1941,
+  "previous_year_module": "world_data_1941",
+  "previous_base_map": "hd_1941.png",
+  "next_publish_date": "2026-11-22",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -270,6 +270,13 @@
       "video": "videos/ep26_year1939.mp4",
       "publish": "2026-11-18 10:00",
       "metricool_post_id": 425230175
+    },
+    {
+      "ep": 27,
+      "year": 1941,
+      "video": "videos/ep27_year1941.mp4",
+      "publish": "2026-11-20 10:00",
+      "metricool_post_id": 427705201
     }
   ],
   "next_publish_time": "10:00",
