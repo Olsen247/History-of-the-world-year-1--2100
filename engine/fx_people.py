@@ -592,6 +592,13 @@ P = {
  "chamberlain": dict(hair="short", hair_col=(200, 196, 190), beard="mustache", beard_col=(190, 186, 180), robe=(30, 30, 36), lapels=(45, 45, 52), skin=(232, 198, 172), nose=1.4, eye=(70, 80, 95), age=True, bg=(210, 100, 130)),
  "stalin": dict(hair="swept", hair_col=(50, 45, 42), beard="walrus", beard_col=(50, 45, 42), robe=(150, 140, 110), lapels=(135, 125, 95), skin=(222, 186, 156), nose=1.3, eye=(150, 120, 60), bg=(170, 40, 40)),
  "mussolini": dict(hair="bald", hair_col=(60, 50, 45), beard="none", robe=(25, 25, 28), lapels=(40, 40, 44), skin=(222, 186, 158), nose=1.3, eye=(45, 35, 30), bg=(60, 60, 70)),
+ # Ep 27 (plain uniforms/suits, no party badges or symbols)
+ "churchill": dict(hair="bald", hair_col=(215, 175, 140), beard="none", robe=(30, 30, 36), lapels=(45, 45, 52), skin=(240, 205, 185), nose=1.1, eye=(80, 105, 130), age=True, bg=(210, 100, 130)),
+ "mannerheim": dict(hat="fur", hat_col=(215, 212, 205), hair="short", hair_col=(200, 196, 190), beard="thinmus", beard_col=(190, 186, 180), robe=(120, 125, 115), lapels=(100, 105, 95), lace=True, skin=(232, 198, 172), nose=1.4, eye=(70, 100, 130), age=True, bg=(60, 100, 180)),
+ "rommel": dict(hat="peaked", hat_col=(200, 180, 130), top_col=(200, 180, 130), hair="short", hair_col=(110, 85, 60), beard="none", robe=(195, 175, 125), lapels=(175, 155, 105), skin=(225, 185, 150), nose=1.3, eye=(70, 100, 130), bg=(200, 170, 90)),
+ "zhukov": dict(hat="peaked", hat_col=(110, 115, 85), top_col=(200, 40, 40), hair="short", hair_col=(80, 65, 50), beard="none", robe=(120, 115, 85), lapels=(100, 95, 70), lace=True, skin=(230, 195, 165), nose=1.2, eye=(80, 95, 110), bg=(170, 40, 40)),
+ "yamamoto": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(245, 245, 240), hair="short", hair_col=(180, 176, 170), beard="none", robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(222, 188, 150), nose=1.2, eye=(35, 28, 22), age=True, bg=(235, 95, 70)),
+ "roosevelt": dict(hair="thin", hair_col=(190, 186, 180), beard="none", glasses=True, robe=(30, 30, 36), lapels=(45, 45, 52), skin=(232, 198, 172), nose=1.3, eye=(80, 100, 120), age=True, bg=(60, 80, 140)),
 }
 
 def get(who, size=210):

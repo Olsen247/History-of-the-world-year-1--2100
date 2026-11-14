@@ -217,3 +217,10 @@ Episode 25 of History of the World, from Year 1 to 2026.
 Episode 26 of History of the World, from Year 1 to 2026.
 #history #geography #ww2 #worldwartwo #1939 #blitzkrieg #shorts
 *(Planlagt i Metricool 18.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #27 – Year 1941
+**Tittel:** History of the World Ep 27
+**Beskrivelse:** Year 1941 – The Second World War, part 2: from Blitzkrieg to Pearl Harbor. Finnish ski troops in the Winter War, Germany invades Denmark and Norway and Oscarsborg sinks the Blücher, panzers race through the Ardennes to the Channel, 338,000 rescued at Dunkirk and France falls, radar and RAF fighters win the Battle of Britain, Rommel lands in Libya, Yugoslavia and Greece are overrun, Operation Barbarossa, the Kiev pocket and the Babi Yar massacre, the Germans stopped before Moscow, and Pearl Harbor brings America into the war.
+Episode 27 of History of the World, from Year 1 to 2026.
+#history #geography #ww2 #worldwartwo #1941 #pearlharbor #shorts
+*(Planlagt i Metricool 20.11.2026 kl. 10:00, YouTube + Instagram Reels)*
