@@ -224,3 +224,10 @@ Episode 26 of History of the World, from Year 1 to 2026.
 Episode 27 of History of the World, from Year 1 to 2026.
 #history #geography #ww2 #worldwartwo #1941 #pearlharbor #shorts
 *(Planlagt i Metricool 20.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #28 – Year 1943
+**Tittel:** History of the World Ep 28
+**Beskrivelse:** Year 1943 – The Second World War, part 3: the tide turns. Japan storms across Asia and 80,000 Allied troops surrender at Singapore, codebreakers and dive bombers win at Midway, U-boat wolf packs and Turing's codebreakers fight the Battle of the Atlantic, house-to-house fighting in Stalingrad, Montgomery's 900 guns at El Alamein, Operation Uranus traps the Sixth Army, Paulus surrenders, the Warsaw Ghetto rises against the Nazis, Black May for the U-boats, and some 6,000 tanks clash at Kursk.
+Episode 28 of History of the World, from Year 1 to 2026.
+#history #geography #ww2 #worldwartwo #1943 #stalingrad #kursk #shorts
+*(Planlagt i Metricool 22.11.2026 kl. 10:00, YouTube + Instagram Reels)*
