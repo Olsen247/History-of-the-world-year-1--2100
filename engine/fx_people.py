@@ -338,6 +338,12 @@ def face(spec, size=300):
         d.rectangle([cx - n*.20, top + n*.03, cx + n*.20, top + n*.10], fill=(30, 35, 60, 255))
         for k in range(2): d.line([(cx - n*.19, top - n*.04 + k*n*.035), (cx + n*.19, top - n*.04 + k*n*.035)], fill=gold, width=int(n*.012))
         d.chord([cx - n*.22, top + n*.05, cx + n*.22, top + n*.18], 0, 180, fill=(15, 15, 18, 255))
+    elif hat == "beret":        # black tank beret worn tilted, with two small cap badges (Montgomery)
+        hc = spec.get("hat_col", (20, 20, 24)) + (255,)
+        d.ellipse([cx - n*.27, top - n*.07, cx + n*.20, top + n*.13], fill=hc)
+        d.ellipse([cx - n*.22, top + n*.05, cx + n*.22, top + n*.14], fill=hc)
+        d.ellipse([cx + n*.04, top + n*.01, cx + n*.10, top + n*.07], fill=gold, outline=gdk)
+        d.ellipse([cx + n*.11, top + n*.02, cx + n*.16, top + n*.07], fill=(200, 200, 205, 255))
     elif hat == "peaked":       # officer's / captain's peaked cap: crown, band, black visor, gold badge
         hc = spec.get("hat_col", (25, 30, 50)) + (255,)
         d.ellipse([cx - n*.25, top - n*.08, cx + n*.25, top + n*.10], fill=spec.get("top_col", hc[:3]) + (255,))
@@ -599,6 +605,14 @@ P = {
  "zhukov": dict(hat="peaked", hat_col=(110, 115, 85), top_col=(200, 40, 40), hair="short", hair_col=(80, 65, 50), beard="none", robe=(120, 115, 85), lapels=(100, 95, 70), lace=True, skin=(230, 195, 165), nose=1.2, eye=(80, 95, 110), bg=(170, 40, 40)),
  "yamamoto": dict(hat="peaked", hat_col=(20, 25, 45), top_col=(245, 245, 240), hair="short", hair_col=(180, 176, 170), beard="none", robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(222, 188, 150), nose=1.2, eye=(35, 28, 22), age=True, bg=(235, 95, 70)),
  "roosevelt": dict(hair="thin", hair_col=(190, 186, 180), beard="none", glasses=True, robe=(30, 30, 36), lapels=(45, 45, 52), skin=(232, 198, 172), nose=1.3, eye=(80, 100, 120), age=True, bg=(60, 80, 140)),
+ # Ep 28 (plain uniforms, no party badges or symbols)
+ "nimitz": dict(hat="peaked", hat_col=(240, 240, 236), top_col=(245, 245, 240), band_col=(20, 25, 45), hair="short", hair_col=(225, 222, 215), beard="none", robe=(20, 25, 45), lapels=(30, 36, 60), lace=True, skin=(236, 204, 180), nose=1.1, eye=(80, 120, 160), age=True, bg=(60, 80, 140)),
+ "turing": dict(hair="swept", hair_col=(55, 42, 32), beard="none", robe=(95, 85, 70), lapels=(80, 72, 60), skin=(234, 202, 178), nose=1.1, eye=(70, 90, 110), bg=(110, 150, 200)),
+ "chuikov": dict(hat="peaked", hat_col=(110, 115, 85), top_col=(110, 115, 85), band_col=(170, 40, 40), hair="short", hair_col=(40, 34, 30), beard="none", robe=(120, 115, 85), lapels=(100, 95, 70), skin=(226, 190, 160), nose=1.3, eye=(60, 50, 40), bg=(170, 40, 40)),
+ "paulus": dict(hat="peaked", hat_col=(120, 125, 115), top_col=(120, 125, 115), band_col=(60, 65, 60), hair="short", hair_col=(120, 105, 85), beard="none", robe=(115, 120, 110), lapels=(95, 100, 92), lace=True, skin=(232, 200, 176), nose=1.3, eye=(80, 95, 110), bg=(90, 90, 100)),
+ "montgomery": dict(hat="beret", hat_col=(20, 20, 24), hair="short", hair_col=(190, 180, 165), beard="none", robe=(195, 175, 125), lapels=(175, 155, 105), skin=(232, 196, 168), nose=1.5, eye=(80, 110, 140), bg=(210, 100, 130)),
+ "donitz": dict(hat="peaked", hat_col=(20, 25, 40), top_col=(20, 25, 40), hair="short", hair_col=(170, 160, 150), beard="none", robe=(20, 25, 40), lapels=(30, 36, 55), lace=True, skin=(230, 198, 174), nose=1.3, eye=(80, 105, 130), bg=(60, 60, 75)),
+ "yamashita": dict(hat="peaked", hat_col=(130, 115, 70), top_col=(130, 115, 70), band_col=(170, 40, 40), hair="bald", hair_col=(40, 34, 30), beard="none", robe=(150, 135, 85), lapels=(130, 115, 70), skin=(222, 188, 150), nose=1.2, eye=(35, 28, 22), bg=(235, 95, 70)),
 }
 
 def get(who, size=210):
