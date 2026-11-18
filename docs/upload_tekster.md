@@ -231,3 +231,10 @@ Episode 27 of History of the World, from Year 1 to 2026.
 Episode 28 of History of the World, from Year 1 to 2026.
 #history #geography #ww2 #worldwartwo #1943 #stalingrad #kursk #shorts
 *(Planlagt i Metricool 22.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #29 – Year 1945
+**Tittel:** History of the World Ep 29
+**Beskrivelse:** Year 1945 – The Second World War, part 4: the end of the war. The Allies land in Sicily and Italy surrenders, D-Day brings 156,000 troops to Normandy and Paris is freed, Operation Bagration smashes Army Group Centre, Leyte Gulf and the first kamikazes, Hitler's last gamble in the Ardennes and Bastogne holds, Soviet soldiers reach Auschwitz, the Marines storm Iwo Jima, the Red Army takes Berlin, atomic bombs on Hiroshima and Nagasaki, the Soviets invade Manchuria, and Japan surrenders on 2 September 1945.
+Episode 29 of History of the World, from Year 1 to 2026.
+#history #geography #ww2 #worldwartwo #1945 #dday #shorts
+*(Planlagt i Metricool 24.11.2026 kl. 10:00, YouTube + Instagram Reels)*
