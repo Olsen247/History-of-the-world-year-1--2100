@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFilter
 
 S = 3
 FOOT2 = ("landsknecht", "swede", "hussar", "qizilbash", "visayan", "samurai", "strelets", "maori", "dutch", "longbow", "janissary", "conquistador", "inca", "musketeer", "line", "napoleonic", "rifleman", "ww1", "bannerman", "mughal", "sepoy", "minuteman", "carolean", "grenadier", "sansculotte", "haitian", "redcoat", "landwehr", "insurgente", "patriot", "pickelhaube", "ethiopian", "bersagliere", "boxer",
-         "boer", "tommy", "revolucionario", "newarmy", "serb1912", "bulgar1912", "evzone", "montenegrin", "ottoman1912", "dorobant", "anzac", "stormtrooper", "doughboy", "brodie", "arabrevolt", "redarmy", "polish1920", "blackshirt", "kemalist", "wehrmacht", "ija", "nra", "carlist", "miliciano", "finn", "redarmy41", "dak")
+         "boer", "tommy", "revolucionario", "newarmy", "serb1912", "bulgar1912", "evzone", "montenegrin", "ottoman1912", "dorobant", "anzac", "stormtrooper", "doughboy", "brodie", "arabrevolt", "redarmy", "polish1920", "blackshirt", "kemalist", "wehrmacht", "ija", "nra", "carlist", "miliciano", "finn", "redarmy41", "dak", "gi", "tommy44")
 
 def ship_for_year(y):
     if y is None or y < 1400: return "classic"
@@ -147,6 +147,8 @@ def soldier(col, size=40, kind="line"):
     if kind == "finn": coat = (240, 242, 246, 255)
     if kind == "redarmy41": coat = (130, 122, 88, 255)
     if kind == "dak": coat = (205, 185, 135, 255)
+    if kind == "gi": coat = (120, 115, 80, 255)
+    if kind == "tommy44": coat = (150, 135, 95, 255)
     if kind == "serb1912": coat = (110, 115, 90, 255)
     if kind == "evzone": coat = (40, 60, 130, 255)
     if kind == "montenegrin": coat = (40, 60, 120, 255)
@@ -550,6 +552,20 @@ def soldier(col, size=40, kind="line"):
         d.rectangle([ox + n * .31, n * .17, ox + n * .69, n * .21], fill=hc)
         d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(80, 60, 40, 255))
         musket(bayonet=True, y0=.02)
+    elif kind == "gi":           # US soldier/Marine 1944-45: round M1 steel helmet with chin strap and camouflage net, olive drab, M1 rifle
+        hc = (90, 95, 65, 255)
+        d.chord([ox + n * .30, n * .01, ox + n * .70, n * .36], 180, 360, fill=hc)
+        d.rectangle([ox + n * .29, n * .17, ox + n * .71, n * .21], fill=(80, 85, 58, 255))
+        for k in range(4): d.line([(ox + n * (.36 + k * .09), n * .04), (ox + n * (.33 + k * .09), n * .18)], fill=(65, 70, 48, 255), width=max(1, n // 50))
+        d.line([(ox + n * .34, n * .20), (ox + n * .42, n * .34)], fill=(60, 50, 35, 255), width=max(1, n // 45))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(150, 135, 90, 255))
+        musket(y0=.06)
+    elif kind == "tommy44":      # British/Canadian soldier 1944: flat Mk II "Brodie" helmet with net, khaki battledress, rifle
+        hc = (95, 95, 70, 255)
+        d.ellipse([ox + n * .22, n * .13, ox + n * .78, n * .23], fill=hc)
+        d.chord([ox + n * .35, n * .02, ox + n * .65, n * .24], 180, 360, fill=hc)
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(120, 105, 70, 255))
+        musket(y0=.06)
     elif kind == "dak":          # Afrika Korps 1941: sand-coloured tropical field cap with long peak and goggles, khaki tunic, rifle
         hc = (210, 190, 135, 255)
         d.chord([ox + n * .35, n * .05, ox + n * .65, n * .29], 180, 360, fill=hc)
