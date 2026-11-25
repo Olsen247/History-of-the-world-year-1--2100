@@ -81,6 +81,11 @@ def face(spec, size=300):
         if spec.get("lace"):
             for sx in (-1, 1): d.line([(cx + sx*n*.22, n*.80), (cx + sx*n*.16, n*1.0)], fill=(230, 190, 70, 255), width=int(n*.014))
         d.polygon([(cx - n*.08, n*.70), (cx + n*.08, n*.70), (cx + n*.05, n*.84), (cx, n*.88), (cx - n*.05, n*.84)], fill=(250, 250, 246, 255))
+    if spec.get("tunic"):   # buttoned-up tunic with a closed stand collar (Mao/Zhongshan suit, 1950s uniforms)
+        tc = spec["robe"] + (255,); dk = tuple(int(v * .72) for v in spec["robe"]) + (255,)
+        d.polygon([(cx - n*.13, n*.69), (cx + n*.13, n*.69), (cx + n*.15, n*.78), (cx - n*.15, n*.78)], fill=tc, outline=dk, width=int(n*.008))
+        d.line([(cx, n*.78), (cx, n*1.0)], fill=dk, width=int(n*.008))
+        for k in range(3): d.ellipse([cx - n*.013, n*(.82 + k*.06) - n*.013, cx + n*.013, n*(.82 + k*.06) + n*.013], fill=(60, 55, 45, 255))
     if spec.get("ruff"):   # Elizabethan millstone ruff / falling lace collar
         rc = (250, 250, 246, 255); rs = (200, 200, 196, 255)
         if spec["ruff"] == "lace":
@@ -125,6 +130,9 @@ def face(spec, size=300):
         if hs == "swept":      # thick hair brushed straight back, high and full on top (Stalin)
             d.chord([cx - n*.215, top - n*.07, cx + n*.215, top + n*.20], 180, 360, fill=hair)
         if hs == "bun": d.ellipse([cx - n*.08, top - n*.12, cx + n*.08, top + n*.02], fill=hair)
+    if hs == "highswept":  # thick hair brushed back from a very high forehead (Mao Zedong)
+        d.chord([cx - n*.215, top - n*.10, cx + n*.215, top + n*.18], 180, 360, fill=hair)
+        d.rectangle([cx - n*.215, top + n*.04, cx - n*.165, top + n*.22], fill=hair); d.rectangle([cx + n*.165, top + n*.04, cx + n*.215, top + n*.22], fill=hair)
     if hs == "bald":    # bald crown, hair only at the sides (Lenin, Ludendorff)
         for sx in (-1, 1):
             d.polygon([(cx + sx*n*.205, top + n*.12), (cx + sx*n*.17, top + n*.10), (cx + sx*n*.17, top + n*.24), (cx + sx*n*.205, top + n*.26)], fill=hair)
@@ -619,6 +627,10 @@ P = {
  "macarthur": dict(hat="peaked", hat_col=(150, 135, 95), top_col=(150, 135, 95), band_col=(60, 50, 35), hair="short", hair_col=(60, 50, 45), beard="none", glasses=True, robe=(190, 170, 120), lapels=(170, 150, 100), lace=True, skin=(232, 198, 172), nose=1.3, eye=(60, 60, 60), age=True, bg=(60, 80, 140)),
  "patton": dict(hat="peaked", hat_col=(95, 100, 80), top_col=(95, 100, 80), band_col=(60, 60, 50), hair="short", hair_col=(210, 205, 195), beard="none", robe=(110, 100, 70), lapels=(95, 85, 60), lace=True, skin=(236, 204, 180), nose=1.2, eye=(80, 110, 140), age=True, bg=(60, 80, 140)),
  "truman": dict(hair="short", hair_col=(185, 182, 176), beard="none", glasses=True, robe=(45, 45, 55), lapels=(60, 60, 70), skin=(234, 200, 176), nose=1.2, eye=(80, 100, 120), age=True, bg=(60, 80, 140)),
+ # Ep 30
+ "mao": dict(hair="highswept", hair_col=(35, 32, 30), beard="none", robe=(95, 100, 95), tunic=True, skin=(228, 196, 160), nose=1.0, eye=(35, 28, 22), bg=(200, 50, 50)),
+ "kimilsung": dict(hair="short", hair_col=(30, 28, 26), beard="none", robe=(110, 105, 80), tunic=True, skin=(228, 196, 160), nose=1.0, eye=(35, 28, 22), bg=(110, 160, 95)),
+ "eisenhower53": dict(hair="thin", hair_col=(200, 185, 160), beard="none", robe=(40, 45, 55), lapels=(55, 60, 70), skin=(236, 200, 172), nose=1.2, eye=(70, 110, 150), age=True, bg=(60, 80, 140)),
 }
 
 def get(who, size=210):

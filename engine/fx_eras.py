@@ -113,7 +113,7 @@ def soldier(col, size=40, kind="line"):
     n = size * S; OFF = n * .35; im = Image.new("RGBA", (int(n * 1.5), int(n * 1.5 + OFF)), (0, 0, 0, 0)); d = _Shift(ImageDraw.Draw(im), OFF)
     c = col + (255,); dk = tuple(int(v * .5) for v in col) + (255,); ox = n * .25
     skin = {"maori": (165, 112, 78, 255), "inca": (170, 115, 80, 255), "janissary": (205, 160, 120, 255), "visayan": (160, 110, 72, 255), "qizilbash": (215, 172, 132, 255), "haitian": (112, 74, 50, 255), "ethiopian": (110, 75, 52, 255), "boxer": (222, 184, 142, 255)}.get(kind, (226, 186, 150, 255))
-    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255), "revolucionario": (240, 236, 226, 255), "tommy": (180, 160, 110, 255), "anzac": (160, 140, 95, 255), "boer": (90, 75, 55, 255), "evzone": (240, 238, 232, 255), "ottoman1912": (150, 135, 95, 255), "serb1912": (100, 105, 85, 255), "montenegrin": (30, 40, 80, 255), "stormtrooper": (100, 105, 95, 255), "doughboy": (120, 110, 75, 255), "brodie": (150, 130, 90, 255), "arabrevolt": (235, 230, 215, 255), "redarmy": (110, 105, 80, 255), "polish1920": (115, 120, 95, 255), "blackshirt": (60, 60, 64, 255), "kemalist": (140, 125, 90, 255), "wehrmacht": (105, 108, 98, 255), "ija": (150, 135, 85, 255), "nra": (95, 105, 120, 255), "carlist": (150, 130, 90, 255), "miliciano": (50, 70, 120, 255), "finn": (238, 240, 244, 255), "redarmy41": (120, 112, 80, 255), "dak": (200, 180, 130, 255)}.get(kind, (45, 38, 32, 255))
+    trousers = {"redcoat": (230, 228, 220, 255), "patriot": (235, 232, 222, 255), "insurgente": (235, 228, 210, 255), "line": (235, 230, 215, 255), "napoleonic": (235, 232, 222, 255), "haitian": (235, 232, 222, 255), "sansculotte": (235, 232, 222, 255), "ww1": (95, 100, 80, 255), "ethiopian": (240, 236, 226, 255), "boxer": (40, 40, 50, 255), "revolucionario": (240, 236, 226, 255), "tommy": (180, 160, 110, 255), "anzac": (160, 140, 95, 255), "boer": (90, 75, 55, 255), "evzone": (240, 238, 232, 255), "ottoman1912": (150, 135, 95, 255), "serb1912": (100, 105, 85, 255), "montenegrin": (30, 40, 80, 255), "stormtrooper": (100, 105, 95, 255), "doughboy": (120, 110, 75, 255), "brodie": (150, 130, 90, 255), "arabrevolt": (235, 230, 215, 255), "redarmy": (110, 105, 80, 255), "polish1920": (115, 120, 95, 255), "blackshirt": (60, 60, 64, 255), "kemalist": (140, 125, 90, 255), "wehrmacht": (105, 108, 98, 255), "ija": (150, 135, 85, 255), "nra": (95, 105, 120, 255), "carlist": (150, 130, 90, 255), "miliciano": (50, 70, 120, 255), "finn": (238, 240, 244, 255), "redarmy41": (120, 112, 80, 255), "dak": (200, 180, 130, 255), "kpa": (125, 115, 75, 255), "pva": (120, 118, 80, 255)}.get(kind, (45, 38, 32, 255))
     metal = (185, 188, 196, 255); wood = (110, 72, 40, 255); blk = (25, 22, 20, 255)
     # legs + body
     d.line([(ox + n * .42, n * .96), (ox + n * .36, n * 1.46)], fill=trousers, width=n // 9)
@@ -148,6 +148,8 @@ def soldier(col, size=40, kind="line"):
     if kind == "redarmy41": coat = (130, 122, 88, 255)
     if kind == "dak": coat = (205, 185, 135, 255)
     if kind == "gi": coat = (120, 115, 80, 255)
+    if kind == "kpa": coat = (140, 128, 82, 255)
+    if kind == "pva": coat = (128, 126, 86, 255)
     if kind == "tommy44": coat = (150, 135, 95, 255)
     if kind == "serb1912": coat = (110, 115, 90, 255)
     if kind == "evzone": coat = (40, 60, 130, 255)
@@ -559,6 +561,19 @@ def soldier(col, size=40, kind="line"):
         for k in range(4): d.line([(ox + n * (.36 + k * .09), n * .04), (ox + n * (.33 + k * .09), n * .18)], fill=(65, 70, 48, 255), width=max(1, n // 50))
         d.line([(ox + n * .34, n * .20), (ox + n * .42, n * .34)], fill=(60, 50, 35, 255), width=max(1, n // 45))
         d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(150, 135, 90, 255))
+        musket(y0=.06)
+    elif kind == "kpa":          # North Korean soldier 1950: khaki side cap (pilotka), mustard tunic, belt, rifle with bayonet
+        hc = (120, 110, 70, 255)
+        d.polygon([(ox + n * .36, n * .19), (ox + n * .64, n * .19), (ox + n * .62, n * .08), (ox + n * .50, n * .11), (ox + n * .38, n * .07)], fill=hc)
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .76], fill=(80, 60, 40, 255))
+        musket(bayonet=True, y0=.02)
+    elif kind == "pva":          # Chinese People's Volunteer 1950: quilted padded winter jacket, fur-lined cap with ear flaps, rifle
+        hc = (125, 125, 85, 255); fur = (170, 140, 95, 255)
+        d.chord([ox + n * .34, n * .04, ox + n * .66, n * .30], 180, 360, fill=hc)
+        d.rectangle([ox + n * .33, n * .15, ox + n * .67, n * .20], fill=fur)
+        d.rectangle([ox + n * .33, n * .19, ox + n * .39, n * .34], fill=fur); d.rectangle([ox + n * .61, n * .19, ox + n * .67, n * .34], fill=fur)
+        for k in range(5): d.line([(ox + n * .35, n * (.48 + k * .09)), (ox + n * .65, n * (.48 + k * .09))], fill=(95, 93, 62, 255), width=max(1, n // 45))
+        d.rectangle([ox + n * .34, n * .70, ox + n * .66, n * .75], fill=(95, 80, 55, 255))
         musket(y0=.06)
     elif kind == "tommy44":      # British/Canadian soldier 1944: flat Mk II "Brodie" helmet with net, khaki battledress, rifle
         hc = (95, 95, 70, 255)

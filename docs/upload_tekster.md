@@ -238,3 +238,10 @@ Episode 28 of History of the World, from Year 1 to 2026.
 Episode 29 of History of the World, from Year 1 to 2026.
 #history #geography #ww2 #worldwartwo #1945 #dday #shorts
 *(Planlagt i Metricool 24.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #30 – Year 1953
+**Tittel:** History of the World Ep 30
+**Beskrivelse:** Year 1953 – The Cold War begins. Churchill warns of an Iron Curtain across Europe, the Marshall Plan offers 13 billion dollars to rebuild Europe, Stalin blockades West Berlin and Allied planes fly in food and coal around the clock, twelve nations – Norway among them – found NATO and West Germany is born, the Soviets test their own atomic bomb, Mao proclaims the People's Republic of China and Chiang Kai-shek flees to Taiwan, North Korean T-34s take Seoul, MacArthur lands at Inchon, China crosses the Yalu, and the 1953 armistice leaves Korea divided.
+Episode 30 of History of the World, from Year 1 to 2026.
+#history #geography #coldwar #koreanwar #1953 #nato #shorts
+*(Planlagt i Metricool 26.11.2026 kl. 10:00, YouTube + Instagram Reels)*
