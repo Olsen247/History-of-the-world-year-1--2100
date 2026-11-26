@@ -245,3 +245,10 @@ Episode 29 of History of the World, from Year 1 to 2026.
 Episode 30 of History of the World, from Year 1 to 2026.
 #history #geography #coldwar #koreanwar #1953 #nato #shorts
 *(Planlagt i Metricool 26.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #31 – Year 1960
+**Tittel:** History of the World Ep 31
+**Beskrivelse:** Year 1960 – The end of empires: decolonisation of Africa and Asia. Giap's guns win at Dien Bien Phu, the FLN rises in Algeria, 29 Asian and African countries meet at Bandung, Nasser seizes the Suez Canal, Ghana is free, Guinea votes No to de Gaulle, Castro takes Cuba, Macmillan's wind of change and the Sharpeville massacre, seventeen African nations win independence in one year, and the Congo crisis begins.
+Episode 31 of History of the World, from Year 1 to 2026.
+#history #geography #decolonization #africa #1960 #yearofafrica #shorts
+*(Planlagt i Metricool 28.11.2026 kl. 10:00, YouTube + Instagram Reels)*
