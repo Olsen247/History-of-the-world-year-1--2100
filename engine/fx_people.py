@@ -210,6 +210,16 @@ def face(spec, size=300):
     elif hat == "cap":
         hc = spec.get("hat_col", (60, 60, 120)) + (255,)
         d.chord([cx - n*.21, top - n*.04, cx + n*.21, top + n*.26], 180, 360, fill=hc)
+    elif hat == "peci":       # Indonesian black velvet peci/songkok: straight-sided, flat-topped oval cap (Sukarno)
+        hc = spec.get("hat_col", (25, 25, 28)) + (255,)
+        d.rectangle([cx - n*.20, top - n*.10, cx + n*.20, top + n*.10], fill=hc)
+        d.ellipse([cx - n*.20, top - n*.14, cx + n*.20, top - n*.06], fill=tuple(min(255, v + 25) for v in hc[:3]) + (255,))
+        d.chord([cx - n*.205, top + n*.02, cx + n*.205, top + n*.16], 0, 180, fill=hc)
+    elif hat == "patrolcap":  # olive field cap with a flat top and short visor (Castro)
+        hc = spec.get("hat_col", (95, 105, 70)) + (255,)
+        d.polygon([(cx - n*.20, top + n*.09), (cx - n*.18, top - n*.12), (cx + n*.18, top - n*.12), (cx + n*.20, top + n*.09)], fill=hc)
+        d.line([(cx - n*.18, top - n*.12), (cx + n*.18, top - n*.12)], fill=tuple(int(v * .75) for v in hc[:3]) + (255,), width=int(n*.012))
+        d.chord([cx - n*.22, top + n*.03, cx + n*.22, top + n*.17], 0, 180, fill=tuple(int(v * .7) for v in hc[:3]) + (255,))
     elif hat == "wingcap":   # Ming court hat (wushamao): black rounded cap with two flat side wings
         hc = spec.get("hat_col", (25, 25, 30)) + (255,)
         d.rounded_rectangle([cx - n*.40, top + n*.06, cx - n*.17, top + n*.11], radius=n*.02, fill=hc)
@@ -631,6 +641,17 @@ P = {
  "mao": dict(hair="highswept", hair_col=(35, 32, 30), beard="none", robe=(95, 100, 95), tunic=True, skin=(228, 196, 160), nose=1.0, eye=(35, 28, 22), bg=(200, 50, 50)),
  "kimilsung": dict(hair="short", hair_col=(30, 28, 26), beard="none", robe=(110, 105, 80), tunic=True, skin=(228, 196, 160), nose=1.0, eye=(35, 28, 22), bg=(110, 160, 95)),
  "eisenhower53": dict(hair="thin", hair_col=(200, 185, 160), beard="none", robe=(40, 45, 55), lapels=(55, 60, 70), skin=(236, 200, 172), nose=1.2, eye=(70, 110, 150), age=True, bg=(60, 80, 140)),
+ # Ep 31
+ "giap": dict(hair="sidepart", hair_col=(30, 28, 26), beard="none", robe=(150, 140, 100), tunic=True, skin=(226, 192, 155), nose=1.0, eye=(35, 28, 22), bg=(200, 60, 50)),
+ "sukarno": dict(hat="peci", hair="short", hair_col=(30, 28, 26), beard="none", robe=(236, 234, 224), lapels=(222, 220, 208), lace=True, skin=(190, 145, 105), nose=1.1, eye=(35, 28, 22), bg=(200, 60, 60)),
+ "nehru": dict(hat="cap", hat_col=(246, 246, 240), hair="short", hair_col=(200, 196, 190), beard="none", robe=(230, 215, 180), tunic=True, skin=(205, 160, 120), nose=1.25, eye=(40, 32, 26), age=True, bg=(240, 150, 60)),
+ "nasser": dict(hair="short", hair_col=(40, 38, 36), beard="mustache", beard_col=(30, 28, 26), robe=(45, 45, 55), lapels=(60, 60, 72), skin=(196, 150, 110), nose=1.35, eye=(35, 28, 22), bg=(200, 60, 60)),
+ "nkrumah": dict(hair="short", hair_col=(25, 22, 20), beard="none", robe=(225, 175, 60), tunic=True, skin=(110, 75, 50), nose=1.15, eye=(30, 22, 18), bg=(240, 200, 60)),
+ "toure": dict(hat="cap", hat_col=(246, 246, 240), hair="short", hair_col=(25, 22, 20), beard="none", robe=(246, 246, 240), skin=(100, 68, 45), nose=1.15, eye=(30, 22, 18), bg=(230, 90, 90)),
+ "degaulle": dict(hat="kepi", hat_col=(120, 115, 85), hair="short", hair_col=(80, 70, 60), beard="thinmus", beard_col=(70, 62, 55), robe=(130, 120, 85), lapels=(115, 105, 75), skin=(232, 200, 175), nose=1.55, eye=(70, 80, 90), age=True, bg=(60, 95, 200)),
+ "castro": dict(hat="patrolcap", hat_col=(95, 105, 70), hair="short", hair_col=(30, 26, 22), beard="full", beard_col=(30, 26, 22), robe=(95, 105, 70), lapels=(85, 95, 60), skin=(228, 192, 160), nose=1.2, eye=(40, 32, 26), bg=(200, 50, 50)),
+ "macmillan": dict(hair="swept", hair_col=(190, 185, 178), beard="mustache", beard_col=(170, 165, 158), robe=(40, 40, 48), lapels=(55, 55, 66), skin=(232, 198, 175), nose=1.25, eye=(70, 90, 110), age=True, bg=(235, 125, 165)),
+ "lumumba": dict(hair="short", hair_col=(25, 22, 20), beard="vandyke", beard_col=(25, 22, 20), glasses=True, robe=(40, 40, 48), lapels=(55, 55, 66), skin=(110, 75, 50), nose=1.1, eye=(30, 22, 18), bg=(90, 170, 220)),
 }
 
 def get(who, size=210):

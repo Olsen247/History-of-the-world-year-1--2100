@@ -24,7 +24,7 @@ for i,idd in enumerate(ids,1):
         d=dict(meta, duration_seconds=meta.get('duration_seconds', meta.get('durationSeconds', 0)))
     else: raw=base64.b64decode(d['audio_base64'])
     open(f"{out}/seg{i}.wav","wb").write(raw)
-    subprocess.run(["ffmpeg","-v","error","-y","-i",f"{out}/seg{i}.wav","-af","silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,atempo="+__import__("os").environ.get("TEMPO","1.11"),"-ar","44100","-ac","1",f"{out}/f{i}.wav"],check=True)
+    subprocess.run(["ffmpeg","-v","error","-y","-i",f"{out}/seg{i}.wav","-af","silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,"+("silenceremove=stop_periods=-1:stop_duration=0.22:stop_threshold=-40dB:stop_silence=0.18," if __import__("os").environ.get("SQUEEZE") else "")+"atempo="+__import__("os").environ.get("TEMPO","1.11"),"-ar","44100","-ac","1",f"{out}/f{i}.wav"],check=True)
     w=wave.open(f"{out}/f{i}.wav"); dur=w.getnframes()/44100
     spans.append((round(t,2),round(t+dur,2))); print(i,d['duration_seconds'],round(dur,2))
     t+=dur+(0.5 if i in (1,) else 0.4)
