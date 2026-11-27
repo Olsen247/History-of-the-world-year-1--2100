@@ -81,6 +81,10 @@ def face(spec, size=300):
         if spec.get("lace"):
             for sx in (-1, 1): d.line([(cx + sx*n*.22, n*.80), (cx + sx*n*.16, n*1.0)], fill=(230, 190, 70, 255), width=int(n*.014))
         d.polygon([(cx - n*.08, n*.70), (cx + n*.08, n*.70), (cx + n*.05, n*.84), (cx, n*.88), (cx - n*.05, n*.84)], fill=(250, 250, 246, 255))
+    if spec.get("tie"):   # modern suit: white shirt collar and a dark necktie
+        tcol = spec["tie"] + (255,)
+        d.polygon([(cx - n*.012, n*.76), (cx + n*.012, n*.76), (cx + n*.03, n*.95), (cx, n*1.0), (cx - n*.03, n*.95)], fill=tcol)
+        d.polygon([(cx - n*.035, n*.735), (cx + n*.035, n*.735), (cx + n*.015, n*.775), (cx - n*.015, n*.775)], fill=tcol)
     if spec.get("tunic"):   # buttoned-up tunic with a closed stand collar (Mao/Zhongshan suit, 1950s uniforms)
         tc = spec["robe"] + (255,); dk = tuple(int(v * .72) for v in spec["robe"]) + (255,)
         d.polygon([(cx - n*.13, n*.69), (cx + n*.13, n*.69), (cx + n*.15, n*.78), (cx - n*.15, n*.78)], fill=tc, outline=dk, width=int(n*.008))
@@ -197,6 +201,19 @@ def face(spec, size=300):
         d.rectangle([cx - n*.215, top + n*.13, cx + n*.215, top + n*.17], fill=(110, 110, 120, 255))
         d.rectangle([cx - n*.015, top + n*.15, cx + n*.015, n*.50], fill=hc)
         if spec.get("crest"): d.chord([cx - n*.18, top - n*.18, cx + n*.18, top + n*.06], 180, 360, fill=spec["crest"] + (255,))
+    elif hat == "spacehelmet":   # 1960s pressure helmet: round white shell framing the face, neck ring; red CCCP on Soviet ones
+        hc = spec.get("hat_col", (240, 240, 236)) + (255,); hd = tuple(int(v * .78) for v in hc[:3]) + (255,)
+        d.ellipse([cx - n*.31, top - n*.13, cx + n*.31, chin + n*.11], outline=hc, width=int(n*.085))
+        d.ellipse([cx - n*.315, top - n*.135, cx + n*.315, chin + n*.115], outline=hd, width=int(n*.01))
+        d.ellipse([cx - n*.23, top - n*.05, cx + n*.23, chin + n*.03], outline=(40, 45, 55, 255), width=int(n*.012))
+        d.rounded_rectangle([cx - n*.26, chin + n*.06, cx + n*.26, chin + n*.14], radius=n*.03, fill=spec.get("ring_col", (190, 190, 196)) + (255,))
+        if spec.get("cccp"):
+            try:
+                from PIL import ImageFont as _IF
+                fnt = _IF.truetype("/usr/share/fonts/truetype/crosextra/Caladea-Bold.ttf", int(n*.075))
+                d.text((cx, top - n*.095), "CCCP", fill=(200, 30, 35, 255), font=fnt, anchor="mm")
+            except Exception:
+                pass
     elif hat == "turban":
         tc = spec.get("hat_col", (240, 236, 225)) + (255,)
         d.ellipse([cx - n*.25, top - n*.12, cx + n*.25, top + n*.20], fill=tc, outline=tuple(int(v*.8) for v in tc[:3]) + (255,), width=int(n*.01))
@@ -652,6 +669,15 @@ P = {
  "castro": dict(hat="patrolcap", hat_col=(95, 105, 70), hair="short", hair_col=(30, 26, 22), beard="full", beard_col=(30, 26, 22), robe=(95, 105, 70), lapels=(85, 95, 60), skin=(228, 192, 160), nose=1.2, eye=(40, 32, 26), bg=(200, 50, 50)),
  "macmillan": dict(hair="swept", hair_col=(190, 185, 178), beard="mustache", beard_col=(170, 165, 158), robe=(40, 40, 48), lapels=(55, 55, 66), skin=(232, 198, 175), nose=1.25, eye=(70, 90, 110), age=True, bg=(235, 125, 165)),
  "lumumba": dict(hair="short", hair_col=(25, 22, 20), beard="vandyke", beard_col=(25, 22, 20), glasses=True, robe=(40, 40, 48), lapels=(55, 55, 66), skin=(110, 75, 50), nose=1.1, eye=(30, 22, 18), bg=(90, 170, 220)),
+ # Ep 32
+ "gagarin": dict(hat="spacehelmet", cccp=True, hair="short", hair_col=(80, 60, 45), beard="none", robe=(230, 110, 40), skin=(236, 200, 170), nose=1.0, eye=(70, 90, 110), look=0, bg=(200, 50, 50)),
+ "ulbricht": dict(hair="bald", hair_col=(150, 140, 130), beard="goatee", beard_col=(150, 140, 130), glasses=True, robe=(45, 45, 52), lapels=(58, 58, 68), tie=(60, 40, 40), skin=(232, 198, 175), nose=1.2, eye=(70, 80, 90), age=True, bg=(170, 160, 60)),
+ "kennedy": dict(hair="swept", hair_col=(140, 90, 55), beard="none", robe=(40, 44, 58), lapels=(52, 56, 72), tie=(35, 40, 70), skin=(236, 196, 166), nose=1.1, eye=(70, 100, 140), bg=(60, 90, 160)),
+ "khrushchev": dict(hair="bald", hair_col=(185, 180, 172), beard="none", robe=(40, 40, 46), lapels=(55, 55, 62), tie=(40, 40, 46), skin=(238, 196, 170), nose=1.35, eye=(80, 95, 110), age=True, bg=(190, 50, 50)),
+ "tereshkova": dict(female=True, hat="spacehelmet", cccp=True, hair="curly", hair_col=(90, 60, 40), robe=(110, 140, 190), skin=(240, 208, 184), nose=1.0, eye=(80, 95, 110), bg=(200, 60, 80)),
+ "johnson": dict(hair="swept", hair_col=(175, 170, 165), beard="none", robe=(48, 50, 58), lapels=(60, 62, 72), tie=(40, 40, 70), skin=(232, 192, 165), nose=1.5, eye=(70, 85, 100), age=True, bg=(60, 90, 160)),
+ "dubcek": dict(hair="swept", hair_col=(70, 60, 50), beard="none", robe=(55, 55, 62), lapels=(68, 68, 78), tie=(110, 40, 40), skin=(236, 200, 176), nose=1.5, eye=(70, 80, 90), bg=(120, 160, 220)),
+ "armstrong": dict(hat="spacehelmet", hair="short", hair_col=(170, 130, 80), beard="none", robe=(238, 238, 232), ring_col=(150, 170, 210), skin=(238, 204, 178), nose=1.1, eye=(70, 110, 150), bg=(30, 50, 100)),
 }
 
 def get(who, size=210):
