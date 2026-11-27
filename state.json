@@ -1,9 +1,9 @@
 {
-  "next_episode": 32,
-  "previous_year": 1960,
-  "previous_year_module": "world_data_1960",
-  "previous_base_map": "hd_1960.png",
-  "next_publish_date": "2026-12-01",
+  "next_episode": 33,
+  "previous_year": 1969,
+  "previous_year_module": "world_data_1969",
+  "previous_base_map": "hd_1969.png",
+  "next_publish_date": "2026-12-03",
   "publish_time": "10:00",
   "timezone": "Europe/Oslo",
   "metricool_blog_id": "7508489",
@@ -305,6 +305,13 @@
       "video": "videos/ep31_year1960.mp4",
       "publish": "2026-11-28 10:00",
       "metricool_post_id": 442597673
+    },
+    {
+      "ep": 32,
+      "year": 1969,
+      "video": "videos/ep32_year1969.mp4",
+      "publish": "2026-12-01 10:00",
+      "metricool_post_id": 443870959
     }
   ],
   "next_publish_time": "10:00",
@@ -420,5 +427,5 @@
     }
   ],
   "clips_paused": "Clips 14,15,16,18 set to DRAFT in Metricool (free plan limit). Do not make or schedule clips while on the free plan.",
-  "note_next_slot": "Ep 31 (28.11) is November's 20th non-draft post, so 30.11 is blocked by the free-plan limit; next episode goes on 1.12 at 10:00."
+  "note_next_slot": "Ep 32 is December's 1st post (1.12 10:00). Next episode on 3.12 at 10:00 (every other day on the free plan)."
 }

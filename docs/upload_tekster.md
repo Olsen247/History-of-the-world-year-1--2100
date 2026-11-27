@@ -252,3 +252,10 @@ Episode 30 of History of the World, from Year 1 to 2026.
 Episode 31 of History of the World, from Year 1 to 2026.
 #history #geography #decolonization #africa #1960 #yearofafrica #shorts
 *(Planlagt i Metricool 28.11.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #32 – Year 1969
+**Tittel:** History of the World Ep 32
+**Beskrivelse:** Year 1969 – The space race and the Moon landing; the Vietnam War escalates. Yuri Gagarin becomes the first human in space, East Germany seals off West Berlin, thirteen days on the brink in the Cuban Missile Crisis, Valentina Tereshkova becomes the first woman in space and Kennedy is shot in Dallas, the Gulf of Tonkin, Rolling Thunder and the Marines at Da Nang, Mao's Cultural Revolution, Soviet-led tanks crush the Prague Spring, over 530,000 Americans in Vietnam, and Neil Armstrong steps onto the Moon.
+Episode 32 of History of the World, from Year 1 to 2026.
+#history #geography #spacerace #moonlanding #1969 #coldwar #shorts
+*(Planlagt i Metricool 01.12.2026 kl. 10:00, YouTube + Instagram Reels)*
