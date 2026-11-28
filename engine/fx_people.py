@@ -36,6 +36,10 @@ def _beard(d, n, kind, col, cx, chin):
     if kind == "walrus":       # thick bushy mustache drooping at the ends (Stalin)
         d.polygon([(cx - n*.12, chin - n*.07), (cx - n*.10, chin - n*.115), (cx, chin - n*.135), (cx + n*.10, chin - n*.115), (cx + n*.12, chin - n*.07),
                    (cx + n*.07, chin - n*.075), (cx, chin - n*.09), (cx - n*.07, chin - n*.075)], fill=col); return
+    if kind == "wispy":        # thin drooping mustache + long, thin wispy chin beard (Ho Chi Minh)
+        d.polygon([(cx - n*.07, chin - n*.10), (cx, chin - n*.112), (cx + n*.07, chin - n*.10), (cx + n*.05, chin - n*.088), (cx - n*.05, chin - n*.088)], fill=col)
+        for sx in (-1, 1): d.line([(cx + sx*n*.065, chin - n*.10), (cx + sx*n*.085, chin - n*.06)], fill=col, width=int(n*.012))
+        d.polygon([(cx - n*.035, chin - n*.03), (cx + n*.035, chin - n*.03), (cx + n*.012, chin + n*.13), (cx, chin + n*.16), (cx - n*.012, chin + n*.13)], fill=col); return
     if kind == "mustache":
         d.polygon([(cx - n*.09, chin - n*.10), (cx, chin - n*.115), (cx + n*.09, chin - n*.10), (cx + n*.06, chin - n*.08), (cx, chin - n*.095), (cx - n*.06, chin - n*.08)], fill=col)
         d.line([(cx - n*.085, chin - n*.10), (cx - n*.12, chin - n*.03)], fill=col, width=int(n*.02))
@@ -678,6 +682,12 @@ P = {
  "johnson": dict(hair="swept", hair_col=(175, 170, 165), beard="none", robe=(48, 50, 58), lapels=(60, 62, 72), tie=(40, 40, 70), skin=(232, 192, 165), nose=1.5, eye=(70, 85, 100), age=True, bg=(60, 90, 160)),
  "dubcek": dict(hair="swept", hair_col=(70, 60, 50), beard="none", robe=(55, 55, 62), lapels=(68, 68, 78), tie=(110, 40, 40), skin=(236, 200, 176), nose=1.5, eye=(70, 80, 90), bg=(120, 160, 220)),
  "armstrong": dict(hat="spacehelmet", hair="short", hair_col=(170, 130, 80), beard="none", robe=(238, 238, 232), ring_col=(150, 170, 210), skin=(238, 204, 178), nose=1.1, eye=(70, 110, 150), bg=(30, 50, 100)),
+ # Ep 33 (plain suits/tunics, no badges or symbols)
+ "hochiminh": dict(hair="swept", hair_col=(225, 222, 215), beard="wispy", beard_col=(232, 230, 224), robe=(190, 170, 120), tunic=True, skin=(222, 188, 150), nose=1.0, eye=(35, 28, 22), age=True, bg=(200, 55, 50)),
+ "nixon": dict(hair="swept", hair_col=(60, 52, 46), beard="none", robe=(42, 46, 60), lapels=(55, 60, 76), tie=(60, 50, 90), skin=(234, 194, 166), nose=1.55, eye=(60, 60, 60), age=True, bg=(60, 90, 160)),
+ "kissinger": dict(hair="curly", hair_col=(70, 62, 55), beard="none", glasses=True, robe=(45, 45, 55), lapels=(60, 60, 72), tie=(40, 40, 60), skin=(236, 200, 176), nose=1.3, eye=(60, 60, 60), bg=(60, 90, 160)),
+ "leductho": dict(hair="swept", hair_col=(200, 196, 190), beard="none", robe=(95, 95, 100), tunic=True, skin=(222, 188, 150), nose=1.0, eye=(35, 28, 22), age=True, bg=(200, 55, 50)),
+ "polpot": dict(hair="short", hair_col=(55, 52, 50), beard="none", robe=(30, 30, 34), tunic=True, skin=(205, 160, 120), nose=1.05, eye=(35, 28, 22), bg=(90, 30, 30)),
 }
 
 def get(who, size=210):

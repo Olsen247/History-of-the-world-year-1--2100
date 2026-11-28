@@ -219,7 +219,26 @@ def _landing(size=40):
     d.polygon([(0, h * .2), (n * .85, h * .2), (n, h * .5), (n * .85, h * .8), (0, h * .8)], fill=(95, 110, 95, 255), outline=(50, 60, 50, 255))
     return _outl(im.resize((size, int(size * .5)), Image.LANCZOS))
 
-EXTRA = {"truck": (_truck, 40), "tank1916": (_tank1916, 58), "tank": (_tank, 56), "submarine": (_submarine, 70), "bomber": (_bomber, 66), "carrier": (_carrier, 92), "landing_craft": (_landing, 40)}
+def _helicopter(size=62, col=(92, 104, 70)):
+    """Bell UH-1 "Huey" side view (Vietnam 1965-75): olive drab cabin with a rounded glass nose to the right, thin tail boom,
+    tail rotor, skids, and the long two-blade main rotor seen edge-on with a faint spinning disc."""
+    n = size * S3; h = int(n * .55); im = Image.new("RGBA", (n, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    dk = tuple(int(v * .55) for v in col) + (255,); c = col + (255,)
+    d.ellipse([n * .06, h * .08, n * .94, h * .26], fill=(230, 230, 225, 60))                      # rotor disc (blur)
+    d.rectangle([n * .04, h * .15, n * .96, h * .19], fill=(40, 40, 40, 255))                      # main rotor blades
+    d.rectangle([n * .52, h * .17, n * .56, h * .32], fill=dk)                                      # rotor mast
+    d.polygon([(n * .02, h * .40), (n * .40, h * .44), (n * .40, h * .56), (n * .04, h * .50)], fill=c, outline=dk)   # tail boom
+    d.polygon([(n * .00, h * .28), (n * .06, h * .28), (n * .08, h * .50), (n * .02, h * .50)], fill=c, outline=dk)   # fin
+    d.ellipse([n * -.03, h * .26, n * .09, h * .38], fill=(60, 60, 60, 160))                        # tail rotor
+    d.rounded_rectangle([n * .34, h * .30, n * .86, h * .74], radius=h * .14, fill=c, outline=dk)   # cabin
+    d.chord([n * .70, h * .30, n * .98, h * .74], 270, 90, fill=c, outline=dk)                      # nose
+    d.chord([n * .76, h * .34, n * .96, h * .58], 270, 90, fill=(170, 205, 220, 255))               # windscreen
+    d.rectangle([n * .52, h * .40, n * .66, h * .60], fill=(50, 56, 40, 255))                      # open side door
+    d.line([(n * .38, h * .92), (n * .90, h * .92)], fill=(45, 45, 45, 255), width=S3 * 2)          # skids
+    for x in (.46, .78): d.line([(n * x, h * .74), (n * (x - .03), h * .92)], fill=(45, 45, 45, 255), width=S3 * 2)
+    return _outl(im.resize((size, int(size * .55)), Image.LANCZOS))
+
+EXTRA = {"helicopter": (_helicopter, 62), "truck": (_truck, 40), "tank1916": (_tank1916, 58), "tank": (_tank, 56), "submarine": (_submarine, 70), "bomber": (_bomber, 66), "carrier": (_carrier, 92), "landing_craft": (_landing, 40)}
 
 def sprite(kind, size):
     k = (kind, size)
