@@ -259,3 +259,10 @@ Episode 31 of History of the World, from Year 1 to 2026.
 Episode 32 of History of the World, from Year 1 to 2026.
 #history #geography #spacerace #moonlanding #1969 #coldwar #shorts
 *(Planlagt i Metricool 01.12.2026 kl. 10:00, YouTube + Instagram Reels)*
+
+## #33 – Year 1975
+**Tittel:** History of the World Ep 33
+**Beskrivelse:** Year 1975 – The Vietnam War ends. The Tet Offensive strikes over 100 towns at once, Hue is retaken street by street, supplies flow down the Ho Chi Minh Trail through Laos despite millions of tons of bombs, Huey helicopters and the Cu Chi tunnels, Nixon starts bringing troops home and the My Lai massacre is revealed, the push into Cambodia and Kent State, the Paris Peace Accords, the North's final offensive, the Khmer Rouge seize Phnom Penh, and the fall of Saigon on 30 April 1975.
+Episode 33 of History of the World, from Year 1 to 2026.
+#history #geography #vietnamwar #fallofsaigon #1975 #coldwar #shorts
+*(Planlagt i Metricool 03.12.2026 kl. 10:00, YouTube + Instagram Reels)*
